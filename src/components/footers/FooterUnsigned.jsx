@@ -11,8 +11,8 @@ export default function FooterUnsigned() {
         </div>
         <div className="flex flex-col gap-6 w-[200px] items-center">
             <h1 className="font-inter font-semibold text-2xl">Lien rapide</h1>
-            <Link className="font-inter text-black/[69%] text-xl">sign in</Link>
-            <Link className='font-inter text-black/[69%] text-xl'>log in</Link>
+            <Link to="/Signup" className="font-inter text-black/[69%] text-xl">sign up</Link>
+            <Link to="/Login" className='font-inter text-black/[69%] text-xl'>log in</Link>
         </div>
         <div className="flex flex-col gap-8 w-[200px] items-center">
             <h1 className="font-inter font-semibold text-2xl"> Contactez nous</h1>

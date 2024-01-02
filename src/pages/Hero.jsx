@@ -9,7 +9,7 @@ export default function Hero() {
   return (
     <div className="bg-gradient-to-br from-[#F5F6F8] via-[#F5F6F8] to-[#EFE8F0] w-full">
       <NavUnsigned/>
-      <div className="w-full flex justify-evenly pt-20">
+      <div className="w-full grid-cols-1 lg:flex justify-evenly pt-20">
         <div className="w-[700px] py-16">
           <div className="flex-col">
             <h1 className="font-inter font-semibold leading-[90px] text-7xl">Get details of millions of articles with us</h1>

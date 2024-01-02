@@ -22,14 +22,14 @@ export default function Signup() {
                     <div className="flex flex-col pt-10">
                         <label className="font-inter text-3xl py-8 ">User Name</label>
                         <input name="username" type="text" className="bg-[#F4F4F4] p-4 text-2xl font-inter rounded-xl  focus:outline-[#1B76FF]" />
-                    </div>
+                    </div     >
                     <div className="flex flex-col ">
                         <label className="font-inter text-3xl py-5 ">Full Name</label>
                         <input name="Fullname" type="text" className="bg-[#F4F4F4]  p-4 text-2xl font-inter rounded-xl focus:outline-[#1B76FF]" />
                     </div>
                     <div className="flex flex-col pb-[100px] ">
                         <label className="font-inter text-3xl py-5 ">Email</label>
-                        <input name="email" type="text" className="bg-[#F4F4F4]  p-4 text-2xl font-inter rounded-xl focus:outline-[#1B76FF]" />
+                        <input name="username" type="text" className="bg-[#F4F4F4]  p-4 text-2xl font-inter rounded-xl focus:outline-[#1B76FF]" />
                     </div>
                     <button className="w-full text-white bg-[#1B76FF] text-3xl text-center py-4 rounded-xl">Register</button>
                     <p className="text-center pt-5 text-[#6E6868] font-inter text-lg">already have an account ? <Link to="/Login" className="text-[#1B76FF]">Log in</Link></p>
