@@ -1,89 +1,32 @@
-// components/ArticleBox.js
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
-const ArticleBox = ({ title, authors, summary }) => {
-    const [heartState, setHeartState] = useState(false);
+const ArticleBox = ({ title, authors, summary, isFavorite, onToggleFavorite }) => {
     const [showFullSummary, setShowFullSummary] = useState(false);
     const [isTitleHovered, setIsTitleHovered] = useState(false);
 
-    const boxStyle = {
-        width: '90%', // Modification ici pour occuper toute la largeur
-        border: '1px solid #ccc',
-        padding: '10px',
-        marginBottom: '20px',
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
-        borderRadius: '10px',
-        position: 'relative',
-        margin: '0 auto',
-    };
-
-    const titleStyle = {
-        color: 'black',
-        fontSize: isTitleHovered ? '22px' : '20px',
-        fontWeight: 'bold',
-        textDecoration: isTitleHovered ? 'underline' : 'none',
-        transition: 'font-size 0.3s, text-decoration 0.3s',
-    };
-
-    const authorStyle = {
-        color: 'blue',
-        fontSize: '16px',
-        margin: '10px 0',
-    };
-
-    const summaryStyle = {
-        color: 'black',
-        fontSize: '14px',
-        lineHeight: '1.5',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        maxHeight: showFullSummary ? 'none' : '75px',
-    };
-
-    const readMoreButtonStyle = {
-        position: 'absolute',
-        top: '10px',
-        right: '10px',
-        cursor: 'pointer',
-        color: 'blue',
-        textDecoration: 'underline',
-    };
-
-    const handleLikeClick = () => {
-        setHeartState(!heartState);
-    };
-
-    const handleReadMoreClick = () => {
-        setShowFullSummary(!showFullSummary);
-    };
-
     return (
-        <div style={boxStyle}>
+        <div className="w-full border p-5 mb-8 shadow-md rounded-md relative">
             <FontAwesomeIcon
                 icon={faHeart}
-                style={{
-                    position: 'absolute',
-                    top: '10px',
-                    right: '10px',
-                    color: heartState ? 'red' : 'black',
-                    cursor: 'pointer',
-                }}
-                onClick={handleLikeClick}
+                className={`absolute top-2 right-2 cursor-pointer text-${isFavorite ? 'red' : 'black'}`}
+                onClick={onToggleFavorite}
             />
             <div
-                style={titleStyle}
+                className={`text-black font-bold text-${isTitleHovered ? 'xl' : 'lg'} ${isTitleHovered ? 'underline' : 'no-underline'} transition-all duration-300`}
                 onMouseEnter={() => setIsTitleHovered(true)}
                 onMouseLeave={() => setIsTitleHovered(false)}
             >
                 {title}
             </div>
-            <div style={authorStyle}>{authors}</div>
-            <div style={summaryStyle}>{summary}</div>
+            <div className="text-blue-500 text-sm mt-2">{authors}</div>
+            <div className={`text-black text-base leading-6 overflow-hidden ${showFullSummary ? 'max-h-full' : 'max-h-24'} transition-all duration-300`}>
+                {summary}
+            </div>
             {!showFullSummary && (
-                <div style={readMoreButtonStyle} onClick={handleReadMoreClick}>
-                  Lire la suite >>
+                <div className="cursor-pointer text-blue-500 underline absolute bottom-2 right-2" onClick={() => setShowFullSummary(!showFullSummary)}>
+                    Lire la suite >>
                 </div>
             )}
         </div>

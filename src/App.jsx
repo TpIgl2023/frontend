@@ -6,6 +6,8 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Home from './pages/Home';
 import AddArticle from './pages/AddArticle';
+import AddArticle2 from './pages/AddArticle2';
+
 import Article from './pages/Article';
 import Contact from './pages/Contact';
 import Favoris from './pages/Favoris';
@@ -23,6 +25,7 @@ const routes = createRoutesFromElements(
     <Route path="/Login" element={<Login />} />
     <Route path="/Signup" element={<Signup />} />
     <Route path="/ajouter" element={<AddArticle />} />
+    <Route path="/add" element={<AddArticle2 />} />
     <Route path="/article" element={<Article />} />
     <Route path="/contact" element={<Contact />} />
     <Route path="/favoris" element={<Favoris />} />

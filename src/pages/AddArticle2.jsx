@@ -7,6 +7,7 @@ export default function AddArticle2() {
         <div>
             <NavArticles />
 
+
             <FooterSigned />
         </div>
     )
