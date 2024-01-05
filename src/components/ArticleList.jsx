@@ -7,7 +7,7 @@ const ArticleList = ({ articles }) => {
     };
 
     return (
-        <div className="grid grid-cols-3 justify-evenly items-center justify-items-center gap-y-16 pb-16" style={{ width: '100%' }}>
+        <div className=" gap-y-16 pb-16" style={{ width: '100%' }}>
             {articles.map((article, index) => (
                 <ArticleBox
                     key={index}
