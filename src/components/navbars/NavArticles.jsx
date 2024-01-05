@@ -4,6 +4,7 @@ import {Link} from "react-router-dom"
 import MenuIcon from '@mui/icons-material/Menu';
 import ProfilePic from "../../assets/ProfilePic.svg"
 import SearchIcon from "../../assets/SearchIcon.svg"
+import FooterSigned from '../footers/FooterSigned';
 export default function NavArticles() {
   return (
     <nav className={`${styles.paddingX} ${styles.paddingY}  flex items-center justify-between bg-[#1B76FF]`}>
