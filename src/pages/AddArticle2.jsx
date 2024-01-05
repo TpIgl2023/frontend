@@ -239,12 +239,12 @@ const AddArticle2 = () => {
 
     return (
         <div>
-            <NavArticles class="mb-8" />
-            <h1 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-8">
+            <NavArticles class="mb-20" />
+            <h1 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-1">
                 Add New Article
             </h1>
             {articles.map((article, index) => (
-                <div key={index} className="my-7 border border-blue-500 w-full p-8 bg-white rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 mx-auto">
+                <div key={index} className="m-7 border border-blue-500 w-full p-8 bg-white rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 mx-auto">
                     <ArticleTitle
                         titre={article.titre}
                         boxHeight={boxHeightTitle}

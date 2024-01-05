@@ -19,7 +19,7 @@ const Favoris = () => {
     <div>
       <NavArticles />
       <div style={{ margin: '20px 0' }} />
-      <h2 className="text-2xl font-bold mb-4"></h2>
+      <h2 className="text-2xl font-bold mb-4">fav</h2>
       <ArticleList articles={favoriteArticles} />
       <FooterSigned />
     </div>

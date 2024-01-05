@@ -11,6 +11,18 @@ const Article = () => {
       summary: "Résumé de l'article 1. La suite du résumé est composée de points...",
       isFavorite: false,
     },
+    {
+      title: "Titre de l'article 2",
+      authors: "Auteur(s) 2",
+      summary: "Résumé de l'article 2. La suite du résumé est composée de points...",
+      isFavorite: false,
+    },
+    {
+      title: "Titre de l'article 2",
+      authors: "Auteur(s) 2",
+      summary: "Résumé de l'article 2. La suite du résumé est composée de points...",
+      isFavorite: false,
+    },
     // Ajoutez d'autres articles 
   ];
 

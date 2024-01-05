@@ -7,7 +7,7 @@ const ArticleList = ({ articles }) => {
     };
 
     return (
-        <div className=" gap-y-16 pb-16" style={{ width: '100%' }}>
+        <div className=" m-7 gap-y-16 pb-16" style={{ width: '95%' }}>
             {articles.map((article, index) => (
                 <ArticleBox
                     key={index}

@@ -8,7 +8,9 @@ import Home from './pages/Home';
 import AddArticle from './pages/AddArticle';
 import AddArticle2 from './pages/AddArticle2';
 
+
 import Article from './pages/Article';
+import ArticleInfo from './pages/ArticleInfo';
 import Contact from './pages/Contact';
 import Favoris from './pages/Favoris';
 import Profile from './pages/Profile';
@@ -17,6 +19,7 @@ import NewMod from './pages/AdminPages/NewMod';
 import DashBoard from './pages/AdminPages/DashBoard';
 import ModeratorAll from './pages/AdminPages/ModeratorAll';
 import Adminlayout from './layouts/Adminlayout';
+
 
 // Define your routes using createRoutesFromElements
 const routes = createRoutesFromElements(
@@ -31,6 +34,7 @@ const routes = createRoutesFromElements(
     <Route path="/favoris" element={<Favoris />} />
     <Route path="/home" element={<Home />} />
     <Route path="/Profile" element={<Profile />} />
+    <Route path="/ArticleInfo" element={<ArticleInfo />} />
     <Route path="/admin" element={<Adminlayout />}>
       <Route path="dashboard" element={<DashBoard />} />
       <Route path="adminedit" element={<AdminEdit />} />
