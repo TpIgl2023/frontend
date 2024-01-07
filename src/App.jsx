@@ -17,6 +17,9 @@ import ModeratorAll from "./pages/AdminPages/ModeratorAll";
 import Adminlayout from "./layouts/Adminlayout";
 import SideNavAdmin from "./components/navbars/SideNavAdmin";
 import FooterSigned from "./components/footers/FooterSigned";
+import Password from "./pages/AdminPages/Password";
+import Help from "./pages/AdminPages/Help";
+
 const router=createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Rootlayout/>}>
@@ -33,7 +36,10 @@ const router=createBrowserRouter(
           <Route path="dashboard" element={<DashBoard/>}></Route>
           <Route path="adminedit" element={<AdminEdit/>}></Route>
           <Route path="moderateurAll" element={<ModeratorAll/>}></Route>
-          <Route path="AjouterMod" element={<NewMod/>}></Route>                    
+          <Route path="Password" element={<Password/>}></Route>
+          <Route path="AjouterMod" element={<NewMod/>}></Route>    
+          <Route path="Help" element={<Help/>}></Route>                    
+                
         </Route>
 
 

@@ -21,15 +21,19 @@ export default function ProfileInfo() {
     if(event.target.NewName.value != ""){
       setName(event.target.NewName.value);
       user.full_name=event.target.NewName.value;
+      console.log(event.target.NewName.value);
+
     }
     if(event.target.NewEmail.value != ""){
       setEmail(event.target.NewEmail.value);
       user.email=event.target.NewEmail.value;
+      console.log(event.target.NewEmail.value);
 
     }
     if(event.target.NewNumber.value != ""){
       setPhone(event.target.NewNumber.value);
       user.phone_number=event.target.NewNumber.value;
+      console.log(event.target.NewNumber.value);
     }
 
   }
@@ -52,7 +56,7 @@ export default function ProfileInfo() {
         </div>
         <div className=" pl-[30%] py-10 flex">
           <label className="font-inter font-semibold text-2xl  ">Email :</label>
-          <input className="font-inter text-xl text-[#A9AABC] px-5 font-normal outline-none"  placeholder={`${email} `} name="NewEmail" />
+          <input  type="email" className="font-inter text-xl text-[#A9AABC] px-5 font-normal outline-none"  placeholder={`${email} `} name="NewEmail" />
         </div>
     
       </div>
@@ -92,7 +96,7 @@ export default function ProfileInfo() {
         </div>
       </div>
       <div className="mt-[70px] flex justify-center mx-auto">
-          <button className=" text-2xl font-inter font-semibold text-white bg-[#1B76FF] py-5 px-10 rounded-xl" >Edit information</button>
+          <button type="submit" className=" text-2xl font-inter font-semibold text-white bg-[#1B76FF] py-5 px-10 rounded-xl" >Edit information</button>
       </div>
     </div>
     </form>

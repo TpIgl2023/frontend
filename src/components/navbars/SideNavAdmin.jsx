@@ -9,7 +9,7 @@ export default function SideNavAdmin() {
       title: "Dashboard",
     },
     {
-      id: "admin/adminedit",
+      id: "admin/Password",
       title: "Password",
     },
     {
@@ -17,7 +17,7 @@ export default function SideNavAdmin() {
       title: "Moderateurs",
     },
     {
-      id: "admin/AjouterMod",
+      id: "admin/Help",
       title: "Help",
     },
   ];
