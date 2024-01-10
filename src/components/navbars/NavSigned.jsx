@@ -52,7 +52,7 @@ export default function NavSigned() {
   return (
     
     <nav className={`px-6 2xl:px-24 ${styles.paddingY}  flex justify-between items-center`}>
-      <Link to="/Hero" className="font-inter font-bold text-4xl xl:text-5xl text-[#1B76FF]">PDFinder</Link>
+      <Link to="/Hero" className="font-inter font-bold text-4xl xl:text-5xl text-main">PDFinder</Link>
       <ul className="hidden list-none lg:flex gap-[50px] xl:gap-[80px] 2xl:gap-[125px]">
       {navLinks.map((link) => (
 
@@ -61,9 +61,9 @@ export default function NavSigned() {
                 onClick={() => setActive(link.title)}
                 className={`${
                   active === link.title
-                    ? " font-semibold text-[#1B76FF]"
+                    ? " font-semibold text-main"
                     : ""
-                } hover:border-b-4 border-[#1B76FF] text-[19px] duration-[0.3s] transition-all`}
+                } hover:border-b-4 border-main text-[19px] duration-[0.3s] transition-all`}
                 >
                   {link.title!="Contact" ? <Link to={`/${link.id}` } className="font-inter font-semibold text-xl">{link.title}</Link> : <Link onClick={scrollToBottom} className="font-inter font-semibold text-xl">{link.title}</Link>}
                 </li>))}

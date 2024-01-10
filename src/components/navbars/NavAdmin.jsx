@@ -6,7 +6,7 @@ export default function NavAdmin() {
   return (
 
   <nav className={`px-10 ${styles.paddingY}  flex items-center justify-between`}>
-      <Link to="/Home" className="font-jost font-bold text-5xl  text-[#1B76FF]">PDFinder</Link>
+      <Link to="/Home" className="font-jost font-bold text-5xl  text-main">PDFinder</Link>
 
       <div className="flex gap-16 items-center">
         <h1 className="font-inter text-xl font-semibold">Yekene Sofiane</h1>

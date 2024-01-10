@@ -29,7 +29,7 @@ export default function FooterUnsigned() {
         </div>
         
       </div>
-      <div className="flex justify-center pb-4 text-[#1B76FF] text-xl sm:text-2xl font-inter">
+      <div className="flex justify-center pb-4 text-main text-xl sm:text-2xl font-inter">
          2023 pdf .All rights reserved 
      </div>
     </div>

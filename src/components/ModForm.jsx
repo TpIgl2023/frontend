@@ -32,7 +32,7 @@ export default function ModForm() {
             <div className="w-full ">
                 <input type="password" name="password" className="w-full rounded-lg font-inter text-xl px-4 py-3 outline-none"/>
             </div>
-            <button className="w-full my-10 py-3 bg-[#1B76FF] text-white font-inter rounded-xl text-2xl">Add Moderator</button>
+            <button className="w-full my-10 py-3 bg-main text-white font-inter rounded-xl text-2xl">Add Moderator</button>
         </form>
     </div>
   )

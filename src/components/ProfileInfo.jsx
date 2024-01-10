@@ -96,7 +96,7 @@ export default function ProfileInfo() {
         </div>
       </div>
       <div className="mt-[70px] flex justify-center mx-auto">
-          <button type="submit" className=" text-2xl font-inter font-semibold text-white bg-[#1B76FF] py-5 px-10 rounded-xl" >Edit information</button>
+          <button type="submit" className=" text-2xl font-inter font-semibold text-white bg-main py-5 px-10 rounded-xl" >Edit information</button>
       </div>
     </div>
     </form>

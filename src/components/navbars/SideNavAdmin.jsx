@@ -30,9 +30,9 @@ export default function SideNavAdmin() {
                 key={link.id}
                 className={`${
                   active === link.title
-                    ? "bg-[#1B76FF] text-white font-bold"
+                    ? "bg-main text-white font-bold"
                     : "font-semibold bg-[#EFFBFF]"
-                }  py-2 w-[80%] text-center hover:border-b-4 border-[#1B76FF] text-[19px] duration-[0.3s] transition-all `}
+                }  py-2 w-[80%] text-center hover:border-b-4 border-main text-[19px] duration-[0.3s] transition-all `}
                 >
                   <Link to={`/${link.id}`} onClick={() => setActive(link.title)} className="font-inter text-2xl ">{link.title}</Link>
                 </li>))}

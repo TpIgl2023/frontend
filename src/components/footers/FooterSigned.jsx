@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default function FooterSigned() {
   return (
-    <div className="h-[450px] w-full bg-[#1B76FF] flex flex-col justify-between text-white">
+    <div className="h-[450px] w-full bg-main flex flex-col justify-between text-white">
       <div className="flex justify-evenly py-16">
         <div className="hidden md:block">
           <div className="flex flex-col gap-8 w-[250px] lg:w-[400px] ">

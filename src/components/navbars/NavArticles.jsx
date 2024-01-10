@@ -7,7 +7,7 @@ import SearchIcon from "../../assets/SearchIcon.svg"
 import FooterSigned from '../footers/FooterSigned';
 export default function NavArticles() {
   return (
-    <nav className={`${styles.paddingX} ${styles.paddingY}  flex items-center justify-between bg-[#1B76FF]`}>
+    <nav className={`${styles.paddingX} ${styles.paddingY}  flex items-center justify-between bg-main`}>
       <Link to="/Home" className="font-jost font-bold text-4xl lg:text-5xl text-white  ">PDFinder</Link>
       <div className="hidden lg:block">
         <div className="flex gap-10 items-center">
