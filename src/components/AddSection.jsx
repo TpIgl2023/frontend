@@ -19,7 +19,7 @@ export default function AddSection() {
           <div className=" rounded-2xl py-[25px] sm:py-[50px] md:py-[75px] xl:py-[100px] ">
             <form action="">
               <div className="w-full rounded-2xl bg-[#ECECEC] flex">
-                <input type="text" placeholder="url..." name="url" className=" w-[85%] rounded-l-2xl text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl bg-[#ECECEC]  outline-none font-inter font-thin py-3 md:py-4 xl:py-5 px-6 text-black z-10" />
+                <input type="text" placeholder="url..." name="url" className=" w-[85%] rounded-l-2xl text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl bg-[#ECECEC]  outline-none font-inter font-thin py-3 md:py-4 xl:py-5 px-6 text-black =" />
                 <button type='submit'  className="w-[15%] bg-main rounded-r-2xl text-white">
                   <Add fontSize='large'/>
                 </button>
@@ -27,7 +27,7 @@ export default function AddSection() {
             </form>
           </div>
         </div>
-              <img src={Image} alt="" className=" sm:row-span-full sm:col-span-7 sm:col-end-11 sm:self-center "/>
+          <img src={Image} alt="" className=" sm:row-span-full sm:col-span-7 sm:col-end-11 sm:self-center "/>
 
       </div>
     </div>

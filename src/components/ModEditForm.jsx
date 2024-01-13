@@ -38,7 +38,7 @@ export default function ModEditForm() {
                 <input type="password" name="password" className="w-full rounded-lg font-inter text-xl px-4 py-3 outline-none"/>
             </div>
             <button className="w-full mt-10 py-3 bg-main text-white font-inter rounded-xl text-xl sm:text-2xl">Edit Moderator</button>
-            <button className="w-full my-10 py-3 bg-red-500 text-white font-inter rounded-xl text-xl sm:text-2xl">Delete Moderator</button>
+            <button className="w-full my-10 py-3 bg-red-500 text-white font-inter rounded-xl text-xl sm:text-2xl">Remove Moderator</button>
 
         </form>
     </div>

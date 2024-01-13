@@ -14,6 +14,26 @@ export default function DropDOwnHome() {
   const handleNav=()=> {
     setNav(!nav);
   }
+  const [visible, setVisible] = useState(true)
+ 
+  const toggleVisible = () => {
+      const scrolled = document.documentElement.scrollTop;
+      if (scrolled > 0) {
+          setVisible(false)
+      }
+      else if (scrolled <= 0) {
+          setVisible(true)
+      }
+  };
+
+  const scrollToBottom = () => {
+      window.scrollTo({
+          top: document.documentElement.scrollHeight,
+          behavior: 'smooth'
+          /* you can also use 'auto' behaviour 
+             in place of 'smooth' */
+      });
+  };
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div onClick={handleNav}>
@@ -34,11 +54,11 @@ export default function DropDOwnHome() {
       >
 
         <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-main rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-        <div className="py-1">
-            <Menu.Item>
+        <div className="py-1" >
+            <Menu.Item onClick={handleNav}>
               {({ active }) => (
                 <Link
-                  to="/signup"
+                  to="/Profile"
                   className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm font-inter font-semibold'
@@ -51,10 +71,10 @@ export default function DropDOwnHome() {
 
           </div>
           <div className="py-1">
-            <Menu.Item>
+            <Menu.Item onClick={handleNav}>
               {({ active }) => (
                 <Link
-                  to="/Login"
+                  to="/Home"
                   className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm font-inter font-semibold'
@@ -67,10 +87,10 @@ export default function DropDOwnHome() {
 
         
          
-            <Menu.Item>
+            <Menu.Item onClick={handleNav}>
               {({ active }) => (
                 <Link
-                  to="/signup"
+                  to="/Favoris"
                   className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm font-inter font-semibold'
@@ -81,10 +101,10 @@ export default function DropDOwnHome() {
               )}
             </Menu.Item>
 
-            <Menu.Item>
+            <Menu.Item onClick={handleNav}>
               {({ active }) => (
                 <Link
-                  to="/signup"
+                  onClick={scrollToBottom}
                   className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm font-inter font-semibold'
@@ -96,10 +116,10 @@ export default function DropDOwnHome() {
             </Menu.Item>
 
 
-            <Menu.Item>
+            <Menu.Item onClick={handleNav}>
               {({ active }) => (
                 <Link
-                  to="/signup"
+                  to="/Article"
                   className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm font-inter font-semibold'
@@ -111,10 +131,10 @@ export default function DropDOwnHome() {
             </Menu.Item>
 
 
-            <Menu.Item>
+            <Menu.Item onClick={handleNav}>
               {({ active }) => (
                 <Link
-                  to="/signup"
+                  to="/ajouter"
                   className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm font-inter font-semibold'
@@ -127,10 +147,10 @@ export default function DropDOwnHome() {
 
           </div>
           <div className="py-1">
-            <Menu.Item>
+            <Menu.Item onClick={handleNav}>
               {({ active }) => (
                 <Link
-                  to="/signup"
+                  to="/login"
                   className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm font-inter font-semibold'
