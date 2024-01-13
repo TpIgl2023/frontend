@@ -20,37 +20,30 @@ export default function Password() {
   return (
     <form action="" >
         
-        <div className="my-[100px] bg-white w-[70%] mx-auto rounded-2xl ">
-            <div className="flex justify-end pt-10 pr-[50px]">
-                <div className="flex justify-center items-center h-[120px] w-[120px] rounded-full bg-[#E1F8FF]">
-                    <h1 className="font-inter font-semibold text-[#8966F5] text-4xl">YS</h1>
-                </div>
-            </div>
 
-            <div className="flex py-16 items-center w-full">
-                <div className="w-[250px]  ml-[10%] mr-[15%]">
-                    <label className="font-inter font-semibold text-3xl ">Last password :</label>
-                </div>   
-                <input type="password" className="border-black/[64%]  border-2 rounded-xl w-[300px] outline-none py-2 text-center font-inter text-xl text-[#A9AABC] "/>
-            </div>
+        <h1 className="text-center font-inter font-semibold text-5xl xl:text-6xl py-[50px] sm:py-[75px] md:py-[100px]">Change your Password</h1>
 
-            <div className="flex items-center w-full">
-                <div className="w-[250px]  ml-[10%] mr-[15%]">
-                    <label className="font-inter font-semibold text-3xl ">New password :</label>
-                </div>          
-                <input type="password" className="border-black/[64%]  border-2 rounded-xl w-[300px] outline-none py-2 text-center font-inter text-xl text-[#A9AABC] "/>
+      <div className="mt-[70px] bg-white w-[90%] md:max-w-[600px] lg:max-w-[700px] xl:max-w-[800px] 2xl:max-w-[900px] mx-auto rounded-2xl ">
 
-            </div>
-
-            <div className="flex pt-16 items-center w-full pb-[100px]">
-                <div className="w-[250px]  ml-[10%] mr-[15%]">
-                    <label className="font-inter font-semibold text-3xl ">New Password :</label>
-                </div>
-                <input type="password" className="border-black/[64%] border-2 rounded-xl w-[300px] outline-none py-2 text-center font-inter text-xl text-[#A9AABC] "/>
-            </div>
+        <div className="flex flex-col sm:flex-row  py-16 ustify-center sm:justify-normal sm:items-center w-full pl-[10%] sm:pl-0 gap-[10px] sm:gap-0">
+          <div className="w-full sm:w-[200px] lg:w-[250px]  ml-0 sm:ml-[15%] lg:ml-[20%] ">
+                <label className="font-inter font-semibold text-xl lg:text-2xl ">Old password :</label>
+          </div>          
+          <input type="password" className="border-[#A9AABC] border-2 w-[90%] sm:w-[250px] lg:w-[280px] outline-none py-1 text-center font-inter text-xl text-[#A9AABC]"/>
         </div>
-        <div className="mt-[70px] flex justify-center mx-auto ">
-          <button type="submit" className="text-3xl font-inter font-semibold text-white bg-[#1B76FF] py-5 w-[500px] rounded-xl" >Change password</button>
+        <div className="flex flex-col sm:flex-row  ustify-center sm:justify-normal sm:items-center w-full pl-[10%] sm:pl-0 gap-[10px] sm:gap-0">
+           <div className="w-full sm:w-[200px] lg:w-[250px]  ml-0 sm:ml-[15%] lg:ml-[20%]">
+                <label className="font-inter font-semibold text-xl lg:text-2xl  ">New password :</label>
+            </div>          
+            <input type="password" className="border-[#A9AABC] border-2 w-[90%] sm:w-[250px] lg:w-[280px] outline-none py-1 text-center font-inter text-xl text-[#A9AABC]"/>
+        </div>
+        <div className="flex flex-col sm:flex-row  py-16 ustify-center sm:justify-normal sm:items-center w-full pl-[10%] sm:pl-0 gap-[10px] sm:gap-0">
+          <div className="w-full sm:w-[200px] lg:w-[250px] ml-0 sm:ml-[15%] lg:ml-[20%]">
+              <label className="font-inter font-semibold text-xl lg:text-2xl  ">New password :</label>
+          </div>
+            <input type="password" className="border-[#A9AABC] border-2 w-[90%] sm:w-[250px] lg:w-[280px] outline-none py-1 text-center font-inter text-xl text-[#A9AABC]"/>
+        </div>
+
       </div>
     </form>
 

@@ -19,6 +19,7 @@ import SideNavAdmin from "./components/navbars/SideNavAdmin";
 import FooterSigned from "./components/footers/FooterSigned";
 import Password from "./pages/AdminPages/Password";
 import Help from "./pages/AdminPages/Help";
+import ModifyAdmin from "./pages/AdminPages/ModifyAdmin";
 
 const router=createBrowserRouter(
   createRoutesFromElements(
@@ -39,7 +40,7 @@ const router=createBrowserRouter(
           <Route path="Password" element={<Password/>}></Route>
           <Route path="AjouterMod" element={<NewMod/>}></Route>    
           <Route path="Help" element={<Help/>}></Route>                    
-                
+          <Route path="ModifyMod" element={<ModifyAdmin/>}></Route>    
         </Route>
 
 

@@ -4,6 +4,8 @@ import {Link} from "react-router-dom"
 import ProfilePic from "../../assets/ProfilePic.svg"
 import MenuIcon from '@mui/icons-material/Menu';
 import  { useState } from "react";
+import DropDownHome from '../DropDowns/DropDownHome';
+import DropDownProfile from '../DropDowns/DropDownProfile';
 export default function NavSigned() {
   const [visible, setVisible] = useState(true)
  
@@ -52,7 +54,7 @@ export default function NavSigned() {
   return (
     
     <nav className={`px-6 2xl:px-24 ${styles.paddingY}  flex justify-between items-center`}>
-      <Link to="/Hero" className="font-inter font-bold text-4xl xl:text-5xl text-main">PDFinder</Link>
+      <Link to="/Hero" className="font-inter font-bold text-2xl xs:text-3xl sm:text-4xl xl:text-5xl text-main">PDFinder</Link>
       <ul className="hidden list-none lg:flex gap-[50px] xl:gap-[80px] 2xl:gap-[125px]">
       {navLinks.map((link) => (
 
@@ -68,9 +70,12 @@ export default function NavSigned() {
                   {link.title!="Contact" ? <Link to={`/${link.id}` } className="font-inter font-semibold text-xl">{link.title}</Link> : <Link onClick={scrollToBottom} className="font-inter font-semibold text-xl">{link.title}</Link>}
                 </li>))}
       </ul>
-      <div className="flex justify-center items-center h-[70px] w-[70px] rounded-full bg-[#E1F8FF]">
-              <h1 className="font-inter font-semibold text-[#8966F5] text-2xl">YS</h1>
-      </div>   
+      <div className="hidden lg:block">
+        <DropDownProfile/>
+      </div>
+      <div className="lg:hidden">
+            <DropDownHome/>
+        </div>
       </nav>
   )
 }
