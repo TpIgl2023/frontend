@@ -10,6 +10,7 @@ import AddArticle2 from './pages/AddArticle2';
 
 
 import Article from './pages/Article';
+import ArticleMod from './pages/ArticleMod';
 import ArticleInfo from './pages/ArticleInfo';
 import Contact from './pages/Contact';
 import Favoris from './pages/Favoris';
@@ -30,6 +31,7 @@ const routes = createRoutesFromElements(
     <Route path="/ajouter" element={<AddArticle />} />
     <Route path="/add" element={<AddArticle2 />} />
     <Route path="/article" element={<Article />} />
+    <Route path="/articlemod" element={<ArticleMod />} />
     <Route path="/contact" element={<Contact />} />
     <Route path="/favoris" element={<Favoris />} />
     <Route path="/home" element={<Home />} />

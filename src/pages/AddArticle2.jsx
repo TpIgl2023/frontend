@@ -239,6 +239,7 @@ const AddArticle2 = () => {
 
     return (
         <div>
+
             <NavArticles class="mb-20" />
             <h1 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-1">
                 Add New Article
@@ -287,9 +288,11 @@ const AddArticle2 = () => {
                         </button>
                     </div>
                 </div>
-            ))}
+
+            ))
+            }
             <FooterSigned />
-        </div>
+        </div >
     );
 };
 
