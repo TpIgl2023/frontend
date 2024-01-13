@@ -24,7 +24,7 @@ export default function SideNavAdmin() {
   return (
     <aside className=" bg-white sticky flex flex-col">
       <nav >
-        <ul className="flex flex-col  items-center w-[300px]   py-[100px] gap-[40px]">
+        <ul className="flex flex-col  items-center w-[220px] xl:w-[250px] 2xl:w-[300px]   py-[100px] gap-[40px]">
         {navLinks.map((link) => (
               <li
                 key={link.id}

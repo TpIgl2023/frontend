@@ -8,7 +8,8 @@ import {Menu,Transition} from '@headlessui/react'
 import {ChevronDownIcon} from '@heroicons/react/24/outline'
 import classNames from 'classnames';
 
-export default function DropDownHero() {
+export default function DropDownAdmin() {
+  const mod=true
   const [nav,setNav]=useState(false);
   const handleNav=()=> {
     setNav(!nav);
@@ -16,7 +17,7 @@ export default function DropDownHero() {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div onClick={handleNav}>
-        <Menu.Button className="inline-flex w-full justify-center  text-gray-900  hover:bg-gray-50">
+        <Menu.Button className="inline-flex w-full justify-center  text-gray-900  ">
          { !nav ? <MenuIcon fontSize='large' /> : <Close fontSize='large'/>}
 
         </Menu.Button>
@@ -31,7 +32,9 @@ export default function DropDownHero() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
+
         <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-main rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+
           <div className="py-1">
             <Menu.Item>
               {({ active }) => (
@@ -42,10 +45,56 @@ export default function DropDownHero() {
                     'block px-4 py-2 text-sm font-inter font-semibold'
                   )}
                 >
-                  Log In
+                 Dashboard
                 </Link>
               )}
             </Menu.Item>
+
+        
+         
+            <Menu.Item>
+              {({ active }) => (
+                <Link
+                  to="/signup"
+                  className={classNames(
+                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                    'block px-4 py-2 text-sm font-inter font-semibold'
+                  )}
+                >
+                  Password
+                </Link>
+              )}
+            </Menu.Item>
+
+            <Menu.Item>
+              {({ active }) => (
+                <Link
+                  to="/signup"
+                  className={classNames(
+                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                    'block px-4 py-2 text-sm font-inter font-semibold'
+                  )}
+                >
+                  Moderators
+                </Link>
+              )}
+            </Menu.Item>
+
+
+            <Menu.Item>
+              {({ active }) => (
+                <Link
+                  to="/signup"
+                  className={classNames(
+                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                    'block px-4 py-2 text-sm font-inter font-semibold'
+                  )}
+                >
+                  Help
+                </Link>
+              )}
+            </Menu.Item>
+
 
           </div>
           <div className="py-1">
@@ -58,7 +107,7 @@ export default function DropDownHero() {
                     'block px-4 py-2 text-sm font-inter font-semibold'
                   )}
                 >
-                  Sign Up
+                  Deconnexion
                 </Link>
               )}
             </Menu.Item>

@@ -8,8 +8,10 @@ export default function Adminlayout() {
     <div className="relative w-full  ">
         <NavAdmin className=""/>
         <div className="flex min-h-screen">
-            <SideNavAdmin />
-                <div className="bg-gradient-to-r from-[#F5F6F8] via-[#F5F6F8] to-[#EFE8F0] w-full ">
+            <div className="hidden lg:block">
+              <SideNavAdmin/>
+            </div>
+            <div className="bg-gradient-to-r from-[#F5F6F8] via-[#F5F6F8] to-[#EFE8F0] w-full ">
                 <Outlet className="grow"/>                  
             </div>
         </div>

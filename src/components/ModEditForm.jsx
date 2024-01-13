@@ -1,7 +1,7 @@
 import { FormatBoldRounded } from '@mui/icons-material'
 import React from 'react'
 
-export default function ModForm() {
+export default function ModEditForm() {
     function handleSubmit(event){
         event.preventDefault()
         console.log(event.target.name.value)
@@ -11,9 +11,14 @@ export default function ModForm() {
 
     
     }
+    const mod ={
+        name:"Mezenner Fares",
+        email:"lm_bouchene@esi.dz",
+        id:"83413464"
+    }
   return (
     <div className="max-w-[600px] mx-auto ">
-        <h1 className="font-inter font-bold text-3xl xs:text-4xl sm:text-5xl md:text-6xl text-center py-[75px] sm:py-[100px]">New moderator !</h1>
+        <h1 className="font-inter font-bold text-3xl xs:text-4xl sm:text-5xl md:text-6xl text-center py-[75px] sm:py-[100px]">Edit Moderator !</h1>
         
         <form onSubmit={handleSubmit} className="px-12 pb-16">
             <label className="block font-inter text-xl sm:text-2xl pb-5 font-semibold">name :</label>
@@ -32,7 +37,9 @@ export default function ModForm() {
             <div className="w-full ">
                 <input type="password" name="password" className="w-full rounded-lg font-inter text-xl px-4 py-3 outline-none"/>
             </div>
-            <button className="w-full my-10 py-3 bg-main text-white font-inter rounded-xl text-xl sm:text-2xl">Add Moderator</button>
+            <button className="w-full mt-10 py-3 bg-main text-white font-inter rounded-xl text-xl sm:text-2xl">Edit Moderator</button>
+            <button className="w-full my-10 py-3 bg-red-500 text-white font-inter rounded-xl text-xl sm:text-2xl">Delete Moderator</button>
+
         </form>
     </div>
   )
