@@ -35,7 +35,7 @@ export default function ProfileAdmin() {
   }
   return (
     <form onSubmit={EditInfo} className="py-[45px] sm:py-[60px]">
-    <h1 className="text-center font-inter font-semibold text-5xl xl:text-6xl py-[50px] sm:py-[75px] md:py-[100px]">Profile</h1>
+    <h1 className="text-center font-inter font-semibold text-5xl xl:text-6xl py-[50px] sm:py-[75px] md:py-[100px]">Dashboard</h1>
       <div className="bg-white w-[90%] md:max-w-[600px] lg:max-w-[700px] xl:max-w-[800px] 2xl:max-w-[900px] mx-auto rounded-2xl ">
         <div className="flex justify-evenly py-10 items-center ">
             <div className="flex justify-center items-center h-[60px] sm:h-[70px] w-[60px] sm:w-[70px] rounded-full bg-[#E1F8FF]">

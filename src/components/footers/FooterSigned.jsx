@@ -24,7 +24,7 @@ export default function FooterSigned() {
         <div className="flex flex-col gap-6 lg:gap-8  w-[200px] items-center ">
             <h1 className="font-inter text-4xl font-bold md:hidden"> PDFinder</h1>
             <h1 className="font-inter font-semibold text-xl lg:text-2xl"> Contactez nous</h1>
-            <p className="font-inter text-lg lg:text-xl">dare elbeida alger</p>
+            <p className="font-inter text-lg lg:text-xl">dar El Beida Alger</p>
             <p className="underline font-inter  text-lg lg:text-xl">service@esi.dz</p>
             <p className="font-inter  text-lg lg:text-xl">+21-25533-0000</p>
 
