@@ -1,21 +1,3 @@
-<<<<<<< HEAD
-import React, { useState, Fragment } from "react";
-import { styles } from "../../styles";
-import { Link } from "react-router-dom";
-import MenuIcon from "@mui/icons-material/Menu";
-import ProfilePic from "../../assets/ProfilePic.svg";
-import { Close } from "@mui/icons-material";
-import { Menu, Transition } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
-import classNames from "classnames";
-import { logOut } from "../../utils/utils.js";
-
-export default function DropDOwnHome() {
-  const mod = true;
-  const [nav, setNav] = useState(false);
-  const handleNav = () => {
-    setNav(!nav);
-=======
 import React, { useState ,Fragment} from 'react'
 import {styles} from "../../styles"
 import {Link} from "react-router-dom"
@@ -51,7 +33,6 @@ export default function DropDOwnHome(){
           /* you can also use 'auto' behaviour 
              in place of 'smooth' */
       });
->>>>>>> origin/main
   };
   return (
     <Menu as="div" className="relative inline-block text-left">
@@ -71,13 +52,8 @@ export default function DropDOwnHome(){
         leaveTo="transform opacity-0 scale-95"
       >
         <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-main rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-<<<<<<< HEAD
-          <div className="py-1">
-            <Menu.Item>
-=======
         <div className="py-1" >
             <Menu.Item onClick={handleNav}>
->>>>>>> origin/main
               {({ active }) => (
                 <Link
                   to="/Profile"
@@ -106,13 +82,9 @@ export default function DropDOwnHome(){
               )}
             </Menu.Item>
 
-<<<<<<< HEAD
-            <Menu.Item>
-=======
         
          
             <Menu.Item onClick={handleNav}>
->>>>>>> origin/main
               {({ active }) => (
                 <Link
                   to="/Favoris"
@@ -140,12 +112,8 @@ export default function DropDOwnHome(){
               )}
             </Menu.Item>
 
-<<<<<<< HEAD
-            <Menu.Item>
-=======
 
             <Menu.Item onClick={handleNav}>
->>>>>>> origin/main
               {({ active }) => (
                 <Link
                   to="/Article"
@@ -159,12 +127,8 @@ export default function DropDOwnHome(){
               )}
             </Menu.Item>
 
-<<<<<<< HEAD
-            <Menu.Item>
-=======
 
             <Menu.Item onClick={handleNav}>
->>>>>>> origin/main
               {({ active }) => (
                 <Link
                   to="/ajouter"
@@ -182,12 +146,7 @@ export default function DropDOwnHome(){
             <Menu.Item onClick={handleNav}>
               {({ active }) => (
                 <Link
-<<<<<<< HEAD
-                  onClick={logOut}
-                  to="/hero"
-=======
                   to="/login"
->>>>>>> origin/main
                   className={classNames(
                     active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                     "block px-4 py-2 text-sm font-inter font-semibold"

@@ -30,7 +30,6 @@ import Help from "./pages/AdminPages/Help";
 import { ChakraProvider } from "@chakra-ui/react";
 import ModifyAdmin from "./pages/AdminPages/ModifyAdmin";
 import ModifyArticle from "./pages/ModifyArticle";
-import ReviewArticles from "./pages/ReviewArticles";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

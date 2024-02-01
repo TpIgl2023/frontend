@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 
 export default function FooterSigned() {
   return (
-    <div className="h-[450px] w-full bg-main flex flex-col justify-between text-white">
-      <div className="flex justify-evenly py-16">
+    <div className="h-[400px] w-full bg-main flex flex-col justify-between text-white">
+      <div className="flex justify-evenly py-14">
         <div className="hidden md:block">
           <div className="flex flex-col gap-8 w-[250px] lg:w-[400px] ">
               <h1 className="font-jost text-3xl lg:text-5xl">Logo</h1>
@@ -31,7 +31,7 @@ export default function FooterSigned() {
         </div>
         
       </div>
-      <div className="flex justify-center pb-4 text-white text-xl sm:text-2xl font-inter">
+      <div className="flex justify-center pb-2 text-white text-xl sm:text-2xl font-inter">
          2023 pdf .All rights reserved 
      </div>
     </div>

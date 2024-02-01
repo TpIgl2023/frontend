@@ -35,10 +35,18 @@ export default function Article() {
       Authors:["The New York times","Bouchene Mehdi", "Yekene sofiane","Nehari Walid","Adem"],
       
     },])
-
+    function activateFilter(){
+    
+    }
   return (
     <div>
       <NavArticles/>
+      
+      <div className="w-[80%] mx-auto flex justify-center sm:justify-end pt-[50px] min-h-[80%]">
+            <div className="py-2 px-5 sm:px-10 text-white bg-main rounded-3xl text-xl xs:text-2xl sm:text-3xl font-inter cursor-pointer" onClick={activateFilter}>
+                Filtrer les articles
+            </div>
+      </div>
       <div>
         {Articles.map((Article) => (
           <ReviewPopup  Article={Article}  UserType={UserType}/>
