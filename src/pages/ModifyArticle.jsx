@@ -51,36 +51,46 @@ export default function ModifyArticle({Article}) {
           <div className="w-[80%] mx-auto">
             <h1 className="font-inter font-bold text-5xl py-[50px] text-center">Modifier Article</h1>
             <label className="font-inter font-semibold text-2xl pl-[50px] ">Titre de l'article : </label>
+
             <textarea className="my-[20px] w-full py-5 px-5 font-inter text-xl border-main border-2 outline-none" name="title" id="" cols="30" rows="2">{TestArticle.title}</textarea>
             <div className="pt-10">
                <label className="font-inter font-semibold text-2xl pl-[50px] py-10">Résumé de l'article : </label>
             </div>
-            <textarea className="my-[20px] w-full py-5 px-5 font-inter text-xl border-main border-2 outline-none" name="summary" id="" cols="30" rows="4">{TestArticle.abstract}</textarea>
+            <div className="my-[20px] p-5 border-main border-2">
+              <textarea className=" w-full  font-inter text-xl  outline-none" name="summary" id="" cols="30" rows="4">{TestArticle.abstract}</textarea>
+            </div>
+
             <div className="pt-10">
                <label className="font-inter font-semibold text-2xl pl-[50px] py-10">Auteurs de l'article : </label>
             </div>
-            <textarea className="my-[20px] w-full py-5 px-5 font-inter text-xl border-main border-2 outline-none" name="authors" id="" cols="30" rows="4"/>
-            <div className="pt-10">
+            <div className="my-[20px] p-5 border-main border-2">
+              <textarea className=" w-full  font-inter text-xl  outline-none" name="summary" id="" cols="30" rows="4">{TestArticle.abstract}</textarea>
+            </div>            <div className="pt-10">
                <label className="font-inter font-semibold text-2xl pl-[50px] py-10">Institutions de l'article : </label>
             </div>
-            <textarea className="my-[20px] w-full py-5 px-5 font-inter text-xl border-main border-2 outline-none" name="title" id="" cols="30" rows="4"/>
-            <div className="pt-10">
+            <div className="my-[20px] p-5 border-main border-2">
+              <textarea className=" w-full  font-inter text-xl  outline-none" name="summary" id="" cols="30" rows="4">{TestArticle.abstract}</textarea>
+            </div>            <div className="pt-10">
                <label className="font-inter font-semibold text-2xl pl-[50px] py-10">Contenu de l'article : </label>
             </div>
-            <textarea className="my-[20px] w-full py-5 px-5 font-inter text-xl border-main border-2 outline-none" name="content" id="" cols="30" rows="4"/>
-            <div className="pt-10">
+            <div className="my-[20px] p-5 border-main border-2">
+              <textarea className=" w-full  font-inter text-xl  outline-none" name="summary" id="" cols="30" rows="4">{TestArticle.abstract}</textarea>
+            </div>            <div className="pt-10">
                <label className="font-inter font-semibold text-2xl pl-[50px] py-10">Réference de l'article : </label>
             </div>
-            <textarea className="my-[20px] w-full py-5 px-5 font-inter text-xl border-main border-2 outline-none" name="title" id="" cols="30" rows="4"/>
-            <div className="pt-10">
+            <div className="my-[20px] p-5 border-main border-2">
+              <textarea className=" w-full  font-inter text-xl  outline-none" name="summary" id="" cols="30" rows="4">{TestArticle.abstract}</textarea>
+            </div>            <div className="pt-10">
                <label className="font-inter font-semibold text-2xl pl-[50px] py-10">Mots clés de l'article : </label>
             </div>
-            <textarea className="my-[20px] w-full py-5 px-5 font-inter text-xl border-main border-2 outline-none" name="title" id="" cols="30" rows="4"/>
-            <div className="pt-10">
+            <div className="my-[20px] p-5 border-main border-2">
+              <textarea className=" w-full  font-inter text-xl  outline-none" name="summary" id="" cols="30" rows="4">{TestArticle.abstract}</textarea>
+            </div>            <div className="pt-10">
                <label className="font-inter font-semibold text-2xl pl-[50px] py-10">Date de publication de l'article : </label>
             </div>
-            <textarea className="my-[20px] w-full py-5 px-5 font-inter text-xl border-main border-2 outline-none" name="title" id="" cols="30" rows="4"/>
-          </div>
+            <div className="my-[20px] p-5 border-main border-2">
+              <textarea className=" w-full  font-inter text-xl  outline-none" name="summary" id="" cols="30" rows="4">{TestArticle.abstract}</textarea>
+            </div>          </div>
           
         </form>
         

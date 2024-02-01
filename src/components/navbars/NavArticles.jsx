@@ -23,7 +23,6 @@ export default function NavArticles() {
                 <img src={SearchIcon} alt="" className="cursor-pointer w-[35px] xl:w-[50px]"/>
             </div> 
 
-          <p className="font-inter text-white text-xl xl:text-2xl cursor-pointer hover:text-3xl transition-transform duration-1000">Filtrer</p>
         </div>
       </div>
 
@@ -39,7 +38,6 @@ export default function NavArticles() {
                 <input className="w-full text-md font-inter font-semibold outline-none px-4 placeholder-opacity-50 placeholder-black" placeholder="General relativity ... "/>
                 <img src={SearchIcon} alt="" className="cursor-pointer w-[35px] xl:w-[50px]"/>
             </div> 
-            <p className="font-inter text-lg font-semibold hover:text-main transition duration-200">Filtrer</p>
       </div>
         }
     </>
