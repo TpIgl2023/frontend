@@ -8,6 +8,7 @@ import AddArticle from "./pages/AddArticle";
 import Article from "./pages/Article";
 import Contact from "./pages/Contact";
 import Favoris from "./pages/Favoris";
+import ReviewArticles from "./pages/ReviewArticles";
 import Profile from "./pages/Profile";
 import NavAdmin from "./components/navbars/NavAdmin";
 import AdminEdit from "./pages/AdminPages/AdminEdit";
@@ -20,12 +21,15 @@ import FooterSigned from "./components/footers/FooterSigned";
 import Password from "./pages/AdminPages/Password";
 import Help from "./pages/AdminPages/Help";
 import ModifyAdmin from "./pages/AdminPages/ModifyAdmin";
+import ModifyArticle from "./pages/ModifyArticle";
 
 const router=createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Rootlayout/>}>
         <Route path="/Hero" element={<Hero/>}></Route>
         <Route path="/Login" element={<Login/>}></Route>
+        <Route path="/Review" element={<ReviewArticles/>}></Route>
+        <Route path="/Modify" element={<ModifyArticle/>}></Route>
         <Route path="/Signup" element={<Signup/>}></Route>
         <Route path="/ajouter" element={<AddArticle/>}></Route>
         <Route path="/article" element={<Article/>}></Route>

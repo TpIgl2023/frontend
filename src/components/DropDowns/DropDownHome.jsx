@@ -7,8 +7,8 @@ import { Close } from '@mui/icons-material';
 import {Menu,Transition} from '@headlessui/react'
 import {ChevronDownIcon} from '@heroicons/react/24/outline'
 import classNames from 'classnames';
-
-export default function DropDOwnHome() {
+import UserTypes from '../../constants/enums';
+export default function DropDOwnHome(){
   const mod=true
   const [nav,setNav]=useState(false);
   const handleNav=()=> {
