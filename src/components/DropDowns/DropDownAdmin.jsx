@@ -36,10 +36,10 @@ export default function DropDownAdmin() {
         <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-main rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
 
           <div className="py-1">
-            <Menu.Item>
+            <Menu.Item onClick={handleNav}>
               {({ active }) => (
                 <Link
-                  to="/Login"
+                  to="/admin/dashboard"
                   className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm font-inter font-semibold'
@@ -48,14 +48,14 @@ export default function DropDownAdmin() {
                  Dashboard
                 </Link>
               )}
-            </Menu.Item>
+            </Menu.Item >
 
         
          
-            <Menu.Item>
+            <Menu.Item onClick={handleNav}>
               {({ active }) => (
                 <Link
-                  to="/signup"
+                  to="/admin/password"
                   className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm font-inter font-semibold'
@@ -66,10 +66,10 @@ export default function DropDownAdmin() {
               )}
             </Menu.Item>
 
-            <Menu.Item>
+            <Menu.Item onClick={handleNav}>
               {({ active }) => (
                 <Link
-                  to="/signup"
+                  to="/admin/moderateurAll"
                   className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm font-inter font-semibold'
@@ -81,10 +81,10 @@ export default function DropDownAdmin() {
             </Menu.Item>
 
 
-            <Menu.Item>
+            <Menu.Item onClick={handleNav}>
               {({ active }) => (
                 <Link
-                  to="/signup"
+                  to="/admin/help"
                   className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm font-inter font-semibold'
@@ -98,10 +98,10 @@ export default function DropDownAdmin() {
 
           </div>
           <div className="py-1">
-            <Menu.Item>
+            <Menu.Item onClick={handleNav}>
               {({ active }) => (
                 <Link
-                  to="/signup"
+                  to="/login"
                   className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm font-inter font-semibold'

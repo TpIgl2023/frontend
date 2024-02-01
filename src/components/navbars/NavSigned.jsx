@@ -6,9 +6,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import  { useState } from "react";
 import DropDownHome from '../DropDowns/DropDownHome';
 import DropDownProfile from '../DropDowns/DropDownProfile';
+import UserTypes from '../../constants/enums';
 export default function NavSigned() {
   const [visible, setVisible] = useState(true)
- 
   const toggleVisible = () => {
       const scrolled = document.documentElement.scrollTop;
       if (scrolled > 0) {
@@ -27,7 +27,7 @@ export default function NavSigned() {
              in place of 'smooth' */
       });
   };
-
+  const UserType=UserTypes.USER
   const [active, setActive] = useState("Acceuil");
   const navLinks = [
     {
@@ -46,18 +46,22 @@ export default function NavSigned() {
       id: "contact",
       title: "Contact",
     },
-    {
+  ];
+
+  if (UserTypes.ADMIN==UserType) {
+    navLinks.push({
       id: "ajouter",
       title: "Add new article",
-    },
-  ];
+    });
+  }
   return (
     
     <nav className={`px-6 2xl:px-24 ${styles.paddingY}  flex justify-between items-center`}>
       <Link to="/Hero" className="font-inter font-bold text-2xl xs:text-3xl sm:text-4xl xl:text-5xl text-main">PDFinder</Link>
       <ul className="hidden list-none lg:flex gap-[50px] xl:gap-[80px] 2xl:gap-[125px]">
       {navLinks.map((link) => (
-
+            
+     
               <li
                 key={link.id}
                 onClick={() => setActive(link.title)}
@@ -66,9 +70,11 @@ export default function NavSigned() {
                     ? " font-semibold text-main"
                     : ""
                 } hover:border-b-4 border-main text-[19px] duration-[0.3s] transition-all`}
-                >
+                >{ 
+                 }
                   {link.title!="Contact" ? <Link to={`/${link.id}` } className="font-inter font-semibold text-xl">{link.title}</Link> : <Link onClick={scrollToBottom} className="font-inter font-semibold text-xl">{link.title}</Link>}
-                </li>))}
+                </li>
+                ))}
       </ul>
       <div className="hidden lg:block">
         <DropDownProfile/>

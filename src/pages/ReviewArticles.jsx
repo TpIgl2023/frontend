@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import NavArticles from '../components/navbars/NavArticles'
-import ArticlePopup from '../components/ArticlePopup'
 import FooterSigned from '../components/footers/FooterSigned'
 import UserTypes from '../constants/enums'
-export default function Favoris() {
-  const UserType=UserTypes.USER
+import ReviewPopup from '../components/ReviewPopup'
+
+export default function Article() {
+  
+  const UserType=UserTypes.MODERATOR
   const [Articles,setArticles]=useState([
     {
 
@@ -32,27 +34,17 @@ export default function Favoris() {
       KeyWords:["volcan","soleil","staff","lorem","madre"],
       Authors:["The New York times","Bouchene Mehdi", "Yekene sofiane","Nehari Walid","Adem"],
       
-    },
+    },])
 
-  ])
-  
-  const removeArticle = (id) => {
-    setArticles(prevArticles =>
-      prevArticles.filter(article => article.id !== id)
-    );
-  };
   return (
-    <>
+    <div>
       <NavArticles/>
       <div>
-
         {Articles.map((Article) => (
-          <ArticlePopup favoris={true} Article={Article} removeArticle={removeArticle}  UserType={UserType}/>
+          <ReviewPopup  Article={Article}  UserType={UserType}/>
         ))}
       </div>
-
-      <FooterSigned/>
-    </>
-
+      <FooterSigned/> 
+    </div>
   )
 }
