@@ -24,49 +24,27 @@ export default function NavArticles() {
         <div className="hidden lg:block">
           <div className="flex gap-10 items-center">
             <div className="flex py-2 px-3 bg-white rounded-full lg:w-[350px] xl:w-[500px] shadow-[0px_5px_10px_rgb(140,140,140)] ">
-              <input
-                className=" w-full text-lg font-inter font-semibold outline-none px-4 placeholder-opacity-100 placeholder-black"
-                placeholder="General relativity ... "
-              />
-              <img
-                src={SearchIcon}
-                alt=""
-                className="cursor-pointer w-[35px] xl:w-[50px]"
-              />
-            </div>
-          </div>
+                <input className=" w-full text-lg font-inter font-semibold outline-none px-4 placeholder-opacity-50 placeholder-black" placeholder="General relativity ... "/>
+                <img src={SearchIcon} alt="" className="cursor-pointer w-[35px] xl:w-[50px]"/>
+            </div> 
+
         </div>
 
-        <div className="flex gap-[20px] sm:gap-[30px] items-center">
-          <div className="lg:hidden" onClick={() => setSearchBar(!searchBar)}>
-            {searchBar ? (
-              <KeyboardArrowUp fontSize="large" />
-            ) : (
-              <img
-                src={SearchIcon}
-                alt=""
-                className="cursor-pointer w-[35px] text-white"
-              />
-            )}
-          </div>
-          <DropDOwnHome />
-        </div>
-      </nav>
-      {searchBar && (
-        <div className="w-[80%] py-8 lg:hidden mx-auto  flex gap-[10px] items-center justify-evenly ">
-          <div className="flex py-2 px-3 bg-white rounded-full lg:w-[350px] xl:w-[500px] shadow-[0px_5px_10px_rgb(140,140,140)] w-[80%] ">
-            <input
-              className="w-full text-md font-inter font-semibold outline-none px-4 placeholder-opacity-50 placeholder-black"
-              placeholder="General relativity ... "
-            />
-            <img
-              src={SearchIcon}
-              alt=""
-              className="cursor-pointer w-[35px] xl:w-[50px]"
-            />
-          </div>
-        </div>
-      )}
+  <div className="flex gap-[20px] sm:gap-[30px] items-center">
+    <div className="lg:hidden" onClick={() => setSearchBar(!searchBar) }>
+    {searchBar ? <KeyboardArrowUp fontSize='large' /> :<img src={SearchIcon} alt="" className="cursor-pointer w-[35px] text-white"/>}
+    </div>
+    <DropDOwnHome/>
+  </div>
+  </nav>
+      {searchBar && <div className="w-[80%] py-8 lg:hidden mx-auto  flex gap-[10px] items-center justify-evenly ">
+            <div className="flex py-2 px-3 bg-white rounded-full lg:w-[350px] xl:w-[500px] shadow-[0px_5px_10px_rgb(140,140,140)] w-[80%] ">
+                <input className="w-full text-md font-inter font-semibold outline-none px-4 placeholder-opacity-50 placeholder-black" placeholder="General relativity ... "/>
+                <img src={SearchIcon} alt="" className="cursor-pointer w-[35px] xl:w-[50px]"/>
+            </div> 
+      </div>
+        }
+
     </>
   );
 }
