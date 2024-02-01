@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ProfilePic from "../assets/ProfilePic.svg";
 import { Edit, Label } from "@mui/icons-material";
 import { json } from "react-router-dom";
-import { getAbreviation } from "../utils/utils";
+import { getAbreviation, updateInfo, updatePassword } from "../utils/utils.js";
 import axios from "axios";
 import { GATEWAY_URL } from "../env";
 
@@ -10,42 +10,6 @@ export default function ProfileInfo() {
   const user = JSON.parse(localStorage.getItem("user"));
 
   const [userValues, setUserValues] = useState(user);
-
-  async function updateInfo(newValues) {
-    try {
-      const token = localStorage.getItem("token");
-      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      const res = await axios.put(`${GATEWAY_URL}/profile`, newValues);
-      if (res.status === 200) {
-        if (!newValues.name) newValues.name = userValues.name;
-        if (!newValues.email) newValues.email = userValues.email;
-        if (!newValues.phone) newValues.phone = userValues.phone;
-        setUserValues(newValues);
-        alert("User info updated successfully");
-      }
-    } catch (error) {
-      console.log(error);
-      alert(error.response.data.message || "Error while updating user");
-    }
-  }
-
-  async function updatePassword(oldPassword, newPassword) {
-    try {
-      const token = localStorage.getItem("token");
-      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      const res = await axios.put(`${GATEWAY_URL}/profile/password`, {
-        oldPassword,
-        newPassword,
-      });
-      if (res.status === 200) {
-        console.log(res.data);
-        alert("Password updated successfully");
-      }
-    } catch (error) {
-      console.log(error);
-      alert(error.response.data.message || "Error while updating password");
-    }
-  }
 
   function EditInfo(event) {
     event.preventDefault();
@@ -64,9 +28,11 @@ export default function ProfileInfo() {
     }
 
     if (newValues) {
-      updateInfo(newValues);
+      updateInfo(newValues, setUserValues, userValues);
     }
+  }
 
+  function EditPassword(event) {
     const oldPassword = event.target.OldPassword.value;
     const newPassword = event.target.NewPassword.value;
     const repeatPassword = event.target.RepeatPassword.value;
@@ -75,15 +41,21 @@ export default function ProfileInfo() {
       return;
     }
 
-    if (newPassword != repeatPassword) {
+    if (newPassword !== repeatPassword) {
       alert("New password and repeated password do not match");
       return;
     }
 
     updatePassword(oldPassword, newPassword);
   }
+
+  function Edit(event) {
+    event.preventDefault();
+    EditInfo(event);
+    EditPassword(event);
+  }
   return (
-    <form onSubmit={EditInfo}>
+    <form onSubmit={Edit}>
       <div className="bg-gradient-to-r from-[#F5F6F8] via-[#F5F6F8] to-[#EFE8F0] pb-[70px] ,x-auto">
         <h1 className="text-center font-inter font-semibold text-5xl xl:text-6xl py-[50px] sm:py-[75px] md:py-[100px]">
           Profile

@@ -48,7 +48,7 @@ const router = createBrowserRouter(
         <Route path="Password" element={<Password />}></Route>
         <Route path="AjouterMod" element={<NewMod />}></Route>
         <Route path="Help" element={<Help />}></Route>
-        <Route path="ModifyMod" element={<ModifyAdmin />}></Route>
+        <Route path="ModifyMod/:mod" element={<ModifyAdmin />}></Route>
       </Route>
     </Route>
   )
