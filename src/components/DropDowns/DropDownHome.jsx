@@ -1,25 +1,25 @@
-import React, { useState ,Fragment} from 'react'
-import {styles} from "../../styles"
-import {Link} from "react-router-dom"
-import MenuIcon from '@mui/icons-material/Menu';
-import ProfilePic from "../../assets/ProfilePic.svg"
-import { Close } from '@mui/icons-material';
-import {Menu,Transition} from '@headlessui/react'
-import {ChevronDownIcon} from '@heroicons/react/24/outline'
-import classNames from 'classnames';
+import React, { useState, Fragment } from "react";
+import { styles } from "../../styles";
+import { Link } from "react-router-dom";
+import MenuIcon from "@mui/icons-material/Menu";
+import ProfilePic from "../../assets/ProfilePic.svg";
+import { Close } from "@mui/icons-material";
+import { Menu, Transition } from "@headlessui/react";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import classNames from "classnames";
+import { logOut } from "../../utils/utils.js";
 
 export default function DropDOwnHome() {
-  const mod=true
-  const [nav,setNav]=useState(false);
-  const handleNav=()=> {
+  const mod = true;
+  const [nav, setNav] = useState(false);
+  const handleNav = () => {
     setNav(!nav);
-  }
+  };
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div onClick={handleNav}>
         <Menu.Button className="inline-flex w-full justify-center  text-gray-900  ">
-         { !nav ? <MenuIcon fontSize='large' /> : <Close fontSize='large'/>}
-
+          {!nav ? <MenuIcon fontSize="large" /> : <Close fontSize="large" />}
         </Menu.Button>
       </div>
 
@@ -32,23 +32,21 @@ export default function DropDOwnHome() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-
         <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-main rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-        <div className="py-1">
+          <div className="py-1">
             <Menu.Item>
               {({ active }) => (
                 <Link
                   to="/signup"
                   className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm font-inter font-semibold'
+                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                    "block px-4 py-2 text-sm font-inter font-semibold"
                   )}
                 >
                   Profile
                 </Link>
               )}
             </Menu.Item>
-
           </div>
           <div className="py-1">
             <Menu.Item>
@@ -56,24 +54,22 @@ export default function DropDOwnHome() {
                 <Link
                   to="/Login"
                   className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm font-inter font-semibold'
+                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                    "block px-4 py-2 text-sm font-inter font-semibold"
                   )}
                 >
-                 Acceuil
+                  Acceuil
                 </Link>
               )}
             </Menu.Item>
 
-        
-         
             <Menu.Item>
               {({ active }) => (
                 <Link
                   to="/signup"
                   className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm font-inter font-semibold'
+                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                    "block px-4 py-2 text-sm font-inter font-semibold"
                   )}
                 >
                   Favoris
@@ -86,8 +82,8 @@ export default function DropDOwnHome() {
                 <Link
                   to="/signup"
                   className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm font-inter font-semibold'
+                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                    "block px-4 py-2 text-sm font-inter font-semibold"
                   )}
                 >
                   Contact
@@ -95,14 +91,13 @@ export default function DropDOwnHome() {
               )}
             </Menu.Item>
 
-
             <Menu.Item>
               {({ active }) => (
                 <Link
                   to="/signup"
                   className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm font-inter font-semibold'
+                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                    "block px-4 py-2 text-sm font-inter font-semibold"
                   )}
                 >
                   Articles
@@ -110,39 +105,38 @@ export default function DropDOwnHome() {
               )}
             </Menu.Item>
 
-
             <Menu.Item>
               {({ active }) => (
                 <Link
                   to="/signup"
                   className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm font-inter font-semibold'
+                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                    "block px-4 py-2 text-sm font-inter font-semibold"
                   )}
                 >
                   Ajouter Article
                 </Link>
               )}
             </Menu.Item>
-
           </div>
           <div className="py-1">
             <Menu.Item>
               {({ active }) => (
                 <Link
-                  to="/signup"
+                  onClick={logOut}
+                  to="/hero"
                   className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm font-inter font-semibold'
+                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                    "block px-4 py-2 text-sm font-inter font-semibold"
                   )}
                 >
                   Deconnexion
                 </Link>
               )}
             </Menu.Item>
-
           </div>
         </Menu.Items>
       </Transition>
     </Menu>
-  )}
+  );
+}

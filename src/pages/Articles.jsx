@@ -18,27 +18,29 @@ import { Button, ButtonGroup } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { GATEWAY_URL } from "../env.js";
+import ReactLoading from "react-loading";
 
 import axios from "axios";
 
 var searching = false;
-
-async function search(query) {
-  try {
-    const token = localStorage.getItem("token");
-    console.log(token);
-    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    const res = await axios.get(`${GATEWAY_URL}/articles?query=${query}`);
-    console.log(res);
-  } catch (error) {
-    console.log(error);
-  }
-}
+var articles = [];
 
 function Articles() {
   const { query } = useParams();
-  const [filter, toggleFilter] = useState(true);
+  const [filter, toggleFilter] = useState(false);
+  const [searched, setSearched] = useState(false);
 
+  async function search(query) {
+    try {
+      const token = localStorage.getItem("token");
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      const res = await axios.get(`${GATEWAY_URL}/articles?query=${query}`);
+      articles = res.data.Articles;
+      setSearched(true);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   useEffect(() => {
     if (!searching) {
       search(query);
