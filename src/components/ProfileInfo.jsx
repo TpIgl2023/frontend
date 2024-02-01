@@ -3,7 +3,6 @@ import ProfilePic from "../assets/ProfilePic.svg";
 import { Edit, Label } from "@mui/icons-material";
 import { json } from "react-router-dom";
 import { getAbreviation, updateInfo, updatePassword } from "../utils/utils.js";
-import axios from "axios";
 import { GATEWAY_URL } from "../env";
 
 export default function ProfileInfo() {

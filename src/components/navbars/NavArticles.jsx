@@ -27,7 +27,7 @@ export default function NavArticles() {
                 <input className=" w-full text-lg font-inter font-semibold outline-none px-4 placeholder-opacity-50 placeholder-black" placeholder="General relativity ... "/>
                 <img src={SearchIcon} alt="" className="cursor-pointer w-[35px] xl:w-[50px]"/>
             </div> 
-
+          </div>
         </div>
 
   <div className="flex gap-[20px] sm:gap-[30px] items-center">

@@ -41,18 +41,27 @@ export default function Favoris() {
       prevArticles.filter(article => article.id !== id)
     );
   };
+  function activateFilter(){
+
+  }
   return (
-    <>
+    <div className="flex flex-col min-h-[100vh]">
       <NavArticles/>
-      <div>
+      <div className="grow">
+        <div className="w-[80%] mx-auto flex justify-center sm:justify-end pt-[50px]">
+              <div className="py-2 px-5 sm:px-10 text-white bg-main rounded-3xl text-xl xs:text-2xl sm:text-3xl font-inter cursor-pointer" onClick={activateFilter}>
+                  Filtrer les Favoris
+              </div>
+        </div>
+        <div>
 
-        {Articles.map((Article) => (
-          <ArticlePopup favoris={true} Article={Article} removeArticle={removeArticle}  UserType={UserType}/>
-        ))}
+          {Articles.map((Article) => (
+            <ArticlePopup favoris={true} Article={Article} removeArticle={removeArticle}  UserType={UserType}/>
+          ))}
+        </div>
       </div>
-
       <FooterSigned/>
-    </>
+    </div>
 
   )
 }
