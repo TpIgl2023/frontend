@@ -6,6 +6,7 @@ import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import AddArticle from "./pages/AddArticle";
 import Article from "./pages/Article";
+import Articles from "./pages/Articles";
 import Contact from "./pages/Contact";
 import Favoris from "./pages/Favoris";
 import ReviewArticles from "./pages/ReviewArticles";
@@ -20,8 +21,10 @@ import SideNavAdmin from "./components/navbars/SideNavAdmin";
 import FooterSigned from "./components/footers/FooterSigned";
 import Password from "./pages/AdminPages/Password";
 import Help from "./pages/AdminPages/Help";
+import { ChakraProvider } from "@chakra-ui/react";
 import ModifyAdmin from "./pages/AdminPages/ModifyAdmin";
 import ModifyArticle from "./pages/ModifyArticle";
+
 
 const router=createBrowserRouter(
   createRoutesFromElements(
@@ -33,6 +36,7 @@ const router=createBrowserRouter(
         <Route path="/Signup" element={<Signup/>}></Route>
         <Route path="/ajouter" element={<AddArticle/>}></Route>
         <Route path="/article" element={<Article/>}></Route>
+        <Route path="/articles" element={<Articles/>}></Route>
         <Route path="/contact" element={<Contact/>}></Route>
         <Route path="/favoris" element={<Favoris/>}></Route>
         <Route path="/home" element={<Home/>}></Route>
@@ -54,7 +58,10 @@ const router=createBrowserRouter(
 )
 function App() {
   return (
-    <RouterProvider router={router} />
+    <ChakraProvider>
+      <RouterProvider router={router} />
+    </ChakraProvider>
+    
   );
 }
 
