@@ -8,8 +8,6 @@ export default function ModForm() {
         console.log(event.target.email.value)
         console.log(event.target.phone.value)
         console.log(event.target.password.value)
-
-    
     }
   return (
     <div className="max-w-[600px] mx-auto ">

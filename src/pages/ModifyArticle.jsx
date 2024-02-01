@@ -51,11 +51,11 @@ export default function ModifyArticle({Article}) {
           <div className="w-[80%] mx-auto">
             <h1 className="font-inter font-bold text-5xl py-[50px] text-center">Modifier Article</h1>
             <label className="font-inter font-semibold text-2xl pl-[50px] ">Titre de l'article : </label>
-            <textarea className="my-[20px] w-full py-5 px-5 font-inter text-xl border-main border-2 outline-none" name="title" id="" cols="30" rows="2"></textarea>
+            <textarea className="my-[20px] w-full py-5 px-5 font-inter text-xl border-main border-2 outline-none" name="title" id="" cols="30" rows="2">{TestArticle.title}</textarea>
             <div className="pt-10">
                <label className="font-inter font-semibold text-2xl pl-[50px] py-10">Résumé de l'article : </label>
             </div>
-            <textarea className="my-[20px] w-full py-5 px-5 font-inter text-xl border-main border-2 outline-none" name="summary" id="" cols="30" rows="4"/>
+            <textarea className="my-[20px] w-full py-5 px-5 font-inter text-xl border-main border-2 outline-none" name="summary" id="" cols="30" rows="4">{TestArticle.abstract}</textarea>
             <div className="pt-10">
                <label className="font-inter font-semibold text-2xl pl-[50px] py-10">Auteurs de l'article : </label>
             </div>
