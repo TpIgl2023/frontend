@@ -28,6 +28,50 @@ var searching = false;
 var articles = [];
 
 function FilterElement({ filterElement, listItem }){
+  let listItemCheckbox = listItem.slice(0,3);
+  let menuItemsComponents = <></>
+  if (listItem.length > 3) {
+    let listItemMenu = listItem.slice(3);
+    menuItemsComponents = (
+      <>
+        <Menu closeOnSelect={false}>
+          <MenuButton /*as={Button}*/ colorScheme="blue">
+            <span className="text-white"> More items</span>{" "}
+            <img src={dropMenu} className="w-6 inline" />
+          </MenuButton>
+          <MenuList minWidth="240px">
+            <MenuDivider />
+            <MenuOptionGroup title="Country" type="checkbox">
+              {listItemMenu.map((item) => (
+                <MenuItemOption value={item}>{item}</MenuItemOption>
+              ))}
+            </MenuOptionGroup>
+          </MenuList>
+        </Menu>
+      </>
+    );
+  }
+  let checkboxList = listItemCheckbox.map((item) => (
+    <Checkbox>
+      <span className="text-white">{item}</span>
+    </Checkbox>
+  ));
+
+
+  return(
+    <>
+  <div className="p-4  w-full flex flex-col md:flex-row md:justify-evenly">
+              <h1 className="inline-block mx-4 font-bold text-white text-lg">
+                {filterElement} :
+              </h1>
+              {checkboxList}
+              {menuItemsComponents}
+              
+            </div>
+
+            <div className="w-full h-1 bg-white"></div>
+            </>
+            )
 }
 
 function Articles() {
@@ -142,7 +186,7 @@ function Articles() {
         {filter && (
           <div
             id="filter"
-            className="relative left-0 w-2/3 py-5 bg-[#4D4D4D] font-inter"
+            className="relative left-0 w-full py-5 bg-[#4D4D4D] font-inter"
           >
             <div className=" text-center w-full py-4 flex justify-around items-center">
               <div></div>
@@ -157,7 +201,7 @@ function Articles() {
             {/* keywords  */}
             <FilterElement 
               filterElement="Keywords" 
-              listItem={['Value 1', 'Value 2', 'Value 3', 'value4', 'value5', 'value6', 'value7']}
+              listItem={['Value 1', 'Value 2', 'Value 3', 'value4', 'value5', 'value6']}
             />
             {/* Authors  */}
             <FilterElement 
