@@ -133,16 +133,15 @@ const addReferance = (event) => {
   }
   setReferance("")
 };
-
   //---------------------------------------------
   function handleSubmit(){
-
+    console.log("coucou")
   }
   //----------------------------------------------
   return (
     <>
         <NavArticles/>
-        <form action="">
+        <form  onSubmit={handleSubmit}>
           <div className="w-[90%] sm:w-[80%] mx-auto"> 
             <h1 className="font-inter font-bold text-4xl md:text-5xl py-[50px] text-center">Modifier Article</h1>
 
@@ -245,7 +244,7 @@ const addReferance = (event) => {
               </ul>
             </div>  
             <div className="w-full py-[30px] sm:py-[50px]">
-              <button type="submit" className="mx-auto rounded-3xl text-xl sm:text-2xl lg:text-3xl font-semibold flex px-10 py-3 bg-main text-white font-inter" onSubmit={handleSubmit}>Confirmer Changement</button>
+              <button type="submit" className="mx-auto rounded-3xl text-xl sm:text-2xl lg:text-3xl font-semibold flex px-10 py-3 bg-main text-white font-inter" >Confirmer Changement</button>
             </div>
           </div>
         </form>

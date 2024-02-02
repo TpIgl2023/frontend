@@ -8,6 +8,7 @@ import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import classNames from "classnames";
 import { logOut, getAbreviation } from "../../utils/utils.js";
+import UserTypes from "../../constants/enums.js";
 
 export default function DropDownProfile() {
   const user = JSON.parse(localStorage.getItem("user"));

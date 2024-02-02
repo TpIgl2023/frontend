@@ -9,6 +9,7 @@ import {ChevronDownIcon} from '@heroicons/react/24/outline'
 import classNames from 'classnames';
 import UserTypes from '../../constants/enums';
 export default function DropDOwnHome(){
+  const userType = UserTypes.USER;
   const mod=true
   const [nav,setNav]=useState(false);
   const handleNav=()=> {
@@ -84,7 +85,7 @@ export default function DropDOwnHome(){
 
         
          
-            <Menu.Item onClick={handleNav}>
+            { userType==UserTypes.USER && <Menu.Item onClick={handleNav}>
               {({ active }) => (
                 <Link
                   to="/Favoris"
@@ -96,7 +97,7 @@ export default function DropDOwnHome(){
                   Favoris
                 </Link>
               )}
-            </Menu.Item>
+            </Menu.Item>}
 
             <Menu.Item onClick={handleNav}>
               {({ active }) => (
@@ -128,7 +129,7 @@ export default function DropDOwnHome(){
             </Menu.Item>
 
 
-            <Menu.Item onClick={handleNav}>
+            {userType==UserTypes.ADMIN && <Menu.Item onClick={handleNav}>
               {({ active }) => (
                 <Link
                   to="/ajouter"
@@ -140,7 +141,7 @@ export default function DropDOwnHome(){
                   Ajouter Article
                 </Link>
               )}
-            </Menu.Item>
+            </Menu.Item>}
           </div>
           <div className="py-1">
             <Menu.Item onClick={handleNav}>

@@ -3,8 +3,17 @@ import NavArticles from '../components/navbars/NavArticles';
 import FooterSigned from '../components/footers/FooterSigned';
 
 export default function Article() {
-  const classPassive="  bg-main flex-1 text-center py-5 text-white"
-  const classActive="   bg-white flex-1 text-center py-5 text-black font-bold border-t-4 border-main"
+
+  const [resume,setResume]=useState(false)
+  const [keyWord,setKeyWord]=useState(false)
+  const [author,setAuthor]=useState(false)
+  const [institution,setInstitution]=useState(false)
+  const [text,setText]=useState(false)
+  const [URL,setURL]=useState(false)
+  const [ref,setRef]=useState(false)
+
+  const classPassive="  bg-main flex-1 text-center py-5 text-white cursor-pointer"
+  const classActive="   bg-white flex-1 text-center py-5 text-black font-bold border-y-4 border-main "
   const TestArticle={
     id:"5",
     title: "Email Spam Detection using Bidirectional Long Short Term Memory with Convolutional Neural Network",
@@ -44,9 +53,10 @@ export default function Article() {
         "IEEE Transactions on Smart Grid Authors: Kong W, Dong Z Y, Jia Y, Hill D J, Xu Y, Zhang Y",
         "Neural networks Authors: Graves A, Schmidhuber J"
     ],
-    publishDate: "2023-01-02"
+    publishDate: "2023-01-02",
+    pdfUrl:"http://www.lerobert.com",
   }
-  const [activeTab, setActiveTab] = useState('home');
+  const [activeTab, setActiveTab] = useState('resume');
   
   // Content for each tab
   // Function to handle tab click
@@ -54,36 +64,144 @@ export default function Article() {
     setActiveTab(tab);
   };
   return (
-    <div className="flex flex-col min-h-[100vh]">
+    <div className="flex flex-col min-h-[100vh] ">
       <NavArticles/>
-      <div className="font-inter w-[90%] grow mx-auto ">
-        <div className="flex justify-center text-3xl font-bold w-full py-[75px]" >
-          <h1 className="text-center w-[50%]">{TestArticle.title}</h1>
+      <div className="font-inter w-[80%] md:w-[95%] lg:w-[90%] grow mx-auto ">
+        <div className="flex justify-center text-md xs:text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold w-full py-[30px] pt-14 sm:py-[50px] md:py-[80px]" >
+          <h1 className="text-center w-[80%] xs:w-[75%] sm:w-[60%] lg:w-[50%]">{TestArticle.title}</h1>
         </div>
-        <div className="flex text-2xl font-semibold">
-          <div className={`rounded-tl-2xl ${classPassive}`}>
-              Résumé
+        <div className="hidden md:block">
+          <div className="flex text-xl lg:text-2xl font-semibold">
+            <div className={`rounded-tl-2xl border-l-4 border-main ${activeTab=="resume" ? classActive  : classPassive}`} onClick={() => handleTabClick('resume')}>
+                Résumé
+            </div>
+            <div className={`  ${activeTab=="author" ? classActive : classPassive}`} onClick={() => handleTabClick("author")}>
+                Auteurs
+            </div>
+            <div className={` ${activeTab=="keyword" ? classActive : classPassive}`} onClick={() => handleTabClick('keyword')}>
+                Mots clés
+            </div>
+            <div className={` ${activeTab=="insti" ? classActive : classPassive}`} onClick={() => handleTabClick('insti')}>
+                Institutions
+            </div>
+            <div className={` ${activeTab=="contenu" ? classActive : classPassive}`} onClick={() => handleTabClick('contenu')}>
+                Contenu
+            </div>
+            <div className={` ${activeTab=="url" ? classActive : classPassive}`} onClick={() => handleTabClick("url")}>
+                URL
+            </div>
+            <div className={`rounded-tr-2xl border-r-4 border-main ${activeTab=="ref" ? classActive : classPassive}`} onClick={() => handleTabClick('ref')}>
+                Réferences
+            </div>
           </div>
-          <div className={` ${classPassive}`}>
-              Auteurs
-          </div>
-          <div className={` ${classPassive}`}>
-              Mots clés
-          </div>
-          <div className={` ${classPassive}`}>
-              Institutions
-          </div>
-          <div className={` ${classActive}`}>
-              Contenu
-          </div>
-          <div className={` ${classPassive}`}>
-              URL
-          </div>
-          <div className={`rounded-tr-2xl ${classPassive}`}>
-              Réferences
+          <div className="w-full h-[600px] border-l-4 border-r-4 border-b-4 border-main mb-[100px]  rounded-b-2xl   text-xl">
+            <div className="overflow-y-auto h-full w-full  px-10 py-5">
+              {activeTab == 'resume' && <div className="my-4">{TestArticle.resume}</div>}
+              {activeTab == 'contenu' && <div className="my-4">{TestArticle.text}</div>}
+              {activeTab == 'author' && <div>
+                    {TestArticle.authors.map((author)=>(
+                        <h1 className="font-semibold text-2xl pt-5"><span className='text-4xl text-main font-bold'>. </span>{author}</h1>
+                    ))}
+                    </div>
+              }
+              {activeTab == 'keyword' && <div>
+                    {TestArticle.keywords.map((keyword)=>(
+                        <h1 className="font-semibold text-2xl pt-5"><span className='text-4xl text-main font-bold'>. </span>{keyword}</h1>
+                    ))}
+                    </div>
+              }
+              {activeTab == 'ref' && <div>
+                    {TestArticle.references.map((ref)=>(
+                        <h1 className="font-semibold text-2xl pt-5"><span className='text-4xl text-main font-bold'>. </span>{ref}</h1>
+                    ))}
+                    </div>
+              }
+              {activeTab == 'insti' && <div>
+                    {TestArticle.institutions.map((institution)=>(
+                        <h1 className="font-semibold text-2xl pt-5"><span className='text-4xl text-main font-bold'>. </span>{institution}</h1>
+                    ))}
+                    </div>
+              }
+              {activeTab == 'url' && <div className="flex flex-col h-full w-full justify-center items-center gap-[50px]">
+                  <h1 className="text-3xl lg:text-4xl font-bold underline">{TestArticle.pdfUrl}</h1>
+                  <button className="bg-[#E1F8FF] text-main py-2 px-16 lg:px-20 rounded-2xl border-4 border-main font-semibold text-3xl" onClick={()=>{}}>Download here</button>
+                </div>
+              }
+              </div>
           </div>
         </div>
+        {/*mobile version*/}
+        <div className="md:hidden font-inter py-10">
+        
+              <div className="text-2xl w-full text-bold px-10 border-l-4 border-main font-bold" onClick={()=>(setResume(!resume))}>
+                <h1>Résumé</h1>
+              </div>
+              {resume && 
+                <div className="py-5 text-md">
+                  {TestArticle.resume}
+                </div>
+              }
+              <div className="text-2xl w-full text-bold px-10 border-l-4 border-main font-bold mt-10" onClick={()=>(setKeyWord(!keyWord))}>
+                <h1>Mots clés</h1>
+              </div>
+              {keyWord && 
+                <div className="py-5 text-md">
+                    {TestArticle.keywords.map((keyword)=>(
+                        <h1 className="font-semibold text-lg pt-1"><span className='text-4xl text-main font-bold pr-5'>.</span>{keyword}</h1>
+                    ))}                
+                </div>
+              }
+              <div className="text-2xl w-full text-bold px-10 border-l-4 border-main font-bold mt-10" onClick={()=>(setAuthor(!author))}>
+                <h1>Auteurs</h1>
+              </div>
+              {author && 
+                <div className="py-5 text-md">
+                    {TestArticle.authors.map((author)=>(
+                        <h1 className="font-semibold text-lg pt-1"><span className='text-4xl text-main font-bold pr-5'>.</span>{author}</h1>
+                    ))}                
+                </div>
+              }
+              <div className="text-2xl w-full text-bold px-10 border-l-4 border-main font-bold mt-10" onClick={()=>(setInstitution(!institution))}>
+                <h1>Institutions</h1>
+              </div>
+              {institution && 
+                <div className="py-5 text-md">
+                    {TestArticle.institutions.map((institutione)=>(
+                        <h1 className="font-semibold text-lg pt-1"><span className='text-4xl text-main font-bold pr-5'>.</span>{institutione}</h1>
+                    ))}                
+                </div>
+              }
+              <div className="text-2xl w-full text-bold px-10 border-l-4 border-main font-bold mt-10" onClick={()=>(setText(!text))}>
+                <h1>Contenu</h1>
+              </div>
+              {text && 
+                <div className="py-5 text-md">
+                {TestArticle.text}
+              </div>
+              }
+              <div className="text-2xl w-full text-bold px-10 border-l-4 border-main font-bold mt-10" onClick={()=>(setURL(!URL))}>
+                <h1>URL</h1>
+              </div>
+              {URL && 
+                <div className="flex flex-col h-full  justify-center items-center  gap-[20px] py-10">
+                  <h1 className="text-xl font-bold underline text-center">{TestArticle.pdfUrl}</h1>
+                  <button className="bg-[#E1F8FF] text-main py-2 px-10 rounded-2xl border-4 border-main font-semibold text-md" onClick={()=>{}}>Download here</button>
+                </div>
+              }
+              <div className="text-2xl w-full text-bold px-10 border-l-4 border-main font-bold mt-10" onClick={()=>(setRef(!ref))}>
+                <h1>Références</h1>
+              </div>
+              {ref && 
+                <div className="py-5 text-md pb-10">
+                    {TestArticle.references.map((reference)=>(
+                        <h1 className="font-semibold text-lg pt-1"><span className='text-4xl text-main font-bold pr-5'>.</span>{reference}</h1>
+                    ))}                
+                </div>
+              }
+        </div>
+
       </div>
+
       <FooterSigned/>
     </div>
   )
