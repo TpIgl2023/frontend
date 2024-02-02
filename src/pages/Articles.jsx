@@ -19,34 +19,101 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { GATEWAY_URL } from "../env.js";
 import ReactLoading from "react-loading";
-
+import ArticlePopup from '../components/ArticlePopup'
+import UserTypes from '../constants/enums'
 import axios from "axios";
+import { ColorRing } from 'react-loader-spinner';
 
 var searching = false;
 var articles = [];
 
+function FilterElement({ filterElement, listItem }){
+}
+
 function Articles() {
   const { query } = useParams();
   const [filter, toggleFilter] = useState(false);
+  const [Articles,setArticles]=useState([])
   const [searched, setSearched] = useState(false);
+  const [liked, setLiked] = useState([]);
 
+  const UserType=UserTypes.USER  
+
+    function activateFilter(){
+        //Ecris le code de l'activation ici
+    }
+  let likedArticlesIds = []
   async function search(query) {
     try {
       const token = localStorage.getItem("token");
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      const res = await axios.get(`${GATEWAY_URL}/articles?query=${query}`);
-      articles = res.data.Articles;
+      axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
+      const res = await axios.get(`${GATEWAY_URL}/articles/?query=${query}`)
+      console.log(res.data.articles)
+      articles = res.data.articles;
+      setArticles(res.data.articles);
       setSearched(true);
+      console.log("finished searching");
+      console.log(Articles);
+
     } catch (error) {
       console.log(error);
     }
   }
-  useEffect(() => {
-    if (!searching) {
-      search(query);
-      searching = true;
+
+
+
+  async function getLikedArticles() {
+    try {
+      const token = localStorage.getItem("token");
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
+      const res = await axios.get(`${GATEWAY_URL}/articles/favorite`)
+      let likedArticles = res.data.articles;
+      likedArticlesIds = likedArticles.map((article) => article.id);
+      setLiked(likedArticlesIds);
+      console.log("liked articles inside getLikedArticles: ")
+      console.log(likedArticlesIds)
+
+    } catch (error) {
+      console.log(error);
     }
-  });
+  }
+
+  async function fetchData (){
+    await search(query);
+    await getLikedArticles();
+    return true;
+  }
+
+  useEffect(() => {
+    const fetchDataAsync = async () => {
+      if (searched == false){
+        const res = await fetchData();
+        // Assuming fetchData updates Articles
+      }
+    };
+  
+    fetchDataAsync();
+  }, [Articles, searched,fetchData]); // Add Articles and searched as dependencies
+  
+  useEffect(() => {
+    console.log("Articles ids");
+    console.log(liked);
+    articles.forEach((article) => {
+      if (liked.includes(article.id)) {
+        article.Liked = true;
+      } else {
+        article.Liked = false;
+      }
+    });
+  
+    console.log("Articles after updating the likes : ")
+    console.log(articles);
+    setSearched(true);
+  }, [articles, liked]); // Add likedArticlesIds as a dependency
+
+
   return (
     <div>
       <NavArticles />
@@ -58,6 +125,19 @@ function Articles() {
           Open filter
         </button>
       )}
+      <div className="min-h-[370px]">
+      <div className="h-full w-full flex justify-center align-middle">
+
+      { !searched && (<ColorRing
+      visible={true}
+      height="120"
+      width="120"
+      ariaLabel="color-ring-loading"
+      wrapperStyle={{}}
+      wrapperClass="color-ring-wrapper"
+      colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+      />)}
+      </div>
       <div>
         {filter && (
           <div
@@ -75,98 +155,20 @@ function Articles() {
             </div>
             <div className="w-full h-1"></div>
             {/* keywords  */}
-            <div className="p-4  w-full flex flex-col md:flex-row md:justify-evenly">
-              <h1 className="inline-block mx-4 font-bold text-white text-lg">
-                {" "}
-                Keywords :
-              </h1>
-              <Checkbox>
-                <span className="text-white">Value 1</span>
-              </Checkbox>
-              <Checkbox>
-                <span className="text-white">Value 2</span>
-              </Checkbox>
-              <Checkbox>
-                <span className="text-white">Value 3</span>
-              </Checkbox>
-              <Menu closeOnSelect={false}>
-                <MenuButton /*as={Button}*/ colorScheme="blue">
-                  <span className="text-white"> More items</span>{" "}
-                  <img src={dropMenu} className="w-6 inline" />
-                </MenuButton>
-                <MenuList minWidth="240px">
-                  <MenuDivider />
-                  <MenuOptionGroup title="Country" type="checkbox">
-                    <MenuItemOption value="value4">value4</MenuItemOption>
-                    <MenuItemOption value="value5">value5</MenuItemOption>
-                    <MenuItemOption value="value6">value6</MenuItemOption>
-                  </MenuOptionGroup>
-                </MenuList>
-              </Menu>
-            </div>
-            <div className="w-full h-1 bg-white"></div>
+            <FilterElement 
+              filterElement="Keywords" 
+              listItem={['Value 1', 'Value 2', 'Value 3', 'value4', 'value5', 'value6', 'value7']}
+            />
             {/* Authors  */}
-            <div className="p-4  w-full flex flex-col md:flex-row md:justify-evenly">
-              <h1 className="inline-block mx-4 font-bold text-white text-lg">
-                {" "}
-                Authors :
-              </h1>
-              <Checkbox>
-                <span className="text-white">Value 1</span>
-              </Checkbox>
-              <Checkbox>
-                <span className="text-white">Value 2</span>
-              </Checkbox>
-              <Checkbox>
-                <span className="text-white">Value 3</span>
-              </Checkbox>
-              <Menu closeOnSelect={false}>
-                <MenuButton /*as={Button}*/ colorScheme="blue">
-                  <span className="text-white"> More items</span>{" "}
-                  <img src={dropMenu} className="w-6 inline" />
-                </MenuButton>
-                <MenuList minWidth="240px">
-                  <MenuDivider />
-                  <MenuOptionGroup title="Country" type="checkbox">
-                    <MenuItemOption value="value4">value4</MenuItemOption>
-                    <MenuItemOption value="value5">value5</MenuItemOption>
-                    <MenuItemOption value="value6">value6</MenuItemOption>
-                  </MenuOptionGroup>
-                </MenuList>
-              </Menu>
-            </div>
-            <div className="w-full h-1 bg-white"></div>
+            <FilterElement 
+              filterElement="Authors" 
+              listItem={['Value 1', 'Value 2', 'Value 3', 'value4', 'value5', 'value6', 'value7']} 
+            />
             {/* Institutions  */}
-            <div className="p-4  w-full flex flex-col md:flex-row md:justify-evenly">
-              <h1 className="inline-block mx-4 font-bold text-white text-lg">
-                {" "}
-                Institutions :
-              </h1>
-              <Checkbox>
-                <span className="text-white">Value 1</span>
-              </Checkbox>
-              <Checkbox>
-                <span className="text-white">Value 2</span>
-              </Checkbox>
-              <Checkbox>
-                <span className="text-white">Value 3</span>
-              </Checkbox>
-              <Menu closeOnSelect={false}>
-                <MenuButton /*as={Button}*/ colorScheme="blue">
-                  <span className="text-white"> More items</span>{" "}
-                  <img src={dropMenu} className="w-6 inline" />
-                </MenuButton>
-                <MenuList minWidth="240px">
-                  <MenuDivider />
-                  <MenuOptionGroup title="Country" type="checkbox">
-                    <MenuItemOption value="value4">value4</MenuItemOption>
-                    <MenuItemOption value="value5">value5</MenuItemOption>
-                    <MenuItemOption value="value6">value6</MenuItemOption>
-                  </MenuOptionGroup>
-                </MenuList>
-              </Menu>
-            </div>
-            <div className="w-full h-1 bg-white"></div>
+            <FilterElement 
+              filterElement="Institutions" 
+              listItem={['Value 1', 'Value 2', 'Value 3', 'value4', 'value5', 'value6', 'value7']}
+            />
             {/* Publishing date */}
             <div className="p-4 w-full flex flex-col md:flex-row justify-evenly">
               <h1 className="text-white">Publishing date : </h1>
@@ -180,10 +182,16 @@ function Articles() {
               </div>
             </div>
             <div className="w-full flex justify-center">
-              <Button colorScheme="orange">Filter</Button>
+              <Button className="bg-orange-600">Filter</Button>
             </div>
           </div>
         )}
+      </div>
+      <div>
+        {articles.map((Article) => (<>
+            <ArticlePopup favoris={Article.Liked} Article={Article}  UserType={UserType}/></>
+          ))}
+      </div>
       </div>
       <div className="w-screen">
         <FooterSigned />
@@ -191,5 +199,7 @@ function Articles() {
     </div>
   );
 }
+
+
 
 export default Articles;
