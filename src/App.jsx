@@ -10,7 +10,6 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import AddArticle from "./pages/AddArticle";
-import ListArticles from "./pages/ListArticles";
 import Article from "./pages/Article";
 import Articles from "./pages/Articles";
 import Contact from "./pages/Contact";
@@ -36,14 +35,12 @@ const router = createBrowserRouter(
     <Route path="/" element={<Rootlayout />}>
       <Route path="/Hero" element={<Hero />}></Route>
       <Route path="/Login" element={<Login />}></Route>
+      <Route path="/Review" element={<ReviewArticles />}></Route>
+      <Route path="/Modify/:article" element={<ModifyArticle />}></Route>
       <Route path="/Signup" element={<Signup />}></Route>
       <Route path="/ajouter" element={<AddArticle />}></Route>
       <Route path="/article" element={<Article />}></Route>
-      <Route path="/articles/:query" element={<Articles />}></Route>
-      <Route path="/Review" element={<ReviewArticles/>}></Route>
-      <Route path="/ListArticles" element={<ListArticles/>}></Route>
-      <Route path="/Modify" element={<ModifyArticle/>}></Route>
-      <Route path="/Review" element={<ReviewArticles/>}></Route>
+      <Route path="/articles" element={<Articles />}></Route>
       <Route path="/contact" element={<Contact />}></Route>
       <Route path="/favoris" element={<Favoris />}></Route>
       <Route path="/home" element={<Home />}></Route>

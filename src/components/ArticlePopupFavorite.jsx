@@ -5,8 +5,10 @@ import UserTypes from "../constants/enums";
 import { Link } from "react-router-dom";
 import { GATEWAY_URL } from "../env.js";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function ArticlePopupFavorite({ Article, removeArticle }) {
+  const navigate = useNavigate();
   //if use case 1 it is used pour afficher article if use case 2 it is used pour favoris if 3 it is used for review
 
   const JoinedAuthors = Article.authors.join(", ");
@@ -72,12 +74,27 @@ export default function ArticlePopupFavorite({ Article, removeArticle }) {
             {finalStringKeyWords}
           </p>
         </div>
-
-        <div className=" pt-10 flex justify-center sm:justify-end font-inter items-center text-lg sm:text-xl md:text-2xl">
-          <div className="cursor-pointer">
-            <p>Lire la suite {">"}</p>
+        {true ? (
+          <div className="flex flex-col justify-evenly gap-[10px] sm:flex-row sm:justify-between font-inter items-center text-lg sm:text-xl md:text-2xl  pt-[20px]">
+            <div className="cursor-pointer">
+              <p>Lire la suite {">"}</p>
+            </div>
+            <div
+              onClick={() => {
+                navigate(`/Modify/${JSON.stringify(Article)}`);
+              }}
+              className="cursor-pointer px-10 py-1 bg-black text-white rounded-full"
+            >
+              <p>Modifier</p>
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className=" pt-10 flex justify-center sm:justify-end font-inter items-center text-lg sm:text-xl md:text-2xl">
+            <div className="cursor-pointer">
+              <p>Lire la suite {">"}</p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
