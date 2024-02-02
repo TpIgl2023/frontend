@@ -9,6 +9,7 @@ import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import classNames from "classnames";
 import UserTypes from "../../constants/enums";
 export default function DropDOwnHome() {
+  const userType = UserTypes.USER;
   const mod = true;
   const [nav, setNav] = useState(false);
   const handleNav = () => {
@@ -81,19 +82,21 @@ export default function DropDOwnHome() {
               )}
             </Menu.Item>
 
-            <Menu.Item onClick={handleNav}>
-              {({ active }) => (
-                <Link
-                  to="/Favoris"
-                  className={classNames(
-                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                    "block px-4 py-2 text-sm font-inter font-semibold"
-                  )}
-                >
-                  Favoris
-                </Link>
-              )}
-            </Menu.Item>
+            {userType == UserTypes.USER && (
+              <Menu.Item onClick={handleNav}>
+                {({ active }) => (
+                  <Link
+                    to="/Favoris"
+                    className={classNames(
+                      active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                      "block px-4 py-2 text-sm font-inter font-semibold"
+                    )}
+                  >
+                    Favoris
+                  </Link>
+                )}
+              </Menu.Item>
+            )}
 
             <Menu.Item onClick={handleNav}>
               {({ active }) => (
@@ -123,19 +126,21 @@ export default function DropDOwnHome() {
               )}
             </Menu.Item>
 
-            <Menu.Item onClick={handleNav}>
-              {({ active }) => (
-                <Link
-                  to="/ajouter"
-                  className={classNames(
-                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                    "block px-4 py-2 text-sm font-inter font-semibold"
-                  )}
-                >
-                  Ajouter Article
-                </Link>
-              )}
-            </Menu.Item>
+            {userType == UserTypes.ADMIN && (
+              <Menu.Item onClick={handleNav}>
+                {({ active }) => (
+                  <Link
+                    to="/ajouter"
+                    className={classNames(
+                      active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                      "block px-4 py-2 text-sm font-inter font-semibold"
+                    )}
+                  >
+                    Ajouter Article
+                  </Link>
+                )}
+              </Menu.Item>
+            )}
           </div>
           <div className="py-1">
             <Menu.Item onClick={handleNav}>
