@@ -1,38 +1,37 @@
-import React, { useState ,Fragment} from 'react'
-import {styles} from "../../styles"
-import {Link} from "react-router-dom"
-import MenuIcon from '@mui/icons-material/Menu';
-import ProfilePic from "../../assets/ProfilePic.svg"
-import { Close } from '@mui/icons-material';
-import {Menu,Transition} from '@headlessui/react'
-import {ChevronDownIcon} from '@heroicons/react/24/outline'
-import classNames from 'classnames';
-import UserTypes from '../../constants/enums';
-export default function DropDOwnHome(){
-  const mod=true
-  const [nav,setNav]=useState(false);
-  const handleNav=()=> {
+import React, { useState, Fragment } from "react";
+import { styles } from "../../styles";
+import { Link } from "react-router-dom";
+import MenuIcon from "@mui/icons-material/Menu";
+import ProfilePic from "../../assets/ProfilePic.svg";
+import { Close } from "@mui/icons-material";
+import { Menu, Transition } from "@headlessui/react";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import classNames from "classnames";
+import UserTypes from "../../constants/enums";
+export default function DropDOwnHome() {
+  const mod = true;
+  const [nav, setNav] = useState(false);
+  const handleNav = () => {
     setNav(!nav);
-  }
-  const [visible, setVisible] = useState(true)
- 
+  };
+  const [visible, setVisible] = useState(true);
+
   const toggleVisible = () => {
-      const scrolled = document.documentElement.scrollTop;
-      if (scrolled > 0) {
-          setVisible(false)
-      }
-      else if (scrolled <= 0) {
-          setVisible(true)
-      }
+    const scrolled = document.documentElement.scrollTop;
+    if (scrolled > 0) {
+      setVisible(false);
+    } else if (scrolled <= 0) {
+      setVisible(true);
+    }
   };
 
   const scrollToBottom = () => {
-      window.scrollTo({
-          top: document.documentElement.scrollHeight,
-          behavior: 'smooth'
-          /* you can also use 'auto' behaviour 
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: "smooth",
+      /* you can also use 'auto' behaviour 
              in place of 'smooth' */
-      });
+    });
   };
   return (
     <Menu as="div" className="relative inline-block text-left">
@@ -52,7 +51,7 @@ export default function DropDOwnHome(){
         leaveTo="transform opacity-0 scale-95"
       >
         <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-main rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-        <div className="py-1" >
+          <div className="py-1">
             <Menu.Item onClick={handleNav}>
               {({ active }) => (
                 <Link
@@ -82,8 +81,6 @@ export default function DropDOwnHome(){
               )}
             </Menu.Item>
 
-        
-         
             <Menu.Item onClick={handleNav}>
               {({ active }) => (
                 <Link
@@ -112,7 +109,6 @@ export default function DropDOwnHome(){
               )}
             </Menu.Item>
 
-
             <Menu.Item onClick={handleNav}>
               {({ active }) => (
                 <Link
@@ -126,7 +122,6 @@ export default function DropDOwnHome(){
                 </Link>
               )}
             </Menu.Item>
-
 
             <Menu.Item onClick={handleNav}>
               {({ active }) => (
