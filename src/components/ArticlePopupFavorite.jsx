@@ -5,61 +5,27 @@ import UserTypes from "../constants/enums";
 import { Link } from "react-router-dom";
 import { GATEWAY_URL } from "../env.js";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-export default function ArticlePopup({
-  favoris,
-  Article,
-  removeArticle,
-  UserType,
-}) {
+export default function ArticlePopupFavorite({ Article, removeArticle }) {
+  const navigate = useNavigate();
   //if use case 1 it is used pour afficher article if use case 2 it is used pour favoris if 3 it is used for review
 
-  // const [searched, setSearched] = useState(false);
   const JoinedAuthors = Article.authors.join(", ");
   const JoinedKeyWords = Article.keywords.join(", ");
   const finalStringAuthors = `Auteurs : ${JoinedAuthors}`;
 
   const finalStringKeyWords = `Mots-clés : ${JoinedKeyWords}`;
 
-  const [liked, setLiked] = useState(favoris);
-
-  async function handleLike() {
-    if (liked) {
-      await removeFromFavorite();
-    } else {
-      await addToFavorite();
-    }
-  }
-
   function HeartIcon() {
-    if (liked === true) {
-      return (
-        <div onClick={handleLike} className="cursor-pointer order-1 sm:order-2">
-          <Favorite fontSize="large" />
-        </div>
-      );
-    } else {
-      return (
-        <div onClick={handleLike} className="cursor-pointer order-1 sm:order-2">
-          <FavoriteBorderIcon fontSize="large" />
-        </div>
-      );
-    }
-  }
-
-  async function addToFavorite() {
-    try {
-      const token = localStorage.getItem("token");
-      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      axios.defaults.headers.common["article_id"] = `${Article.id}`;
-      axios.defaults.headers.get["Access-Control-Allow-Origin"] = "*";
-      await axios.post(`${GATEWAY_URL}/articles/favorite`).then((res) => {
-        // setSearched(true);
-        setLiked(true); // Add this line
-      });
-    } catch (error) {
-      console.log(error);
-    }
+    return (
+      <div
+        onClick={removeFromFavorite}
+        className="cursor-pointer order-1 sm:order-2"
+      >
+        <Favorite fontSize="large" />
+      </div>
+    );
   }
 
   async function removeFromFavorite() {
@@ -69,25 +35,12 @@ export default function ArticlePopup({
       axios.defaults.headers.common["article_id"] = `${Article.id}`;
       axios.defaults.headers.get["Access-Control-Allow-Origin"] = "*";
       await axios.delete(`${GATEWAY_URL}/articles/favorite`).then((res) => {
-        // setSearched(true);
-        setLiked(false); // Add this line
-        if (removeArticle) {
-          removeArticle(Article.id);
-        }
+        removeArticle(Article.id);
       });
     } catch (error) {
       console.log(error);
     }
   }
-
-  console.log(
-    "article name: " +
-      Article.title +
-      " article id : " +
-      Article.id +
-      " liked : " +
-      liked
-  );
 
   return (
     <div className="my-[80px] mx-auto w-[80%] flex justify-begin rounded-3xl h-[350px] shadow-[0px_2px_5px_5px_rgb(140,140,140)] lg:shadow-[0px_5px_10px_5px_rgb(140,140,140)]">
@@ -99,10 +52,10 @@ export default function ArticlePopup({
 
           {
             <div
-              onClick={handleLike}
+              onClick={removeFromFavorite}
               className="cursor-pointer order-1 sm:order-2"
             >
-              <HeartIcon liked={liked} />
+              <HeartIcon />
             </div>
           }
         </div>
@@ -121,12 +74,17 @@ export default function ArticlePopup({
             {finalStringKeyWords}
           </p>
         </div>
-        {UserTypes.MODERATOR == UserType ? (
+        {true ? (
           <div className="flex flex-col justify-evenly gap-[10px] sm:flex-row sm:justify-between font-inter items-center text-lg sm:text-xl md:text-2xl  pt-[20px]">
             <div className="cursor-pointer">
               <p>Lire la suite {">"}</p>
             </div>
-            <div className="cursor-pointer px-10 py-1 bg-black text-white rounded-full">
+            <div
+              onClick={() => {
+                navigate(`/Modify/${JSON.stringify(Article)}`);
+              }}
+              className="cursor-pointer px-10 py-1 bg-black text-white rounded-full"
+            >
               <p>Modifier</p>
             </div>
           </div>
