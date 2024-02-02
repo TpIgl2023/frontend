@@ -80,14 +80,9 @@ export default function ArticlePopup({
     }
   }
 
-  console.log(
-    "article name: " +
-      Article.title +
-      " article id : " +
-      Article.id +
-      " liked : " +
-      liked
-  );
+  const viewArticle = () => {
+    window.location.href = `/article/${Article.id}`;
+  };
 
   return (
     <div className="my-[80px] mx-auto w-[80%] flex justify-begin rounded-3xl h-[350px] shadow-[0px_2px_5px_5px_rgb(140,140,140)] lg:shadow-[0px_5px_10px_5px_rgb(140,140,140)]">
@@ -123,7 +118,11 @@ export default function ArticlePopup({
         </div>
         {UserTypes.MODERATOR == UserType ? (
           <div className="flex flex-col justify-evenly gap-[10px] sm:flex-row sm:justify-between font-inter items-center text-lg sm:text-xl md:text-2xl  pt-[20px]">
-            <div className="cursor-pointer">
+            <div
+              id="read_button"
+              onClick={viewArticle}
+              className="cursor-pointer"
+            >
               <p>Lire la suite {">"}</p>
             </div>
             <div className="cursor-pointer px-10 py-1 bg-black text-white rounded-full">
@@ -132,7 +131,11 @@ export default function ArticlePopup({
           </div>
         ) : (
           <div className=" pt-10 flex justify-center sm:justify-end font-inter items-center text-lg sm:text-xl md:text-2xl">
-            <div className="cursor-pointer">
+            <div
+              id="read_button"
+              onClick={viewArticle}
+              className="cursor-pointer"
+            >
               <p>Lire la suite {">"}</p>
             </div>
           </div>
