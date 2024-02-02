@@ -13,6 +13,7 @@ export default function FooterSigned() {
               <p className="font-inter  text-xl">Un texte est une série orale ou écrite de mots perçus comme constituant un ensemble cohérent, </p>
           </div>
         </div>
+    
         <div className="hidden md:block">
           <div className="flex flex-col gap-4 lg:gap-6 w-[200px] items-center ">
               <h1 className="font-inter font-semibold text-lg lg:text-2xl">Lien rapide</h1>
