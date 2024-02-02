@@ -84,7 +84,7 @@ function FilterElement({ filterElement, listItem , filterByFunction}){
   }
   let checkboxList = listItemCheckbox.map((item) => (
       <Checkbox>
-        <span className="text-white border-8" value={item} onClick={() => handleClick(item)}>{item}</span>
+        <span className="text-white" value={item} onClick={() => handleClick(item)}>{item}</span>
       </Checkbox>
   ));
 
@@ -111,6 +111,7 @@ function Articles() {
   const [searched, setSearched] = useState(false);
   const [liked, setLiked] = useState([]);
   const [refresh, setRefresh] = useState(false);
+  const [, forceUpdate] = useState();
 
   const [keywords, setKeywords] = useState([]);
   const [authors, setAuthors] = useState([]);
@@ -192,18 +193,6 @@ function Articles() {
         }
       }
     });
-    
-    console.log("Setting up the articles updated hidden");
-    console.log("Articles : ")
-    console.log(articles);
-
-    console.log("Filters : ")
-    console.log(filterKeywords);
-    console.log(filterAuthors);
-    console.log(filterInstitutions);
-    console.log("Correctly setted up");
-
-    setArticles(articles);
     setArticles(articles);
     setRefresh(!refresh);
 
@@ -259,77 +248,49 @@ function Articles() {
     return true;
   }
 
+  function filterByDate(){
+    let from = document.getElementById("from").value;
+    let to = document.getElementById("to").value;
+    if (from == ""){
+      from = "0000-01-01";
+    }
+    if (to == ""){
+      to = "9999-12-31";
+    }
+
+
+
+    let fromDate = new Date(from);
+    let toDate = new Date(to);
+    console.log("From date : " + fromDate);
+    console.log("To date : " + toDate);
+
+    let articleDate;
+
+    let articles = Articles.map(article => {
+      articleDate = new Date(article.publishDate);
+      console.log("Article date : " + articleDate);
+      if (fromDate > articleDate || toDate < articleDate){
+        return {...article, hidden: true};
+      }
+      return {...article, hidden: false};
+    });
+    let copiedObject = [...articles];
+    console.log("Copied object");
+    console.log(copiedObject)
+    setArticles(copiedObject);
+    forceUpdate();
+    let newVariable = false;
+    setRefresh(newVariable);
+    setRefresh(!newVariable);
+    setRefresh(!refresh);
+  
+  }
+
   useEffect(() => {
     const fetchDataAsync = async () => {
       if (searched == false){
         const res = await fetchData();
-        let extraArticles = [
-          {
-            "id": 1,
-            "publishDate": "2023-06-01",
-            "title": "Introduction to AI",
-            "resume": "A brief overview of artificial intelligence",
-            "authors": ["John Doe", "Alice Smith"],
-            "institutions": ["MIT", "Stanford"],
-            "keywords": ["AI", "Machine Learning"],
-            "text": "This article provides an introduction to the field of artificial intelligence.",
-            "pdfUrl": "www.example.com/intro-to-ai.pdf",
-            "references": ["Ref1", "Ref2"]
-          },
-          {
-            "id": 2,
-            "publishDate": "2023-06-02",
-            "title": "AI in Healthcare",
-            "resume": "Exploring the impact of AI on the healthcare industry",
-            "authors": ["Jane Brown", "David Chen"],
-            "institutions": ["Harvard", "Johns Hopkins"],
-            "keywords": ["AI", "Healthcare"],
-            "text": "This article discusses the applications of AI in improving healthcare services.",
-            "pdfUrl": "www.example.com/ai-in-healthcare.pdf",
-            "references": ["Ref3", "Ref4"]
-          },
-          {
-            "id": 3,
-            "publishDate": "2023-06-03",
-            "title": "Ethical Considerations in AI",
-            "resume": "Examining ethical issues surrounding artificial intelligence",
-            "authors": ["Emily White", "Michael Lee"],
-            "institutions": ["Oxford", "Cambridge"],
-            "keywords": ["AI", "Ethics"],
-            "text": "This article explores ethical considerations and challenges in the development of AI technologies.",
-            "pdfUrl": "www.example.com/ethical-ai.pdf",
-            "references": ["Ref5", "Ref6"]
-          },
-          {
-            "id": 4,
-            "publishDate": "2023-06-04",
-            "title": "AI and Robotics",
-            "resume": "The intersection of AI and robotics in modern technology",
-            "authors": ["Susan Miller", "Carlos Rodriguez"],
-            "institutions": ["Carnegie Mellon", "UC Berkeley"],
-            "keywords": ["AI", "Robotics"],
-            "text": "This article explores the integration of AI and robotics for advanced technological applications.",
-            "pdfUrl": "www.example.com/ai-and-robotics.pdf",
-            "references": ["Ref7", "Ref8"]
-          },
-          {
-            "id": 5,
-            "publishDate": "2023-06-05",
-            "title": "Future Trends in AI",
-            "resume": "Predictions and insights into the future of artificial intelligence",
-            "authors": ["Sophie Taylor", "Ahmed Khan"],
-            "institutions": ["MIT", "ETH Zurich"],
-            "keywords": ["AI", "Future Trends"],
-            "text": "This article speculates on the potential future developments and trends in the field of AI.",
-            "pdfUrl": "www.example.com/future-trends-ai.pdf",
-            "references": ["Ref9", "Ref10"]
-          }
-        ];
-        //
-        articles = Articles;
-        articles = articles.concat(extraArticles);
-        setArticles(articles);
-        // Assuming fetchData updates Articles
       }
     };
   
@@ -389,7 +350,7 @@ function Articles() {
               <div></div>
               <h1 className="font-bold text-2xl text-white">Filter</h1>{" "}
               <img
-                className="invert  h-6"
+                className="invert h-6 cursor-pointer"
                 src={exitIcon}
                 onClick={() => toggleFilter(!filter)}
               />{" "}
@@ -418,15 +379,15 @@ function Articles() {
               <h1 className="text-white">Publishing date : </h1>
               <div>
                 <h1 className="text-white">From :</h1>
-                <input className="rounded" placeholder="DD/MM/YYYY" />
+                <input className="rounded" type="date" id="from" placeholder="DD/MM/YYYY" />
               </div>
               <div>
                 <h1 className="text-white">To :</h1>
-                <input className="rounded" placeholder="DD/MM/YYYY" />
+                <input className="rounded" type="date" id="to" placeholder="DD/MM/YYYY" />
               </div>
             </div>
             <div className="w-full flex justify-center">
-              <Button className="bg-orange-600">Filter</Button>
+              <Button className="bg-orange-600" onClick={filterByDate}>Filter</Button>
             </div>
           </div>
         )}
