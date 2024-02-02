@@ -3,28 +3,67 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
 import UserTypes from '../constants/enums';
 import { Link } from 'react-router-dom';
+import { GATEWAY_URL } from "../env.js";
+import axios from "axios";
 
 export default function ArticlePopup({favoris,Article,removeArticle,UserType}) {//if use case 1 it is used pour afficher article if use case 2 it is used pour favoris if 3 it is used for review
     const handleRemove = () => {
+        removeFromFavorite();
         removeArticle(Article.id);
       };
 
     const handleLike = () =>{
+      if (liked){
+        removeFromFavorite();
+      }else{
+        addToFavorite();
+      }
       setLiked(!liked)
     }
-
-    const JoinedAuthors = Article.Authors.join(', ');
-    const JoinedKeyWords = Article.KeyWords.join(', ');
+    const [searched, setSearched] = useState(false);
+    const JoinedAuthors = Article.authors.join(', ');
+    const JoinedKeyWords = Article.keywords.join(', ');
     const finalStringAuthors = `Auteurs : ${JoinedAuthors}`;
 
     const finalStringKeyWords = `Mots-clés : ${JoinedKeyWords}`;
 
     const [liked, setLiked] = useState(Article.Liked);
+
+    async function addToFavorite() {
+      try {
+        const token = localStorage.getItem("token");
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+        axios.defaults.headers.common["article_id"] = `${Article.id}`;
+        axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
+        axios.post(`${GATEWAY_URL}/articles/favorite`).then((res) => {
+          setSearched(true);
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    async function removeFromFavorite() {
+      try{
+        const token = localStorage.getItem("token");
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+        axios.defaults.headers.common["article_id"] = `${Article.id}`;
+        axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
+        axios.delete(`${GATEWAY_URL}/articles/favorite`).then((res) => {
+          setSearched(true);
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+  
+  
   return (
-    <div className="my-[80px] mx-auto w-[80%] flex justify-center rounded-3xl h-[350px] shadow-[0px_2px_5px_5px_rgb(140,140,140)] lg:shadow-[0px_5px_10px_5px_rgb(140,140,140)]">
-        <div className="py-10   px-5 sm:px-10">
+    <div className="my-[80px] mx-auto w-[80%] flex justify-begin rounded-3xl h-[350px] shadow-[0px_2px_5px_5px_rgb(140,140,140)] lg:shadow-[0px_5px_10px_5px_rgb(140,140,140)]">
+        <div className="py-10   px-5 sm:px-10 w-full">
             <div className="flex flex-col gap-[10px] items-center sm:flex-row sm:justify-between ">
-                <h1 className="font-inter text-lg xs:text-xl sm:text-2xl lg:text-3xl font-semibold order-2 sm:order-1 text-center" >{Article.Title}</h1>
+                <h1 className="font-inter text-lg xs:text-xl sm:text-2xl lg:text-3xl font-semibold order-2 sm:order-1 text-center" >{Article.title}</h1>
               
                 {
                   UserType==UserTypes.USER ?
@@ -54,7 +93,7 @@ export default function ArticlePopup({favoris,Article,removeArticle,UserType}) {
                <p className='font-inter font-semibold text-sm xs:text-md md:text-lg  text-ellipsis overflow-hidden line-clamp-1 text-main underline'>{finalStringAuthors}</p>
             </div>
             <div className="pt-5 ">
-               <p className='font-inter text-sm xs:text-md md:text-lg  text-ellipsis overflow-hidden line-clamp-2'>{Article.Summary}</p>
+               <p className='font-inter text-sm xs:text-md md:text-lg  text-ellipsis overflow-hidden line-clamp-2'>{Article.resume}</p>
             </div>
             <div className="pt-5 ">
                <p className='font-inter font-semibold text-sm xs:text-md md:text-lg  text-ellipsis overflow-hidden line-clamp-1  '>{finalStringKeyWords}</p>
