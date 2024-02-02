@@ -6,20 +6,13 @@ import { Link } from 'react-router-dom';
 import { GATEWAY_URL } from "../env.js";
 import axios from "axios";
 
-export default function ArticlePopup({favoris,Article,removeArticle,UserType}) {//if use case 1 it is used pour afficher article if use case 2 it is used pour favoris if 3 it is used for review
-    const handleRemove = () => {
-        removeFromFavorite();
-        removeArticle(Article.id);
-      };
 
-    const handleLike = () =>{
-      if (liked){
-        removeFromFavorite();
-      }else{
-        addToFavorite();
-      }
-      setLiked(!liked)
-    }
+                
+
+export default function ArticlePopup({favoris,Article,removeArticle,UserType}) {//if use case 1 it is used pour afficher article if use case 2 it is used pour favoris if 3 it is used for review
+
+
+
     const [searched, setSearched] = useState(false);
     const JoinedAuthors = Article.authors.join(', ');
     const JoinedKeyWords = Article.keywords.join(', ');
@@ -27,7 +20,30 @@ export default function ArticlePopup({favoris,Article,removeArticle,UserType}) {
 
     const finalStringKeyWords = `Mots-clés : ${JoinedKeyWords}`;
 
-    const [liked, setLiked] = useState(Article.Liked);
+    const [liked, setLiked] = useState(favoris);
+
+    async function handleLike(){
+      if (liked){
+        await removeFromFavorite();
+      }else{
+        await addToFavorite();
+      }
+    }
+
+    function HeartIcon(){
+      if (liked===true){
+        return(
+      <div onClick={handleLike} className='cursor-pointer order-1 sm:order-2'>
+           <Favorite fontSize='large'/>
+      </div>);}
+      else{
+        return(
+          <div onClick={handleLike} className='cursor-pointer order-1 sm:order-2'>
+          <FavoriteBorderIcon fontSize='large'/>
+        </div>  
+        );
+      }
+    }
 
     async function addToFavorite() {
       try {
@@ -35,8 +51,9 @@ export default function ArticlePopup({favoris,Article,removeArticle,UserType}) {
         axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         axios.defaults.headers.common["article_id"] = `${Article.id}`;
         axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
-        axios.post(`${GATEWAY_URL}/articles/favorite`).then((res) => {
+        await axios.post(`${GATEWAY_URL}/articles/favorite`).then((res) => {
           setSearched(true);
+          setLiked(true); // Add this line
         });
       } catch (error) {
         console.log(error);
@@ -49,13 +66,16 @@ export default function ArticlePopup({favoris,Article,removeArticle,UserType}) {
         axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         axios.defaults.headers.common["article_id"] = `${Article.id}`;
         axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
-        axios.delete(`${GATEWAY_URL}/articles/favorite`).then((res) => {
+        await axios.delete(`${GATEWAY_URL}/articles/favorite`).then((res) => {
           setSearched(true);
+          setLiked(false); // Add this line
         });
       } catch (error) {
         console.log(error);
       }
     }
+
+
 
   
   
@@ -66,26 +86,12 @@ export default function ArticlePopup({favoris,Article,removeArticle,UserType}) {
                 <h1 className="font-inter text-lg xs:text-xl sm:text-2xl lg:text-3xl font-semibold order-2 sm:order-1 text-center" >{Article.title}</h1>
               
                 {
-                  UserType==UserTypes.USER ?
+                      <div onClick={handleLike} className='cursor-pointer order-1 sm:order-2'>
+                        <HeartIcon liked={liked}/>
+                      </div>  
 
-                  favoris ?
-                  
-                  <div onClick={handleRemove} className='cursor-pointer order-1 sm:order-2'>
-                    
-                  <Favorite fontSize='large'/>
-                  </div>  
-                  :
-                  
-                    liked ? 
-                    <div onClick={handleLike} className='cursor-pointer order-1 sm:order-2'>
-                      <Favorite fontSize='large'/>
-                    </div>  
-                    :
-                    <div onClick={handleLike} className='cursor-pointer order-1 sm:order-2'>
-                      <FavoriteBorderIcon fontSize='large'/>
-                    </div>  
-                    :
-                    <></>
+
+
                 }
          
             </div>

@@ -28,71 +28,6 @@ var searching = false;
 var articles = [];
 
 function FilterElement({ filterElement, listItem }){
-
-  const checkboxes = listItem.slice(0, 3).map((item, index) => (
-  <Checkbox>
-    <span className="text-white">{item}</span>
-  </Checkbox>
-  ));
-
-  if (listItem.length <= 3) {
-    return (
-      <>
-      <div className="p-4  w-full flex flex-col md:flex-row md:justify-evenly">
-        <h1 className="inline-block mx-4 font-bold text-white text-lg">
-          {filterElement} :
-        </h1>
-        {checkboxes}
-      </div>
-      <div className="w-full h-1 bg-white"></div>
-      </>
-    );
-  }
-
-  const menuItems = listItem.slice(3).map((item, index) => (
-    <MenuItemOption key={index} value={item}>
-      {item}
-    </MenuItemOption>
-  ));
-
-  const menu = (
-      <Menu closeOnSelect={false}>
-      <MenuButton /*as={Button}*/ colorScheme="blue">
-        <span className="text-white"> More items</span>{" "}
-        <img src={dropMenu} className="w-6 inline" />
-      </MenuButton>
-      <MenuList minWidth="240px">
-        <MenuDivider />
-        <MenuOptionGroup title="Country" type="checkbox">
-          {menuItems}
-        </MenuOptionGroup>
-      </MenuList>
-    </Menu>
-  );
-
-
-
-
-  return(
-    <>
-  <div className="p-4  w-full flex flex-col md:flex-row md:justify-evenly">
-      <h1 className="inline-block mx-4 font-bold text-white text-lg">
-        {filterElement}
-      </h1>
-      <Checkbox>
-        <span className="text-white">Value 1</span>
-      </Checkbox>
-      <Checkbox>
-        <span className="text-white">Value 2</span>
-      </Checkbox>
-      <Checkbox>
-        <span className="text-white">Value 3</span>
-      </Checkbox>
-      {menu}
-  </div>
-  <div className="w-full h-1 bg-white"></div>
-    </>
-)
 }
 
 function Articles() {
@@ -159,7 +94,7 @@ function Articles() {
     };
   
     fetchDataAsync();
-  }, [Articles, searched]); // Add Articles and searched as dependencies
+  }, [Articles, searched,fetchData]); // Add Articles and searched as dependencies
   
   useEffect(() => {
     console.log("Articles ids");
@@ -267,5 +202,3 @@ function Articles() {
 
 
 export default Articles;
-
-
