@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState , useEffect } from 'react'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
 import UserTypes from '../constants/enums';
@@ -20,7 +20,7 @@ export default function ArticlePopup({favoris,Article,removeArticle,UserType}) {
 
     const finalStringKeyWords = `Mots-clés : ${JoinedKeyWords}`;
 
-    const [liked, setLiked] = useState(favoris);
+    const [liked, setLiked] = useState(Article.isFavorite);
 
     async function handleLike(){
       if (liked){
@@ -74,6 +74,8 @@ export default function ArticlePopup({favoris,Article,removeArticle,UserType}) {
         console.log(error);
       }
     }
+
+
 
 
 

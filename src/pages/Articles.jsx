@@ -50,6 +50,7 @@ function Articles() {
       axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
       const res = await axios.get(`${GATEWAY_URL}/articles/?query=${query}`)
       console.log(res.data.articles)
+      articles = res.data.articles;
       setArticles(res.data.articles);
       setSearched(true);
       console.log("finished searching");
@@ -99,7 +100,7 @@ function Articles() {
   useEffect(() => {
     console.log("Articles ids");
     console.log(liked);
-    Articles.forEach((article) => {
+    articles.forEach((article) => {
       if (liked.includes(article.id)) {
         article.Liked = true;
       } else {
@@ -108,9 +109,9 @@ function Articles() {
     });
   
     console.log("Articles after updating the likes : ")
-    console.log(Articles);
+    console.log(articles);
     setSearched(true);
-  }, [Articles, liked]); // Add likedArticlesIds as a dependency
+  }, [articles, liked]); // Add likedArticlesIds as a dependency
 
 
   return (
@@ -187,8 +188,8 @@ function Articles() {
         )}
       </div>
       <div>
-        {Articles.map((Article) => (
-            <ArticlePopup favoris={Article.Liked} Article={Article}  UserType={UserType}/>
+        {articles.map((Article) => (<>
+            <ArticlePopup favoris={Article.Liked} Article={Article}  UserType={UserType}/></>
           ))}
       </div>
       </div>
