@@ -9,7 +9,7 @@ function InputText({fieldName,Value,setValue}){
             <div className='text-white text-xl font-semibold'>
             {fieldName} :
             </div>
-            <input className="w-full rounded py-2 my-1 font-semibold" type="text" value={Value} onChange={e => setValue(e.target.value)} />
+            <input className="w-full rounded my-1 font-semibold" type="text" value={Value} onChange={e => setValue(e.target.value)} />
         </div>
       </label>
     </div>
@@ -23,10 +23,10 @@ function InputTextArea({fieldName,Value,setValue}){
     <div>
       <label>
         <div className="flex w-w-full justify-center align-middle flex-col">
-            <div className="text-white text-xl font-inter font-semibold">
+            <div className="text-white text-l font-inter font-semibold">
             {fieldName} :
             </div>
-            <textarea  className="w-full rounded py-2 my-1 font-inter font-semibold" value={Value} onChange={e => setValue(e.target.value)} />
+            <textarea  className="w-full rounded my-1 font-inter font-semibold" value={Value} onChange={e => setValue(e.target.value)} />
         </div>
       </label>
     </div>
@@ -92,13 +92,14 @@ const [Title, setTitle] = useState(article.Title);
         borderRadius: '10px',
       }}>
         <form onSubmit={handleSubmit} className='flex justify-center align-middle flex-col'>
-        <inputText inputId="Title" fieldName="Title" Value={Title} setValue={setTitle}/>
+
     <div className="w-full">
       <label className="text-white text-xl font-inter font-semibold">
         PDF URL:
         <input id="pdfUrl" className="rounded w-full text-black" type="text" value={pdfUrl}  onChange={e => setPdfUrl(e.target.value)} />
       </label>
     </div>
+    <InputText inputId="Title" fieldName="Title" Value={Title} setValue={setTitle}/>
     <InputTextArea inputId="Summary" fieldName="Summary" Value={Summary} setValue={setSummary}/>
     <InputText inputId="Authors" fieldName="Authors" Value={Authors} setValue={setAuthors}/>
     <InputText inputId="Institutions" fieldName="Institutions" Value={institutions} setValue={setInstitutions}/>
