@@ -1,91 +1,306 @@
-import React from 'react'
-import NavArticles from '../components/navbars/NavArticles'
-import FooterSigned from '../components/footers/FooterSigned'
-import { useState } from 'react'
+import React, { useState } from "react";
+import NavArticles from "../components/navbars/NavArticles";
+import FooterSigned from "../components/footers/FooterSigned";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import axios from "axios";
+import { GATEWAY_URL } from "../env";
+
 export default function Article() {
-  const [currsentSection, setCurrentSection] = useState('resume')
-  const [currentActives, setCurrentActives] = useState({'resume' : false,'acteur' : false,'motscle' : false,'institutions' : false,'text' : false,'url' : false,'references' : false})
-  const class1 = 'w-full border-2 border-solid border-blue-700'
-  const class2 = 'bg-main text-white'
-  const class3 = 'bg-white text-black hover:cursor-pointer'
-  const class4 = 'before:block before:absolute before:w-1 before:h-full before:-inset-1 before:-skew-y-3 before:bg-main relative my-2 '
-  const class5 = 'relative text-xl font-bold'
+  const { id } = useParams();
+
+  const [resume, setResume] = useState(false);
+  const [keyWord, setKeyWord] = useState(false);
+  const [author, setAuthor] = useState(false);
+  const [institution, setInstitution] = useState(false);
+  const [text, setText] = useState(false);
+  const [URL, setURL] = useState(false);
+  const [ref, setRef] = useState(false);
+
+  const classPassive =
+    "  bg-main flex-1 text-center py-5 text-white cursor-pointer";
+  const classActive =
+    "   bg-white flex-1 text-center py-5 text-black font-bold border-y-4 border-main ";
+  const TestArticle = {
+    id: "",
+    title: "",
+    resume: "",
+    authors: [""],
+    institutions: [""],
+    keywords: [""],
+    text: "",
+    references: [""],
+    publishDate: "2000-01-01",
+    pdfUrl: "",
+  };
+
+  const [article, setArticle] = useState(TestArticle);
+
+  const [activeTab, setActiveTab] = useState("resume");
+
+  // Content for each tab
+  // Function to handle tab click
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+  };
+
+  const getArticle = async () => {
+    // Get article from API
+    try {
+      const token = localStorage.getItem("token");
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      const res = await axios.get(`${GATEWAY_URL}/articles/${id}`);
+      if (res.status === 200) {
+        setArticle(res.data.article);
+      }
+    } catch (error) {
+      console.log(error);
+      alert(error.response.data.detail.message || "An error occured");
+    }
+    // Set article to state
+  };
+
+  useEffect(() => {
+    getArticle();
+  });
+
   return (
-    <div>
-      <NavArticles/>
-      {/*
-      Web version*/}
-      <div className='border-4 border-solid border-black w-10/12 h- mx-auto my-6'>
-          <div className='flex w-full text-4xl'>
-            <div id='resume' className={`p-2 ${currsentSection == 'resume' ? class2 : class3 } ${class1} `} onClick={() => setCurrentSection('resume')}><h1>Resume</h1></div>
-            <div id='auteur' className={`p-2 ${currsentSection == 'auteur' ? class2 : class3 } ${class1} `} onClick={() => setCurrentSection('auteur')}><h1>Auteur</h1></div>
-            <div id='motscle' className={`p-2 ${currsentSection == 'motscle' ?class2 : class3 } ${class1} `} onClick={() => setCurrentSection('motscle')}><h1>Mots clés</h1></div>
-            <div id='institutions' className={`p-2 ${currsentSection == 'institutions' ?class2 : class3 } ${class1} `} onClick={() => setCurrentSection('institutions')}><h1>Institutions</h1></div>
-            <div id='text' className={`p-2 ${currsentSection == 'text' ?class2 : class3 } ${class1} `} onClick={() => setCurrentSection('text')}><h1>Text</h1></div>
-            <div id='url' className={`p-2 ${currsentSection == 'url' ?class2 : class3 } ${class1} `} onClick={() => setCurrentSection('url')}><h1>Url</h1></div>
-            <div id='references' className={`p-2 ${currsentSection == 'references' ?class2 : class3 } ${class1} `} onClick={() => setCurrentSection('references')}><h1>References</h1></div>
+    <div className="flex flex-col min-h-[100vh] ">
+      <NavArticles />
+      <div className="font-inter w-[80%] md:w-[95%] lg:w-[90%] grow mx-auto ">
+        <div className="flex justify-center text-md xs:text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold w-full py-[30px] pt-14 sm:py-[50px] md:py-[80px]">
+          <h1 className="text-center w-[80%] xs:w-[75%] sm:w-[60%] lg:w-[50%]">
+            {article.title}
+          </h1>
+        </div>
+        <div className="hidden md:block">
+          <div className="flex text-xl lg:text-2xl font-semibold">
+            <div
+              className={`rounded-tl-2xl border-l-4 border-main ${
+                activeTab == "resume" ? classActive : classPassive
+              }`}
+              onClick={() => handleTabClick("resume")}
+            >
+              Résumé
+            </div>
+            <div
+              className={`  ${
+                activeTab == "author" ? classActive : classPassive
+              }`}
+              onClick={() => handleTabClick("author")}
+            >
+              Auteurs
+            </div>
+            <div
+              className={` ${
+                activeTab == "keyword" ? classActive : classPassive
+              }`}
+              onClick={() => handleTabClick("keyword")}
+            >
+              Mots clés
+            </div>
+            <div
+              className={` ${
+                activeTab == "insti" ? classActive : classPassive
+              }`}
+              onClick={() => handleTabClick("insti")}
+            >
+              Institutions
+            </div>
+            <div
+              className={` ${
+                activeTab == "contenu" ? classActive : classPassive
+              }`}
+              onClick={() => handleTabClick("contenu")}
+            >
+              Contenu
+            </div>
+            <div
+              className={` ${activeTab == "url" ? classActive : classPassive}`}
+              onClick={() => handleTabClick("url")}
+            >
+              URL
+            </div>
+            <div
+              className={`rounded-tr-2xl border-r-4 border-main ${
+                activeTab == "ref" ? classActive : classPassive
+              }`}
+              onClick={() => handleTabClick("ref")}
+            >
+              Réferences
+            </div>
           </div>
-          <div className='p-6 border-2 border-solid border-blue-700'>
-            <h1> <span className='font-bold text-2xl'> {currsentSection} </span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis eligendi ea provident eveniet possimus fugit impedit pariatur doloremque explicabo autem, atque itaque dolor voluptatem sed, odio officiis optio nesciunt. Repellendus numquam veritatis eligendi, quisquam est libero exercitationem nobis eos fugiat dicta quos harum, iusto, laboriosam illo ullam perspiciatis at impedit tempora fugit esse officia! Ducimus qui tempore corrupti eum eos cupiditate? Commodi ad cumque dolor nam harum? Voluptas adipisci possimus perspiciatis eligendi perferendis inventore, incidunt architecto laborum exercitationem illum minima recusandae veniam odit maxime culpa dignissimos iste esse labore doloribus. Dignissimos, sapiente quidem voluptatum eaque enim possimus? Fugiat cupiditate, repellendus repudiandae pariatur omnis dolorum dolores ipsa alias cumque magnam porro aut commodi fuga aliquid autem dolor, quis delectus obcaecati, ratione ad enim recusandae neque necessitatibus non? Qui ullam perspiciatis, eaque tempore magni omnis voluptatibus aut quam voluptates odio maiores ipsam, totam error est numquam nihil quidem quia dolores ut rerum eveniet distinctio nulla quos pariatur? Officiis odio magni porro voluptatem, quaerat illum quos voluptas suscipit numquam ea ab dolore aspernatur ut reprehenderit doloribus quisquam corporis consequatur, nobis, maxime quasi nemo facilis! Quis corrupti amet iusto molestiae voluptatibus praesentium numquam asperiores cumque quibusdam nihil aliquid dolorum accusantium doloremque, in nemo maxime explicabo voluptatum debitis ab saepe quasi totam dicta perferendis! Consectetur voluptas reprehenderit sunt deserunt quasi perspiciatis magni doloremque veniam saepe dicta, placeat inventore delectus officia? Id non laboriosam molestiae dolore voluptatibus consequuntur nam sint. Distinctio optio molestias sequi maxime modi blanditiis, repellat accusantium corporis debitis quia sunt sint quisquam minima aliquid exercitationem enim ut, ea nisi! Deleniti velit aperiam nam, eos minima officia voluptatum eum harum? Autem voluptatum et vitae fugit, id, quidem alias sequi, quisquam soluta ipsam voluptate provident accusamus necessitatibus fugiat. Labore deserunt in enim minima, nam exercitationem impedit dolorem repudiandae ex. Voluptatem, maxime magni ad fugit quibusdam nam enim eius explicabo tenetur voluptatibus quisquam mollitia dolor neque non placeat, asperiores corporis cupiditate molestias reiciendis eaque. Libero quia sed eius officiis maiores possimus ipsa similique accusamus quisquam impedit commodi quae recusandae aut, blanditiis vel eveniet suscipit delectus veniam enim nemo animi quo reiciendis perferendis. Illo, illum. Atque, ex quis eveniet voluptates repellendus quasi iusto doloremque dolorum accusamus nam enim quibusdam et mollitia ad! Blanditiis beatae consequuntur corrupti autem iure quibusdam error cumque accusamus numquam, illo est earum, modi rerum rem. Nisi, expedita rerum! Provident neque ipsum cupiditate corrupti fuga eos earum quam inventore. Natus eligendi, accusamus cupiditate recusandae earum placeat quae? Inventore commodi, iste earum dolorum dolores esse exercitationem dicta aliquam mollitia dolore ducimus tempore quos veritatis repudiandae maxime magnam minima eius repellendus similique in! Explicabo natus hic cumque rerum tempora quis enim exercitationem voluptates possimus harum odit laboriosam consequatur quo pariatur sed odio, nulla neque eius ipsum! Cumque excepturi labore modi asperiores ratione voluptates atque, quasi fugiat odio officia nostrum ullam laborum, alias dolores pariatur, odit magnam illum corporis non neque voluptatibus porro deserunt exercitationem eaque? Officiis corrupti quasi explicabo adipisci vitae deleniti repudiandae magnam unde. Dicta doloremque magnam quidem similique qui laborum architecto amet ad consequatur?</h1>
+          <div className="w-full h-[600px] border-l-4 border-r-4 border-b-4 border-main mb-[100px]  rounded-b-2xl   text-xl">
+            <div className="overflow-y-auto h-full w-full  px-10 py-5">
+              {activeTab == "resume" && (
+                <div className="my-4">{article.resume}</div>
+              )}
+              {activeTab == "contenu" && (
+                <div className="my-4">{article.text}</div>
+              )}
+              {activeTab == "author" && (
+                <div>
+                  {article.authors.map((author) => (
+                    <h1 className="font-semibold text-2xl pt-5">
+                      <span className="text-4xl text-main font-bold">. </span>
+                      {author}
+                    </h1>
+                  ))}
+                </div>
+              )}
+              {activeTab == "keyword" && (
+                <div>
+                  {article.keywords.map((keyword) => (
+                    <h1 className="font-semibold text-2xl pt-5">
+                      <span className="text-4xl text-main font-bold">. </span>
+                      {keyword}
+                    </h1>
+                  ))}
+                </div>
+              )}
+              {activeTab == "ref" && (
+                <div>
+                  {article.references.map((ref) => (
+                    <h1 className="font-semibold text-2xl pt-5">
+                      <span className="text-4xl text-main font-bold">. </span>
+                      {ref}
+                    </h1>
+                  ))}
+                </div>
+              )}
+              {activeTab == "insti" && (
+                <div>
+                  {article.institutions.map((institution) => (
+                    <h1 className="font-semibold text-2xl pt-5">
+                      <span className="text-4xl text-main font-bold">. </span>
+                      {institution}
+                    </h1>
+                  ))}
+                </div>
+              )}
+              {activeTab == "url" && (
+                <div className="flex flex-col h-full w-full justify-center items-center gap-[50px]">
+                  <h1 className="text-3xl lg:text-4xl font-bold underline">
+                    {article.pdfUrl}
+                  </h1>
+                  {/* <button
+                    className="bg-[#E1F8FF] text-main py-2 px-16 lg:px-20 rounded-2xl border-4 border-main font-semibold text-3xl"
+                    onClick={() => {
+                      window.open(article.pdfUrl, "_blank");
+                    }}
+                  >
+                    Download here
+                  </button> */}
+                </div>
+              )}
+            </div>
           </div>
-          </div> 
-        
-      
-      {/* 
-      Mobile version
-      <div className='w-9/12 mx-auto'>
-            <div id='resume'
-              className='p-2 block'
-              onClick={() => setCurrentActives({...currentActives, resume: !currentActives.resume})}>
-              <h1 className= {currentActives.resume ? class4 : ''}><span className= {class5}> Resume </span></h1>
-              <p>{currentActives.resume ? 'resume' : ''}</p>
+        </div>
+        {/*mobile version*/}
+        <div className="md:hidden font-inter py-10">
+          <div
+            className="text-2xl w-full text-bold px-10 border-l-4 border-main font-bold"
+            onClick={() => setResume(!resume)}
+          >
+            <h1>Résumé</h1>
+          </div>
+          {resume && <div className="py-5 text-md">{article.resume}</div>}
+          <div
+            className="text-2xl w-full text-bold px-10 border-l-4 border-main font-bold mt-10"
+            onClick={() => setKeyWord(!keyWord)}
+          >
+            <h1>Mots clés</h1>
+          </div>
+          {keyWord && (
+            <div className="py-5 text-md">
+              {article.keywords.map((keyword) => (
+                <h1 className="font-semibold text-lg pt-1">
+                  <span className="text-4xl text-main font-bold pr-5">.</span>
+                  {keyword}
+                </h1>
+              ))}
             </div>
-            
-            <div id='acteur'
-              className='p-2 block'
-              onClick={() => setCurrentActives({...currentActives, acteur: !currentActives.acteur})}>
-              <h1 className= {currentActives.acteur ? class4 : ''}><span className={class5}> acteur </span></h1>
-              <p>{currentActives.acteur ? 'acteur' : ''}</p>
+          )}
+          <div
+            className="text-2xl w-full text-bold px-10 border-l-4 border-main font-bold mt-10"
+            onClick={() => setAuthor(!author)}
+          >
+            <h1>Auteurs</h1>
+          </div>
+          {author && (
+            <div className="py-5 text-md">
+              {article.authors.map((author) => (
+                <h1 className="font-semibold text-lg pt-1">
+                  <span className="text-4xl text-main font-bold pr-5">.</span>
+                  {author}
+                </h1>
+              ))}
             </div>
-
-            <div id='motscle'
-              className='p-2 block'
-              onClick={() => setCurrentActives({...currentActives, motscle: !currentActives.motscle})}>
-              <h1 className= {currentActives.motscle ? class4 : ''}><span className={class5}> motscle </span></h1>
-              <p>{currentActives.motscle ? 'motscle' : ''}</p>
+          )}
+          <div
+            className="text-2xl w-full text-bold px-10 border-l-4 border-main font-bold mt-10"
+            onClick={() => setInstitution(!institution)}
+          >
+            <h1>Institutions</h1>
+          </div>
+          {institution && (
+            <div className="py-5 text-md">
+              {article.institutions.map((institutione) => (
+                <h1 className="font-semibold text-lg pt-1">
+                  <span className="text-4xl text-main font-bold pr-5">.</span>
+                  {institutione}
+                </h1>
+              ))}
             </div>
-
-            <div id='institutions'
-              className='p-2 block'
-              onClick={() => setCurrentActives({...currentActives, institutions: !currentActives.institutions})}>
-              <h1 className= {currentActives.institutions ? class4 : ''}><span className={class5}> institutions </span></h1>
-              <p>{currentActives.institutions ? 'institutions' : ''}</p>
+          )}
+          <div
+            className="text-2xl w-full text-bold px-10 border-l-4 border-main font-bold mt-10"
+            onClick={() => setText(!text)}
+          >
+            <h1>Contenu</h1>
+          </div>
+          {text && <div className="py-5 text-md">{article.text}</div>}
+          <div
+            className="text-2xl w-full text-bold px-10 border-l-4 border-main font-bold mt-10"
+            onClick={() => setURL(!URL)}
+          >
+            <h1>URL</h1>
+          </div>
+          {URL && (
+            <div className="flex flex-col h-full  justify-center items-center  gap-[20px] py-10">
+              <h1 className="text-xl font-bold underline text-center">
+                {article.pdfUrl}
+              </h1>
+              {/* <button
+                className="bg-[#E1F8FF] text-main py-2 px-10 rounded-2xl border-4 border-main font-semibold text-md"
+                onClick={() => {
+                  window.open(article.pdfUrl, "_blank");
+                }}
+              >
+                Download here
+              </button> */}
             </div>
-
-            <div id='text'
-              className='p-2 block'
-              onClick={() => setCurrentActives({...currentActives, text: !currentActives.text})}>
-              <h1 className= {currentActives.text ? class4 : ''}><span className={class5}> text </span></h1>
-              <p>{currentActives.text ? 'text' : ''}</p>
+          )}
+          <div
+            className="text-2xl w-full text-bold px-10 border-l-4 border-main font-bold mt-10"
+            onClick={() => setRef(!ref)}
+          >
+            <h1>Références</h1>
+          </div>
+          {ref && (
+            <div className="py-5 text-md pb-10">
+              {article.references.map((reference) => (
+                <h1 className="font-semibold text-lg pt-1">
+                  <span className="text-4xl text-main font-bold pr-5">.</span>
+                  {reference}
+                </h1>
+              ))}
             </div>
-
-            <div id='url'
-              className='p-2 block'
-              onClick={() => setCurrentActives({...currentActives, url: !currentActives.url})}>
-              <h1 className= {currentActives.url ? class4 : ''}><span className={class5}> url </span></h1>
-              <p>{currentActives.url ? 'url' : ''}</p>
-            </div>
-
-            <div id='references'
-              className='p-2 block'
-              onClick={() => setCurrentActives({...currentActives, references: !currentActives.references})}>
-              <h1 className= {currentActives.references ? class4 : ''}><span className={class5}> references </span></h1>
-              <p>{currentActives.references ? 'references' : ''}</p>
-            </div>   
+          )}
+        </div>
       </div>
-      */}
-      
-    <FooterSigned/> 
+
+      <FooterSigned />
     </div>
-  )
+  );
 }
