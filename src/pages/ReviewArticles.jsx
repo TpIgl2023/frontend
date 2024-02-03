@@ -23,6 +23,7 @@ export default function Article() {
   const [finishedLoading, setFinishedLoading] = useState(false);
   const [Articles, setArticles] = useState([]);
   const [Refresh, setRefresh] = useState(false);
+  const [Progress, setProgress] = useState("0%");
   let firstFetch = false;
 
   function parseArticle(res){
@@ -42,6 +43,11 @@ export default function Article() {
     article.references = res.bibliography;
     article.publishDate = res.publishingDate;
     return article;
+  }
+
+  function updateProgressBar(nbArticlesUpdates , nbArticles){
+    let newProgress = (nbArticlesUpdates/nbArticles)*100;
+    setProgress(newProgress+"%");
   }
 
   function unparseArticle(article){
@@ -104,8 +110,10 @@ export default function Article() {
           if (res.sourceType == "fileLink"){
             let article = parseArticle(res);
             let articlesArray = [article];
+            setProgress("100%");
             setArticles(articlesArray);
             setFinishedLoading(true);
+
           }else{
             let finishedDownloads = 0;
             let downloadLinks = res.downloadLinks;
@@ -136,6 +144,7 @@ export default function Article() {
               setArticles(newArray);
               setRefresh(!Refresh);
               finishedDownloads++;
+              updateProgressBar(finishedDownloads, downloadLinks.length);
               if (finishedDownloads == downloadLinks.length){
                 setFinishedLoading(true);
               }
@@ -236,6 +245,14 @@ export default function Article() {
         </button>
       </TERipple>
         </div>)}
+
+      </div>
+      <div className="w-full bg-neutral-200 dark:bg-neutral-600">
+          <div
+          className="bg-[#1b76ff] p-1 text-center text-xs font-medium leading-none text-primary-100"
+          style={{ width : Progress}}
+          >
+          </div>
       </div>
       <FooterSigned/> 
     </div>
