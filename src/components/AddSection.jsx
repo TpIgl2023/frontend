@@ -3,14 +3,30 @@ import Image from "../assets/UrlAddImg.svg"
 import { Add } from '@mui/icons-material';
 
 export default function AddSection() {
-  function handleSubmit(event){
-    event.preventDefault()
-    console.log(event.target.url.value);
 
+
+  function extractLink(event){
+    // Cancel default 
+    event.preventDefault();
+    // Get the value of the url
+    const url = document.getElementById('placeholder').value;
+    // Check if the url is empty
+    if(url === ''){
+      alert('Please enter a valid url');
+      return;
+    }
+    // Check if the url is valid
+    if(!url.startsWith('http')){
+      alert('Please enter a valid url');
+      return;
+    }
+    let encodedUrl = encodeURIComponent(url);
+    // Redirect to the add article page
+    window.location.href = `/review/${encodedUrl}`;
 
   }
   return (
-    <form onSubmit={handleSubmit}>
+    <div>
     <div className="w-full">
       <div className="py-[60px] sm:py-[100px] w-[80%] mx-auto sm:grid sm:grid-cols-10 sm:grid-rows-1 flex-col items-center">
 
@@ -19,9 +35,9 @@ export default function AddSection() {
           <div className=" rounded-2xl py-[25px] sm:py-[50px] md:py-[75px] xl:py-[100px] ">
             <form action="">
               <div className="w-full rounded-2xl bg-[#ECECEC] flex">
-                <input type="text" placeholder="url..." name="url" className=" w-[85%] rounded-l-2xl text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl bg-[#ECECEC]  outline-none font-inter font-thin py-3 md:py-4 xl:py-5 px-6 text-black =" />
-                <button type='submit'  className="w-[15%] bg-main rounded-r-2xl text-white">
-                  <Add fontSize='large'/>
+                <input type="text" id="placeholder" placeholder="url..." name="url" className=" w-[85%] rounded-l-2xl text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl bg-[#ECECEC]  outline-none font-inter font-thin py-3 md:py-4 xl:py-5 px-6 text-black =" />
+                <button type='submit'  className="w-[15%] bg-main rounded-r-2xl text-white" onClick={extractLink}>
+                  <Add className="border-6 "fontSize='large'/>
                 </button>
               </div>
             </form>
@@ -31,7 +47,7 @@ export default function AddSection() {
 
       </div>
     </div>
-    </form>
+    </div>
 
   )
 }
