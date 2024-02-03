@@ -12,7 +12,6 @@ export default function ReviewPopup({Article,UserType}) {//if use case 1 it is u
 
     const finalStringKeyWords = `Mots-clés : ${JoinedKeyWords}`;
 
-    const [liked, setLiked] = useState(Article.Liked);
   return (
     <div className="my-[80px] mx-auto w-[80%] rounded-3xl h-[310px] md:h-[350px] shadow-[0px_2px_5px_5px_rgb(140,140,140)] lg:shadow-[0px_5px_10px_5px_rgb(140,140,140)] ">
         <div className="py-10  px-5 sm:px-10 flex flex-col justify-evenly">
@@ -34,7 +33,6 @@ export default function ReviewPopup({Article,UserType}) {//if use case 1 it is u
                 </div>
             </div>
         </div>
-    </div>
-    
+    </div>  
   )
 }
