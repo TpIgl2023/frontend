@@ -5,7 +5,6 @@ import UserTypes from '../constants/enums'
 import ArticlePopup from '../components/ArticlePopup'
 
 export default function ListArticles() {
-  
   const UserType=UserTypes.USER  
   const [Articles,setArticles]=useState([
     {
