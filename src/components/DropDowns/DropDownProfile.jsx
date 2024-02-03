@@ -11,7 +11,8 @@ import { logOut, getAbreviation } from "../../utils/utils.js";
 import UserTypes from "../../constants/enums.js";
 
 export default function DropDownProfile() {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user=JSON.parse(localStorage.getItem("user"))
+  const userType=user.status
   const [nav, setNav] = useState(false);
   const handleNav = () => {
     setNav(!nav);
@@ -36,7 +37,22 @@ export default function DropDownProfile() {
         leaveTo="transform opacity-0 scale-95"
       >
         <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-main rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-          <div className="py-1">
+        {userType==="administrator" && <div className="py-1">
+            <Menu.Item onClick={handleNav}>
+              {({ active }) => (
+                <Link
+                  to="/ajouter"
+                  className={classNames(
+                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                    "block px-4 py-2 text-sm font-inter font-semibold"
+                  )}
+                >
+                  Ajouter article
+                </Link>
+              )}
+            </Menu.Item>
+          </div>}
+          { userType!=="administrator" &&<div className="py-1">
             <Menu.Item onClick={handleNav}>
               {({ active }) => (
                 <Link
@@ -50,7 +66,7 @@ export default function DropDownProfile() {
                 </Link>
               )}
             </Menu.Item>
-          </div>
+          </div>}
 
           <div className="py-1">
             <Menu.Item onClick={handleNav}>

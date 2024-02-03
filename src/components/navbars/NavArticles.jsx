@@ -34,9 +34,9 @@ export default function NavArticles() {
         </div> }
 
   <div className="flex gap-[20px] sm:gap-[30px] items-center">
-    <div className="lg:hidden" onClick={() => setSearchBar(!searchBar) }>
+    {userType !== "administrator" && <div className="lg:hidden" onClick={() => setSearchBar(!searchBar) }>
     {searchBar ? <KeyboardArrowUp fontSize='large' /> :<img src={SearchIcon} alt="" className="cursor-pointer w-[35px] text-white"/>}
-    </div>
+    </div>}
     <DropDOwnHome/>
   </div>
   </nav>

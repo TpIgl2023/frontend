@@ -1,7 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import UserTypes from '../../constants/enums'
-
 export default function FooterSigned() {
   const user=JSON.parse(localStorage.getItem("user"))
   const userType=user.status
@@ -18,10 +16,10 @@ export default function FooterSigned() {
         <div className="hidden md:block">
           <div className="flex flex-col gap-4 lg:gap-6 w-[200px] items-center ">
               <h1 className="font-inter font-semibold text-lg lg:text-2xl">Lien rapide</h1>
-              <Link to="" className="font-inter  text-lg lg:text-xl">Acceuil</Link>
-              { userType!=="administator" && <Link to="" className='font-inter  text-lg lg:text-xl'>Article</Link>}
-              { userType =="user" && <Link to="" className='font-inter  text-lg lg:text-xl'>Favoris</Link> }
-              { userType == "administrator" && <Link to="" className='font-inter text-lg lg:text-xl'>Add new article</Link>}
+              <Link to={`${userType=="administrator" ? "/admin/dashboard" : "/home"}`} className="font-inter  text-lg lg:text-xl">Acceuil</Link>
+              { userType !=="administrator" && <Link to="/articles" className='font-inter  text-lg lg:text-xl'>Articles</Link>}
+              { userType ==="user" && <Link to="favoris" className='font-inter  text-lg lg:text-xl'>Favoris</Link> }
+              { userType === "administrator" && <Link to="/ajouter" className='font-inter text-lg lg:text-xl'>Add new article</Link>}
           </div>
         </div>
       
