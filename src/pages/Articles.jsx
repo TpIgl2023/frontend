@@ -127,12 +127,13 @@ function Articles() {
   const [filterKeywords, setFilterKeywords] = useState([]);
   const [filterAuthors, setFilterAuthors] = useState([]);
   const [filterInstitutions, setFilterInstitutions] = useState([]);
-  const [fromDate, setFromDate] = useState("1700-01-01");
+  const [fromDate, setFromDate] = useState("0000-01-01");
   const [toDate, setToDate] = useState("9999-01-01");
 
   function extractKeywords(Articles) {
     let keywords = [];
     Articles.forEach((Article) => {
+      Article.keywords = Article.keywords.filter((keyword) => keyword !== "");
       keywords.push(...Article.keywords);
     });
     keywords = [...new Set(keywords)];
@@ -142,6 +143,7 @@ function Articles() {
   function extractInstitutions(Articles) {
     let institutions = [];
     Articles.forEach((Article) => {
+      Article.institutions = Article.institutions.filter((institution) => institution !== "");
       institutions.push(...Article.institutions);
     });
     institutions = [...new Set(institutions)];
@@ -151,6 +153,7 @@ function Articles() {
   function extractAuthors(Articles) {
     let authors = [];
     Articles.forEach((Article) => {
+      Article.authors = Article.authors.filter((author) => author !== "");
       authors.push(...Article.authors);
     });
     authors = [...new Set(authors)];
