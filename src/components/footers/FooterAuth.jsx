@@ -1,8 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-export default function FooterSigned() {
-  const user=JSON.parse(localStorage.getItem("user"))
-  const userType=user.status
+
+export default function FooterAuth() {
+
   return (
     <div className="h-[400px] w-full bg-main flex flex-col justify-between text-white">
       <div className="flex justify-evenly py-14">
@@ -12,17 +11,7 @@ export default function FooterSigned() {
               <p className="font-inter  text-xl">Un texte est une série orale ou écrite de mots perçus comme constituant un ensemble cohérent, </p>
           </div>
         </div>
-    
-        <div className="hidden md:block">
-          <div className="flex flex-col gap-4 lg:gap-6 w-[200px] items-center ">
-              <h1 className="font-inter font-semibold text-lg lg:text-2xl">Lien rapide</h1>
-              <Link to={`${userType=="administrator" ? "/admin/dashboard" : "/home"}`} className="font-inter  text-lg lg:text-xl">Acceuil</Link>
-              { userType !=="administrator" && <Link to="/articles" className='font-inter  text-lg lg:text-xl'>Articles</Link>}
-              { userType ==="user" && <Link to="favoris" className='font-inter  text-lg lg:text-xl'>Favoris</Link> }
-              { userType === "administrator" && <Link to="/ajouter" className='font-inter text-lg lg:text-xl'>Add new article</Link>}
-          </div>
-        </div>
-      
+
         <div className="flex flex-col gap-6 lg:gap-8  w-[200px] items-center ">
             <h1 className="font-inter text-4xl font-bold md:hidden"> PDFinder</h1>
             <h1 className="font-inter font-semibold text-xl lg:text-2xl"> Contactez nous</h1>
