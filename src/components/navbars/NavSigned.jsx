@@ -8,6 +8,8 @@ import DropDownHome from "../DropDowns/DropDownHome";
 import DropDownProfile from "../DropDowns/DropDownProfile";
 import UserTypes from "../../constants/enums";
 export default function NavSigned() {
+  const user=JSON.parse(localStorage.getItem("user"))
+  const userType=user.status
   const [visible, setVisible] = useState(true);
   const toggleVisible = () => {
     const scrolled = document.documentElement.scrollTop;
@@ -17,7 +19,6 @@ export default function NavSigned() {
       setVisible(true);
     }
   };
-
   const scrollToBottom = () => {
     window.scrollTo({
       top: document.documentElement.scrollHeight,
@@ -26,7 +27,6 @@ export default function NavSigned() {
              in place of 'smooth' */
     });
   };
-  const UserType = UserTypes.USER;
   const [active, setActive] = useState("Acceuil");
   const navLinks = [
     {
@@ -38,19 +38,15 @@ export default function NavSigned() {
       title: "Articles",
     },
     {
-      id: "favoris",
-      title: "Favoris",
-    },
-    {
       id: "contact",
       title: "Contact",
     },
   ];
 
-  if (UserTypes.ADMIN == UserType) {
+  if ("user" === userType) {
     navLinks.push({
-      id: "ajouter",
-      title: "Add new article",
+      id: "favoris",
+      title: "Favoris",
     });
   }
   return (

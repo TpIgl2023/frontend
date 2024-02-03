@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import UserTypes from '../../constants/enums'
 
 export default function FooterSigned() {
-  const userType = UserTypes.USER
+  const user=JSON.parse(localStorage.getItem("user"))
+  const userType=user.status
   return (
     <div className="h-[400px] w-full bg-main flex flex-col justify-between text-white">
       <div className="flex justify-evenly py-14">
@@ -18,9 +19,9 @@ export default function FooterSigned() {
           <div className="flex flex-col gap-4 lg:gap-6 w-[200px] items-center ">
               <h1 className="font-inter font-semibold text-lg lg:text-2xl">Lien rapide</h1>
               <Link to="" className="font-inter  text-lg lg:text-xl">Acceuil</Link>
-              <Link to="" className='font-inter  text-lg lg:text-xl'>Article</Link>
-              { userType == UserTypes.USER && <Link to="" className='font-inter  text-lg lg:text-xl'>Favoris</Link> }
-              { userType == UserTypes.ADMIN && <Link to="" className='font-inter text-lg lg:text-xl'>Add new article</Link>}
+              { userType!=="administator" && <Link to="" className='font-inter  text-lg lg:text-xl'>Article</Link>}
+              { userType =="user" && <Link to="" className='font-inter  text-lg lg:text-xl'>Favoris</Link> }
+              { userType == "administrator" && <Link to="" className='font-inter text-lg lg:text-xl'>Add new article</Link>}
           </div>
         </div>
       
