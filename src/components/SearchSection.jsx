@@ -26,11 +26,13 @@ export default function SearchSection() {
         </h1>
         <div className="flex py-4 lg:py-5 px-5 w-[280px] xs:w-[350px] md:w-[400px] lg:w-[500px] xl:w-[600px] 2xl:w-[700px] bg-white rounded-full shadow-[0px_10px_10px_rgb(128,128,128)]">
           <input
+            id="search_in"
             ref={inputRef}
             className=" w-full xs:text-lg sm:text-[20px] md:text-2xl font-inter font-semibold outline-none px-4 placeholder-opacity-100 placeholder-black"
             placeholder="General relativity ... "
           />
           <img
+            id="search_button"
             src={SearchIcon}
             alt=""
             className="cursor-pointer w-[30px] sm:w-[50px]"

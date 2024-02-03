@@ -54,6 +54,25 @@ export const updatePassword = async (oldPassword, newPassword) => {
   }
 };
 
+export const modifyArticle = async (articleId, newValues, setArticleValues) => {
+  try {
+    const token = localStorage.getItem("token");
+    console.log(token);
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    const res = await axios.put(
+      `${GATEWAY_URL}/articles/${articleId}`,
+      newValues
+    );
+    if (res.status === 200) {
+      setArticleValues(newValues);
+      alert("Article updated successfully");
+    }
+  } catch (error) {
+    console.log(error);
+    alert(error.response.data.message || "Error while updating article");
+  }
+};
+
 // module.exports = {
 //   logOut,
 //   getAbreviation,
