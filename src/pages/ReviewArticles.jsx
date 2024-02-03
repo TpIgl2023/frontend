@@ -12,6 +12,7 @@ import { ColorRing } from "react-loader-spinner";
 import { setRef } from "@mui/material";
 import { TERipple } from "tw-elements-react";
 import objectHash from "object-hash";
+import { useNavigate } from "react-router-dom";
 import {
   AwesomeButton,
   AwesomeButtonProgress,
@@ -66,6 +67,7 @@ let dummyArticle = {
 var articleToReview = dummyArticle;
 
 export default function Article() {
+  const navigate = useNavigate();
   const { url } = useParams();
   const [decodedUrl, setDecodedUrl] = useState("");
   const [finishedFetching, setFinishedFetching] = useState(false);
@@ -74,6 +76,7 @@ export default function Article() {
   const [Refresh, setRefresh] = useState(false);
   const [Progress, setProgress] = useState("0%");
   const [isPopupOpen, setPopupOpen] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
   const [ViewedArticle, setViewedArticle] = useState(dummyArticle);
 
@@ -137,6 +140,7 @@ export default function Article() {
 
   function saveArticles() {
     console.log(Articles);
+    setUploading(true);
     let articles = Articles;
     let numberUpdatedArticles = 0;
     for (let i = 0; i < articles.length; i++) {
@@ -154,6 +158,7 @@ export default function Article() {
           console.log("Articles length: " + articles.length);
           if (numberUpdatedArticles == articles.length) {
             alert("All articles updated successfully !");
+            navigate("/ajouter");
           }
         })
         .catch((err) => {
@@ -251,8 +256,15 @@ export default function Article() {
   function handleSubmitArticle(article) {
     // Replace the article with the same id
     let newArticles = [...Articles];
-    let index = newArticles.findIndex((a) => a.id == article.id);
+    let index = newArticles.findIndex((a) => a.id === article.id);
     newArticles[index] = article;
+    setArticles(newArticles);
+  }
+
+  function handleDeleteArticle(article) {
+    // delete the article with the same id
+    const newArticles = Articles.filter((a) => a.id !== article.id);
+    setViewedArticle(dummyArticle);
     setArticles(newArticles);
   }
 
@@ -285,6 +297,7 @@ export default function Article() {
             Article={Article}
             UserType={UserType}
             onModifyClicked={onModifyClicked}
+            onDeleteClicked={handleDeleteArticle}
           />
         ))}
         {!finishedLoading && (
@@ -300,17 +313,31 @@ export default function Article() {
             />
           </div>
         )}
-        {finishedLoading && (
+        {finishedLoading &&
+          !uploading(
+            <div className="w-full flex justify-center align-middle">
+              <TERipple rippleColor="light">
+                <button
+                  type="button"
+                  className="inline-block rounded-2xl bg-[#1b76ff] font-semibold py-4 mb-20 px-[50px] sm:px-[100px] text-xl uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                  onClick={saveArticles}
+                >
+                  Submit
+                </button>
+              </TERipple>
+            </div>
+          )}
+        {uploading && (
           <div className="w-full flex justify-center align-middle">
-            <TERipple rippleColor="light">
-              <button
-                type="button"
-                className="inline-block rounded bg-[#1b76ff] px-8 pb-4 pt-4 text-m font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-                onClick={saveArticles}
-              >
-                Submit
-              </button>
-            </TERipple>
+            <ColorRing
+              visible={true}
+              height="120"
+              width="120"
+              ariaLabel="color-ring-loading"
+              wrapperStyle={{}}
+              wrapperClass="color-ring-wrapper"
+              colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
+            />
           </div>
         )}
       </div>

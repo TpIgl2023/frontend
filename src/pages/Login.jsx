@@ -10,6 +10,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
   const navigate = useNavigate();
+  const user = localStorage.getItem("user");
+
   async function handleSubmit(event) {
     event.preventDefault();
     try {
@@ -27,12 +29,18 @@ export default function Signup() {
       };
 
       const res = await axios.post(`${GATEWAY_URL}/auth/login`, registerData);
-
+      console.log("hi" + user);
       if (res.status === 200) {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data.user));
         console.log(res.data.token);
-        navigate("/home");
+        if (res.data.user.status === "administrator") {
+          navigate("/ajouter");
+        } else if (res.data.user.type === "user") {
+          navigate("/home");
+        } else {
+          navigate("/articles"); // fares i changed this nta dertha articles there was an error
+        }
       }
     } catch (error) {
       console.log(error);
@@ -58,6 +66,7 @@ export default function Signup() {
                   Email :
                 </label>
                 <input
+                  id="email_in"
                   name="email"
                   type="email"
                   className="bg-[#F4F4F4]  p-4 text-2xl font-inter rounded-xl focus:outline-[#1B76FF]"
@@ -68,12 +77,16 @@ export default function Signup() {
                   Password :
                 </label>
                 <input
+                  id="password_in"
                   name="password"
                   type="password"
                   className="bg-[#F4F4F4]  p-4 text-2xl font-inter rounded-xl focus:outline-[#1B76FF]"
                 />
               </div>
-              <button className="w-full text-white bg-[#1B76FF] text-2xl sm:text-3xl text-center py-2 sm:py-4 rounded-xl">
+              <button
+                id="login_button"
+                className="w-full text-white bg-[#1B76FF] text-2xl sm:text-3xl text-center py-2 sm:py-4 rounded-xl"
+              >
                 Log in
               </button>
               <p className="text-center pt-5 text-[#6E6868] font-inter text-lg">

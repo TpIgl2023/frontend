@@ -10,6 +10,8 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { Close, KeyboardArrowUp } from "@mui/icons-material";
 export default function NavArticles() {
   const [searchBar, setSearchBar] = useState(false);
+  const user=JSON.parse(localStorage.getItem("user"))
+  const userType=user.status
   return (
     <>
       <nav
@@ -21,14 +23,15 @@ export default function NavArticles() {
         >
           PDFinder
         </Link>
-        <div className="hidden lg:block">
+
+        {userType  !=="administrator" && <div className="hidden lg:block">
           <div className="flex gap-10 items-center">
             <div className="flex py-2 px-3 bg-white rounded-full lg:w-[350px] xl:w-[500px] shadow-[0px_5px_10px_rgb(140,140,140)] ">
                 <input className=" w-full text-lg font-inter font-semibold outline-none px-4 placeholder-opacity-50 placeholder-black" placeholder="General relativity ... "/>
                 <img src={SearchIcon} alt="" className="cursor-pointer w-[35px] xl:w-[50px]"/>
             </div> 
           </div>
-        </div>
+        </div> }
 
   <div className="flex gap-[20px] sm:gap-[30px] items-center">
     <div className="lg:hidden" onClick={() => setSearchBar(!searchBar) }>

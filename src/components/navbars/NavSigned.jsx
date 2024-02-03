@@ -1,33 +1,32 @@
-import React from 'react'
-import {styles} from "../../styles"
-import {Link} from "react-router-dom"
-import ProfilePic from "../../assets/ProfilePic.svg"
-import MenuIcon from '@mui/icons-material/Menu';
-import  { useState } from "react";
-import DropDownHome from '../DropDowns/DropDownHome';
-import DropDownProfile from '../DropDowns/DropDownProfile';
-import UserTypes from '../../constants/enums';
+import React from "react";
+import { styles } from "../../styles";
+import { Link } from "react-router-dom";
+import ProfilePic from "../../assets/ProfilePic.svg";
+import MenuIcon from "@mui/icons-material/Menu";
+import { useState } from "react";
+import DropDownHome from "../DropDowns/DropDownHome";
+import DropDownProfile from "../DropDowns/DropDownProfile";
+import UserTypes from "../../constants/enums";
 export default function NavSigned() {
-  const [visible, setVisible] = useState(true)
+  const user=JSON.parse(localStorage.getItem("user"))
+  const userType=user.status
+  const [visible, setVisible] = useState(true);
   const toggleVisible = () => {
-      const scrolled = document.documentElement.scrollTop;
-      if (scrolled > 0) {
-          setVisible(false)
-      }
-      else if (scrolled <= 0) {
-          setVisible(true)
-      }
+    const scrolled = document.documentElement.scrollTop;
+    if (scrolled > 0) {
+      setVisible(false);
+    } else if (scrolled <= 0) {
+      setVisible(true);
+    }
   };
-
   const scrollToBottom = () => {
-      window.scrollTo({
-          top: document.documentElement.scrollHeight,
-          behavior: 'smooth'
-          /* you can also use 'auto' behaviour 
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: "smooth",
+      /* you can also use 'auto' behaviour 
              in place of 'smooth' */
-      });
+    });
   };
-  const UserType=UserTypes.USER
   const [active, setActive] = useState("Acceuil");
   const navLinks = [
     {
@@ -35,12 +34,8 @@ export default function NavSigned() {
       title: "Acceuil",
     },
     {
-      id: "article",
-      title: "Article",
-    },
-    {
-      id: "favoris",
-      title: "Favoris",
+      id: "articles",
+      title: "Articles",
     },
     {
       id: "contact",
@@ -48,40 +43,56 @@ export default function NavSigned() {
     },
   ];
 
-  if (UserTypes.ADMIN==UserType) {
+  if ("user" === userType) {
     navLinks.push({
-      id: "ajouter",
-      title: "Add new article",
+      id: "favoris",
+      title: "Favoris",
     });
   }
   return (
-    
-    <nav className={`px-6 2xl:px-24 ${styles.paddingY}  flex justify-between items-center`}>
-      <Link to="/Hero" className="font-inter font-bold text-2xl xs:text-3xl sm:text-4xl xl:text-5xl text-main">PDFinder</Link>
+    <nav
+      className={`px-6 2xl:px-24 ${styles.paddingY}  flex justify-between items-center`}
+    >
+      <Link
+        to="/Hero"
+        className="font-inter font-bold text-2xl xs:text-3xl sm:text-4xl xl:text-5xl text-main"
+      >
+        PDFinder
+      </Link>
       <ul className="hidden list-none lg:flex gap-[50px] xl:gap-[80px] 2xl:gap-[125px]">
-      {navLinks.map((link) => (
-            
-     
-              <li
-                key={link.id}
-                onClick={() => setActive(link.title)}
-                className={`${
-                  active === link.title
-                    ? " font-semibold text-main"
-                    : ""
-                } hover:border-b-4 border-main text-[19px] duration-[0.3s] transition-all`}
-                >{ 
-                 }
-                  {link.title!="Contact" ? <Link to={`/${link.id}` } className="font-inter font-semibold text-xl">{link.title}</Link> : <Link onClick={scrollToBottom} className="font-inter font-semibold text-xl">{link.title}</Link>}
-                </li>
-                ))}
+        {navLinks.map((link) => (
+          <li
+            key={link.id}
+            onClick={() => setActive(link.title)}
+            className={`${
+              active === link.title ? " font-semibold text-main" : ""
+            } hover:border-b-4 border-main text-[19px] duration-[0.3s] transition-all`}
+          >
+            {}
+            {link.title != "Contact" ? (
+              <Link
+                to={`/${link.id}`}
+                className="font-inter font-semibold text-xl"
+              >
+                {link.title}
+              </Link>
+            ) : (
+              <Link
+                onClick={scrollToBottom}
+                className="font-inter font-semibold text-xl"
+              >
+                {link.title}
+              </Link>
+            )}
+          </li>
+        ))}
       </ul>
       <div className="hidden lg:block">
-        <DropDownProfile/>
+        <DropDownProfile />
       </div>
       <div className="lg:hidden">
-            <DropDownHome/>
-        </div>
-      </nav>
-  )
+        <DropDownHome />
+      </div>
+    </nav>
+  );
 }
