@@ -77,25 +77,7 @@ export default function ArticlePopupFavorite({ Article, removeArticle }) {
             {finalStringKeyWords}
           </p>
         </div>
-        {true ? (
-          <div className="flex flex-col justify-evenly gap-[10px] sm:flex-row sm:justify-between font-inter items-center text-lg sm:text-xl md:text-2xl  pt-[20px]">
-            <div
-              id="read_button"
-              onClick={viewArticle}
-              className="cursor-pointer"
-            >
-              <p>Lire la suite {">"}</p>
-            </div>
-            <div
-              onClick={() => {
-                navigate(`/Modify/${JSON.stringify(Article)}`);
-              }}
-              className="cursor-pointer px-10 py-1 bg-black text-white rounded-full"
-            >
-              <p>Modifier</p>
-            </div>
-          </div>
-        ) : (
+        {
           <div className=" pt-10 flex justify-center sm:justify-end font-inter items-center text-lg sm:text-xl md:text-2xl">
             <div
               id="read_button"
@@ -105,7 +87,7 @@ export default function ArticlePopupFavorite({ Article, removeArticle }) {
               <p>Lire la suite {">"}</p>
             </div>
           </div>
-        )}
+        }
       </div>
     </div>
   );

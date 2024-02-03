@@ -6,8 +6,17 @@ import ListItem from "../components/ListItem";
 import AddIcon from "@mui/icons-material/Add";
 import { useParams } from "react-router-dom";
 import { modifyArticle } from "../utils/utils.js";
+import axios from "axios";
+import { GATEWAY_URL } from "../env.js";
+import { createBrowserHistory } from "history";
+import { useNavigate } from "react-router-dom";
+
 export default function ModifyArticle() {
-  const { article } = useParams();
+  // const { article } = useParams();
+  const history = createBrowserHistory();
+  const navigate = useNavigate();
+  const article = localStorage.getItem("article_to_modify");
+  console.log(article);
   const articleId = JSON.parse(article).id;
   const [articleValues, setArticleValues] = useState(JSON.parse(article));
   // const articleValues = {
@@ -160,6 +169,22 @@ export default function ModifyArticle() {
     };
     modifyArticle(articleId, article, setArticleValues);
   }
+
+  async function handleDelete(event) {
+    event.preventDefault();
+    try {
+      const token = localStorage.getItem("token");
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      const res = await axios.delete(`${GATEWAY_URL}/articles/${articleId}`);
+      if (res.status === 200) {
+        alert("Article deleted successfully");
+        navigate(-1);
+      }
+    } catch (error) {
+      console.log(error);
+      alert("Error while deleting article");
+    }
+  }
   //----------------------------------------------
   return (
     <>
@@ -212,9 +237,14 @@ export default function ModifyArticle() {
           </div>
           <div className="my-[20px] p-6 sm:px-10 border-main bg-main rounded-3xl border-2">
             <ul>
-              {authors.map((author, index) => (
-                <ListItem author={author} index={index} remove={removeAuthor} />
-              ))}
+              {authors &&
+                authors.map((author, index) => (
+                  <ListItem
+                    author={author}
+                    index={index}
+                    remove={removeAuthor}
+                  />
+                ))}
               <div className=" mt-[10px] sm:pt-10 p-4 bg-main flex justify-center items-center gap-[10px] border-t-2 border-white">
                 <input
                   type="text"
@@ -241,13 +271,14 @@ export default function ModifyArticle() {
           </div>
           <div className="my-[20px] p-6 sm:px-10 border-main bg-main rounded-3xl border-2">
             <ul>
-              {institutions.map((institution, index) => (
-                <ListItem
-                  author={institution}
-                  index={index}
-                  remove={removeInstitution}
-                />
-              ))}
+              {institutions &&
+                institutions.map((institution, index) => (
+                  <ListItem
+                    author={institution}
+                    index={index}
+                    remove={removeInstitution}
+                  />
+                ))}
               <div className=" mt-[10px] p-4 sm:pt-10 bg-main flex justify-center items-center gap-[10px] border-t-2 border-white">
                 <input
                   type="text"
@@ -291,13 +322,14 @@ export default function ModifyArticle() {
           </div>
           <div className="my-[20px] p-6 sm:px-10 border-main bg-main rounded-3xl border-2">
             <ul>
-              {referances.map((referance, index) => (
-                <ListItem
-                  author={referance}
-                  index={index}
-                  remove={removeReferance}
-                />
-              ))}
+              {referances &&
+                referances.map((referance, index) => (
+                  <ListItem
+                    author={referance}
+                    index={index}
+                    remove={removeReferance}
+                  />
+                ))}
               <div className=" mt-[10px] p-4 sm:pt-10 bg-main flex justify-center items-center gap-[10px] border-t-2 border-white">
                 <input
                   type="text"
@@ -338,13 +370,14 @@ export default function ModifyArticle() {
           </div>
           <div className="my-[20px] p-6 sm:px-10 border-main bg-main rounded-3xl border-2">
             <ul>
-              {keywords.map((keyword, index) => (
-                <ListItem
-                  author={keyword}
-                  index={index}
-                  remove={removeKeyWord}
-                />
-              ))}
+              {keywords &&
+                keywords.map((keyword, index) => (
+                  <ListItem
+                    author={keyword}
+                    index={index}
+                    remove={removeKeyWord}
+                  />
+                ))}
               <div className=" mt-[10px] p-4 sm:pt-10 bg-main flex justify-center items-center gap-[10px] border-t-2 border-white">
                 <input
                   type="text"
@@ -368,11 +401,19 @@ export default function ModifyArticle() {
               type="submit"
               className="mx-auto rounded-3xl text-xl sm:text-2xl lg:text-3xl font-semibold flex px-10 py-3 bg-main text-white font-inter"
             >
-              Confirmer Changement
+              Confirm changes
             </button>
           </div>
         </div>
       </form>
+      <div className="w-full py-[30px] sm:py-[50px]">
+        <button
+          onClick={handleDelete}
+          className="mx-auto rounded-3xl text-xl sm:text-2xl lg:text-3xl font-semibold flex px-10 py-3 bg-red-500 text-white font-inter"
+        >
+          Delete Article
+        </button>
+      </div>
 
       <FooterSigned />
     </>
