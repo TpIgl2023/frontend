@@ -53,7 +53,8 @@ export default function DropDOwnHome() {
         leaveTo="transform opacity-0 scale-95"
       >
         <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-main rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-          <div className="py-1">
+
+          {userType!=="administrator" && <div className="py-1">
             <Menu.Item onClick={handleNav}>
               {({ active }) => (
                 <Link
@@ -67,7 +68,7 @@ export default function DropDOwnHome() {
                 </Link>
               )}
             </Menu.Item>
-          </div>
+          </div>}
           <div className="py-1">
             <Menu.Item onClick={handleNav}>
               {({ active }) => (
@@ -116,7 +117,7 @@ export default function DropDOwnHome() {
             {userType!=="administrator" && <Menu.Item onClick={handleNav}>
               {({ active }) => (
                 <Link
-                  to="/Article"
+                  to="/Articles"
                   className={classNames(
                     active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                     "block px-4 py-2 text-sm font-inter font-semibold"

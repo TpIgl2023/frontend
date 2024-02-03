@@ -116,7 +116,7 @@ export default function ArticlePopup({
             {finalStringKeyWords}
           </p>
         </div>
-        {UserTypes.MODERATOR == UserType ? (
+        {"moderator" == UserType ? (
           <div className="flex flex-col justify-evenly gap-[10px] sm:flex-row sm:justify-between font-inter items-center text-lg sm:text-xl md:text-2xl  pt-[20px]">
             <div
               id="read_button"
