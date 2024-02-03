@@ -23,8 +23,9 @@ import ArticlePopup from "../components/ArticlePopup";
 import UserTypes from "../constants/enums";
 import axios from "axios";
 import { ColorRing } from "react-loader-spinner";
+import objectHash from "object-hash";
 
-const user = localStorage.getItem("user");
+const user = JSON.parse(localStorage.getItem("user"));
 
 var searching = false;
 var articles = [];
@@ -126,6 +127,8 @@ function Articles() {
   const [filterKeywords, setFilterKeywords] = useState([]);
   const [filterAuthors, setFilterAuthors] = useState([]);
   const [filterInstitutions, setFilterInstitutions] = useState([]);
+  const [fromDate, setFromDate] = useState("1700-01-01");
+  const [toDate, setToDate] = useState("9999-01-01");
 
   function extractKeywords(Articles) {
     let keywords = [];
@@ -156,21 +159,28 @@ function Articles() {
 
   function filterByKeywords(keywords) {
     setFilterKeywords(keywords);
-    updateArticlesForFilter(keywords, filterAuthors, filterInstitutions);
+    updateArticlesForFilter(keywords, filterAuthors, filterInstitutions,fromDate,toDate);
   }
   function filterByInstitutions(institutions) {
     setFilterInstitutions(institutions);
-    updateArticlesForFilter(filterKeywords, filterAuthors, institutions);
+    updateArticlesForFilter(filterKeywords, filterAuthors, institutions,fromDate,toDate);
   }
   function filterByAuthors(authors) {
     setFilterAuthors(authors);
-    updateArticlesForFilter(filterKeywords, authors, filterInstitutions);
+    updateArticlesForFilter(filterKeywords, authors, filterInstitutions,fromDate,toDate);
+  }
+
+  function filterByDate(fromDate, toDate) {
+    setFilterAuthors(authors);
+    updateArticlesForFilter(filterKeywords, authors, filterInstitutions,fromDate,toDate);
   }
 
   function updateArticlesForFilter(
     filterKeywords,
     filterAuthors,
-    filterInstitutions
+    filterInstitutions,
+    fromDate,
+    toDate
   ) {
     let articles = Articles;
     // Initialize all articles to be visible
@@ -205,6 +215,12 @@ function Articles() {
         } else {
           article.hidden = true;
         }
+      }
+      let articleDate = new Date(article.publishDate);
+      let fromDateDate = new Date(fromDate);
+      let toDateDate = new Date(toDate);
+      if (fromDateDate > articleDate || toDateDate < articleDate) {
+        article.hidden = true;
       }
     });
     setArticles(articles);
@@ -282,39 +298,11 @@ function Articles() {
   }
 
   function filterByDate() {
-    let from = document.getElementById("from").value;
-    let to = document.getElementById("to").value;
-    if (from == "") {
-      from = "0000-01-01";
-    }
-    if (to == "") {
-      to = "9999-12-31";
-    }
-
-    let fromDate = new Date(from);
-    let toDate = new Date(to);
-    console.log("From date : " + fromDate);
-    console.log("To date : " + toDate);
-
-    let articleDate;
-
-    let articles = Articles.map((article) => {
-      articleDate = new Date(article.publishDate);
-      console.log("Article date : " + articleDate);
-      if (fromDate > articleDate || toDate < articleDate) {
-        return { ...article, hidden: true };
-      }
-      return { ...article, hidden: false };
-    });
-    let copiedObject = [...articles];
-    console.log("Copied object");
-    console.log(copiedObject);
-    setArticles(copiedObject);
-    forceUpdate();
-    let newVariable = false;
-    setRefresh(newVariable);
-    setRefresh(!newVariable);
-    setRefresh(!refresh);
+    let fromDate = document.getElementById("from").value;
+    let toDate = document.getElementById("to").value;
+    setFromDate(fromDate);
+    setToDate(toDate);
+    updateArticlesForFilter(filterKeywords, filterAuthors, filterInstitutions,fromDate,toDate);
   }
 
   useEffect(() => {
@@ -439,6 +427,7 @@ function Articles() {
             <>
               {!Article.hidden && (
                 <ArticlePopup
+                  key={objectHash(Article)}
                   favoris={Article.Liked}
                   Article={Article}
                   UserType={user.status}
