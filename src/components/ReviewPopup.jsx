@@ -4,7 +4,7 @@ import Favorite from '@mui/icons-material/Favorite';
 import UserTypes from '../constants/enums';
 import { Link } from 'react-router-dom';
 
-export default function ReviewPopup({Article,UserType}) {//if use case 1 it is used pour afficher article if use case 2 it is used pour favoris if 3 it is used for review
+export default function ReviewPopup({Article,UserType,togglePopUp}) {//if use case 1 it is used pour afficher article if use case 2 it is used pour favoris if 3 it is used for review
 
     const JoinedAuthors = Article.Authors.join(', ');
     const JoinedKeyWords = Article.KeyWords.join(', ');
@@ -28,7 +28,7 @@ export default function ReviewPopup({Article,UserType}) {//if use case 1 it is u
                <p className='font-inter font-semibold text-sm xs:text-md md:text-lg text-ellipsis overflow-hidden line-clamp-1  '>{finalStringKeyWords}</p>
             </div>
             <div className="flex justify-center sm:justify-end font-inter items-center text-lg sm:text-xl md:text-2xl pt-[20px]">
-                <div className="cursor-pointer px-10 py-1 bg-black text-white rounded-full">
+                <div className="cursor-pointer px-10 py-1 bg-black text-white rounded-full" onClick={togglePopUp}>
                     <p>Review</p>
                 </div>
             </div>

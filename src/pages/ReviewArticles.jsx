@@ -3,6 +3,7 @@ import NavArticles from '../components/navbars/NavArticles'
 import FooterSigned from '../components/footers/FooterSigned'
 import UserTypes from '../constants/enums'
 import ReviewPopup from '../components/ReviewPopup'
+import ReviewArticlePopUp from '../components/ReviewArticlePopUp.jsx'
 import { useParams } from "react-router-dom";
 import { useEffect } from 'react';
 import axios from 'axios';
@@ -24,6 +25,10 @@ export default function Article() {
   const [Articles, setArticles] = useState([]);
   const [Refresh, setRefresh] = useState(false);
   const [Progress, setProgress] = useState("0%");
+  const [isPopupOpen, setPopupOpen] = useState(false);
+  
+  let id = 0;
+
   let firstFetch = false;
 
   function parseArticle(res){
@@ -32,7 +37,8 @@ export default function Article() {
     }
     // Turn an article from PDF handler to article 
     let article = {}
-    //article.id = res.id;
+    article.id = id;
+    id++;
     article.Title = res.title;
     article.pdfUrl = res.URL;
     article.Summary = res.abstract;
@@ -42,6 +48,7 @@ export default function Article() {
     article.text = res.text;
     article.references = res.bibliography;
     article.publishDate = res.publishingDate;
+    console.log(article);
     return article;
   }
 
@@ -207,6 +214,15 @@ export default function Article() {
     }
   }
 
+  function handleSubmitArticle(article){
+    // Replace the article with the same id
+    let newArticles = [...Articles];
+    let index = newArticles.findIndex((a) => a.id == article.id);
+    newArticles[index] = article;
+    setArticles(newArticles);
+
+  }
+
 
 
 
@@ -218,12 +234,16 @@ export default function Article() {
   return (
     <div>
       <NavArticles/>
-      
+      {
+        Articles.length > 0 &&
+      <ReviewArticlePopUp isOpen={isPopupOpen} handleClose={() => setPopupOpen(false)} article={Articles[0]} handleSubmit={handleSubmitArticle} />
+      }
       <div className="w-[80%] mx-auto flex justify-center sm:justify-end pt-[50px] min-h-[80%]">
       </div>
       <div className="min-h-[500px] justify-center w-full">
+     
         {Articles.map((Article) => (
-          <ReviewPopup  Article={Article}  UserType={UserType}/>
+          <ReviewPopup  Article={Article}  UserType={UserType} togglePopUp={() => setPopupOpen(true)}/>
         ))}
         { !finishedLoading && (<div className="w-full flex justify-center align-middle"><ColorRing
       visible={true}
