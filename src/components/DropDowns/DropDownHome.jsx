@@ -7,9 +7,9 @@ import { Close } from "@mui/icons-material";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import classNames from "classnames";
-import UserTypes from "../../constants/enums";
 export default function DropDOwnHome() {
-  const userType = UserTypes.USER;
+  const user=JSON.parse(localStorage.getItem("user"))
+  const userType=user.status
   const mod = true;
   const [nav, setNav] = useState(false);
   const handleNav = () => {
@@ -34,6 +34,7 @@ export default function DropDOwnHome() {
              in place of 'smooth' */
     });
   };
+
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div onClick={handleNav}>
@@ -71,7 +72,7 @@ export default function DropDOwnHome() {
             <Menu.Item onClick={handleNav}>
               {({ active }) => (
                 <Link
-                  to="/Home"
+                  to={`${userType==="administrator" ? "/admin/dashboard" :"/Home"}`} 
                   className={classNames(
                     active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                     "block px-4 py-2 text-sm font-inter font-semibold"
@@ -82,7 +83,7 @@ export default function DropDOwnHome() {
               )}
             </Menu.Item>
 
-            {userType == UserTypes.USER && (
+            {userType == "user" && (
               <Menu.Item onClick={handleNav}>
                 {({ active }) => (
                   <Link
@@ -112,7 +113,7 @@ export default function DropDOwnHome() {
               )}
             </Menu.Item>
 
-            <Menu.Item onClick={handleNav}>
+            {userType!=="administrator" && <Menu.Item onClick={handleNav}>
               {({ active }) => (
                 <Link
                   to="/Article"
@@ -124,9 +125,9 @@ export default function DropDOwnHome() {
                   Articles
                 </Link>
               )}
-            </Menu.Item>
+            </Menu.Item>}
 
-            {userType == UserTypes.ADMIN && (
+            {userType == "administrator" && (
               <Menu.Item onClick={handleNav}>
                 {({ active }) => (
                   <Link

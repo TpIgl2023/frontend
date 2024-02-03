@@ -38,7 +38,7 @@ const router = createBrowserRouter(
       <Route path="/Review" element={<ReviewArticles />}></Route>
       <Route path="/Modify/:article" element={<ModifyArticle />}></Route>
       <Route path="/Signup" element={<Signup />}></Route>
-      <Route path="/ajouter/" element={<AddArticle />}></Route>
+      <Route path="/ajouter/"Y element={<AddArticle />}></Route>
       <Route path="/article/:id" element={<Article />}></Route>
       <Route path="/articles/:query" element={<Articles />}></Route>
       <Route path="/articles/" element={<Articles />}></Route>
