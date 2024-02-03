@@ -92,14 +92,14 @@ export default function ArticlePopup({
             {Article.title}
           </h1>
 
-          {
+          {UserType === "user" && (
             <div
               onClick={handleLike}
               className="cursor-pointer order-1 sm:order-2"
             >
               <HeartIcon liked={liked} />
             </div>
-          }
+          )}
         </div>
         <div className="pt-5 ">
           <p className="font-inter font-semibold text-sm xs:text-md md:text-lg  text-ellipsis overflow-hidden line-clamp-1 text-main underline">

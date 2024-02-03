@@ -1,4 +1,4 @@
-const GATEWAY_URL = "https://a36e-197-204-247-30.ngrok-free.app";
+const GATEWAY_URL = "http://localhost:1235";
 
 module.exports = {
   GATEWAY_URL,

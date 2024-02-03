@@ -29,7 +29,7 @@ export default function Signup() {
       };
 
       const res = await axios.post(`${GATEWAY_URL}/auth/login`, registerData);
-      console.log("hi"+user)
+      console.log("hi" + user);
       if (res.status === 200) {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data.user));
@@ -39,7 +39,7 @@ export default function Signup() {
         } else if (res.data.user.type === "user") {
           navigate("/home");
         } else {
-          navigate("/home");// fares i changed this nta dertha articles there was an error
+          navigate("/articles"); // fares i changed this nta dertha articles there was an error
         }
       }
     } catch (error) {

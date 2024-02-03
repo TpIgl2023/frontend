@@ -24,6 +24,8 @@ import UserTypes from "../constants/enums";
 import axios from "axios";
 import { ColorRing } from "react-loader-spinner";
 
+const user = localStorage.getItem("user");
+
 var searching = false;
 var articles = [];
 
@@ -238,13 +240,17 @@ function Articles() {
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       axios.defaults.headers.get["Access-Control-Allow-Origin"] = "*";
       const res = await axios.get(`${GATEWAY_URL}/articles/all`);
+      console.log("got response: ");
+      console.log(res);
       console.log("got articles: ");
+
       articles = res.data.articles;
       setArticles(res.data.articles);
       console.log(res.data.articles);
       setSearched(true);
       console.log("finished searching");
     } catch (error) {
+      console.log("Error in getArticles:");
       console.log(error);
     }
   }
@@ -271,7 +277,7 @@ function Articles() {
     } else {
       await getArticles();
     }
-    await getLikedArticles();
+    if (user.status === "user") await getLikedArticles();
     return true;
   }
 
@@ -323,14 +329,16 @@ function Articles() {
 
   useEffect(() => {
     console.log("Articles ids");
-    console.log(liked);
-    articles.forEach((article) => {
-      if (liked.includes(article.id)) {
-        article.Liked = true;
-      } else {
-        article.Liked = false;
-      }
-    });
+    if (user.status === "user") {
+      console.log(liked);
+      articles.forEach((article) => {
+        if (liked.includes(article.id)) {
+          article.Liked = true;
+        } else {
+          article.Liked = false;
+        }
+      });
+    }
     console.log(articles);
     extractKeywords(articles);
     extractAuthors(articles);
@@ -433,7 +441,7 @@ function Articles() {
                 <ArticlePopup
                   favoris={Article.Liked}
                   Article={Article}
-                  UserType={UserType}
+                  UserType={user.status}
                 />
               )}
             </>
