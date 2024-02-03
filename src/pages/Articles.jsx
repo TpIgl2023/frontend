@@ -24,7 +24,7 @@ import UserTypes from "../constants/enums";
 import axios from "axios";
 import { ColorRing } from "react-loader-spinner";
 
-const user = localStorage.getItem("user");
+const user = JSON.parse(localStorage.getItem("user"));
 
 var searching = false;
 var articles = [];

@@ -84,6 +84,8 @@ export default function ArticlePopup({
     window.location.href = `/article/${Article.id}`;
   };
 
+  // console.log("User type is: ", UserType);
+
   return (
     <div className="my-[80px] mx-auto w-[80%] flex justify-begin rounded-3xl h-[350px] shadow-[0px_2px_5px_5px_rgb(140,140,140)] lg:shadow-[0px_5px_10px_5px_rgb(140,140,140)]">
       <div className="py-10   px-5 sm:px-10 w-full">
@@ -116,7 +118,7 @@ export default function ArticlePopup({
             {finalStringKeyWords}
           </p>
         </div>
-        {UserTypes.MODERATOR == UserType ? (
+        {UserTypes.MODERATOR === UserType ? (
           <div className="flex flex-col justify-evenly gap-[10px] sm:flex-row sm:justify-between font-inter items-center text-lg sm:text-xl md:text-2xl  pt-[20px]">
             <div
               id="read_button"
@@ -125,7 +127,16 @@ export default function ArticlePopup({
             >
               <p>Lire la suite {">"}</p>
             </div>
-            <div className="cursor-pointer px-10 py-1 bg-black text-white rounded-full">
+            <div
+              onClick={() => {
+                localStorage.setItem(
+                  "article_to_modify",
+                  JSON.stringify(Article)
+                );
+                window.location.href = `/Modify`;
+              }}
+              className="cursor-pointer px-10 py-1 bg-black text-white rounded-full"
+            >
               <p>Modifier</p>
             </div>
           </div>
