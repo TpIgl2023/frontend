@@ -29,6 +29,7 @@
     "react-router-dom": "^6.21.0",
     "react-scripts": "^5.0.1",
     "react-slick": "^0.29.0",
+    "selenium": "^2.20.0",
     "sort-by": "^1.2.0",
     "tw-elements-react": "^1.0.0-alpha2",
     "web-vitals": "^2.1.4"
