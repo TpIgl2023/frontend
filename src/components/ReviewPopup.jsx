@@ -29,8 +29,7 @@ export default function ReviewPopup({
     <div
       key={objectHash(Article)}
       className={
-        "my-[80px] mx-auto w-[80%] rounded-3xl " +
-        /*" h-[310px] md:h-[350px] "+*/ " shadow-[0px_2px_5px_5px_rgb(140,140,140)] lg:shadow-[0px_5px_10px_5px_rgb(140,140,140)] "
+        "my-[80px] mx-auto w-[80%] rounded-3xl min-h-[350px] shadow-[0px_2px_5px_5px_rgb(140,140,140)] lg:shadow-[0px_5px_10px_5px_rgb(140,140,140)] "
       }
     >
       <div className="py-10  px-5 sm:px-10 flex flex-col justify-evenly">
