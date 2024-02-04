@@ -86,7 +86,7 @@ export default function Article() {
               }`}
               onClick={() => handleTabClick("resume")}
             >
-              Résumé
+              Abstract
             </div>
             <div
               className={`  ${
@@ -94,7 +94,7 @@ export default function Article() {
               }`}
               onClick={() => handleTabClick("author")}
             >
-              Auteurs
+              Authors
             </div>
             <div
               className={` ${
@@ -102,7 +102,7 @@ export default function Article() {
               }`}
               onClick={() => handleTabClick("keyword")}
             >
-              Mots clés
+              Keywords
             </div>
             <div
               className={` ${
@@ -118,7 +118,7 @@ export default function Article() {
               }`}
               onClick={() => handleTabClick("contenu")}
             >
-              Contenu
+              Content
             </div>
             <div
               className={` ${activeTab == "url" ? classActive : classPassive}`}
@@ -132,7 +132,7 @@ export default function Article() {
               }`}
               onClick={() => handleTabClick("ref")}
             >
-              Réferences
+              Bibliography
             </div>
           </div>
           <div className="w-full h-[600px] border-l-4 border-r-4 border-b-4 border-main mb-[100px]  rounded-b-2xl   text-xl">
@@ -207,14 +207,14 @@ export default function Article() {
             className="text-2xl w-full text-bold px-10 border-l-4 border-main font-bold"
             onClick={() => setResume(!resume)}
           >
-            <h1>Résumé</h1>
+            <h1>Abstract</h1>
           </div>
           {resume && <div className="py-5 text-md">{article.resume}</div>}
           <div
             className="text-2xl w-full text-bold px-10 border-l-4 border-main font-bold mt-10"
             onClick={() => setKeyWord(!keyWord)}
           >
-            <h1>Mots clés</h1>
+            <h1>Keywords</h1>
           </div>
           {keyWord && (
             <div className="py-5 text-md">
@@ -230,7 +230,7 @@ export default function Article() {
             className="text-2xl w-full text-bold px-10 border-l-4 border-main font-bold mt-10"
             onClick={() => setAuthor(!author)}
           >
-            <h1>Auteurs</h1>
+            <h1>Authors</h1>
           </div>
           {author && (
             <div className="py-5 text-md">
@@ -262,7 +262,7 @@ export default function Article() {
             className="text-2xl w-full text-bold px-10 border-l-4 border-main font-bold mt-10"
             onClick={() => setText(!text)}
           >
-            <h1>Contenu</h1>
+            <h1>Content</h1>
           </div>
           {text && <div className="py-5 text-md">{article.text}</div>}
           <div
@@ -290,7 +290,7 @@ export default function Article() {
             className="text-2xl w-full text-bold px-10 border-l-4 border-main font-bold mt-10"
             onClick={() => setRef(!ref)}
           >
-            <h1>Références</h1>
+            <h1>Bibliography</h1>
           </div>
           {ref && (
             <div className="py-5 text-md pb-10">

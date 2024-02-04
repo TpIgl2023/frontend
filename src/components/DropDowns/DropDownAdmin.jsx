@@ -45,7 +45,7 @@ export default function DropDownAdmin() {
                     "block px-4 py-2 text-sm font-inter font-semibold"
                   )}
                 >
-                  Ajouter article
+                  Add new article
                 </Link>
               )}
             </Menu.Item>
@@ -122,7 +122,7 @@ export default function DropDownAdmin() {
                     'block px-4 py-2 text-sm font-inter font-semibold'
                   )}
                 >
-                  Deconnexion
+                  Log out
                 </Link>
               )}
             </Menu.Item>

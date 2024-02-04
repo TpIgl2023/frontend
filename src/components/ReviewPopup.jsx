@@ -16,9 +16,9 @@ export default function ReviewPopup({
   const [ElementArticle, setElementArticle] = useState(Article);
   const JoinedAuthors = Article.Authors.join(", ");
   const JoinedKeyWords = Article.KeyWords.join(", ");
-  const finalStringAuthors = `Auteurs : ${JoinedAuthors}`;
+  const finalStringAuthors = `Authors : ${JoinedAuthors}`;
 
-  const finalStringKeyWords = `Mots-clés : ${JoinedKeyWords}`;
+  const finalStringKeyWords = `Keywords : ${JoinedKeyWords}`;
   let article;
 
   function handleClick() {

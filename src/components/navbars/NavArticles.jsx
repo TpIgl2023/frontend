@@ -9,10 +9,10 @@ import DropDOwnHome from "../DropDowns/DropDownHome";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { Close, KeyboardArrowUp } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-export default function NavArticles() {
+export default function NavArticles({query}) {
   const navigate = useNavigate();
   const [searchBar, setSearchBar] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState(query || "");
   const user = JSON.parse(localStorage.getItem("user"));
   const userType = user.status;
 

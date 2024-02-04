@@ -7,13 +7,13 @@ export default function FooterUnsigned() {
       <div className="flex justify-evenly py-16">
         <div className="hidden md:block">
           <div className="flex flex-col gap-8 w-[250px] lg:w-[400px] ">
-              <h1 className="font-jost text-3xl lg:text-5xl">Logo</h1>
-              <p className="font-inter text-black/[69%] text-xl">Un texte est une série orale ou écrite de mots perçus comme constituant un ensemble cohérent, </p>
+              <h1 className="font-jost text-3xl lg:text-5xl">PDFinder</h1>
+              <p className="font-inter text-black/[69%] text-xl">PDFinder is a student project as part of IGL 2023. ESI-ALGER</p>
           </div>
         </div>
         <div className="hidden md:block">
           <div className="flex flex-col gap-4 lg:gap-6 w-[200px] items-center ">
-              <h1 className="font-inter font-semibold text-lg lg:text-2xl">Lien rapide</h1>
+              <h1 className="font-inter font-semibold text-lg lg:text-2xl">Navigation links</h1>
               <Link to="/Signup" className="font-inter text-black/[69%] text-lg lg:text-xl">sign up</Link>
               <Link to="/Login" className='font-inter text-black/[69%] text-lg lg:text-xl'>log in</Link>
           </div>

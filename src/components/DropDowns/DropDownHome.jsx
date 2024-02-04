@@ -94,7 +94,7 @@ export default function DropDOwnHome() {
                       "block px-4 py-2 text-sm font-inter font-semibold"
                     )}
                   >
-                    Favoris
+                    Favorites
                   </Link>
                 )}
               </Menu.Item>
@@ -109,7 +109,7 @@ export default function DropDOwnHome() {
                     "block px-4 py-2 text-sm font-inter font-semibold"
                   )}
                 >
-                  Contact
+                  Contact us
                 </Link>
               )}
             </Menu.Item>
@@ -138,7 +138,7 @@ export default function DropDOwnHome() {
                       "block px-4 py-2 text-sm font-inter font-semibold"
                     )}
                   >
-                    Ajouter Article
+                    Add new article
                   </Link>
                 )}
               </Menu.Item>
@@ -154,7 +154,7 @@ export default function DropDOwnHome() {
                     "block px-4 py-2 text-sm font-inter font-semibold"
                   )}
                 >
-                  Deconnexion
+                  Log out
                 </Link>
               )}
             </Menu.Item>

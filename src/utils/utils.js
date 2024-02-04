@@ -56,6 +56,10 @@ export const updatePassword = async (oldPassword, newPassword) => {
 
 export const modifyArticle = async (articleId, newValues, setArticleValues) => {
   try {
+    console.log("newValues: ")
+    console.log(newValues);
+    console.log("articleId: ")
+    console.log(articleId);
     const token = localStorage.getItem("token");
     console.log(token);
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -64,6 +68,8 @@ export const modifyArticle = async (articleId, newValues, setArticleValues) => {
       newValues
     );
     if (res.status === 200) {
+      console.log("response: ")
+      console.log(res);
       setArticleValues(newValues);
       alert("Article updated successfully");
     }

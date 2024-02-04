@@ -32,7 +32,7 @@ import Unauthorized from "./pages/Unauthorized";
 import { UnarchiveTwoTone } from "@mui/icons-material";
 const userNotParsed=localStorage.getItem("user")
   const user=JSON.parse(userNotParsed)
-  const userType=user.status
+  const userType=user ? user.status : undefined
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Rootlayout />}>
@@ -40,7 +40,7 @@ const router = createBrowserRouter(
       <Route path="/Login" element={<Login />}></Route>
 
       <Route path="/Review/:url" element={userType === "administrator" ? <ReviewArticles /> : <Unauthorized/>}></Route>
-      <Route path="/Modify/:article" element={userType === "moderator" ? <ModifyArticle />:<Unauthorized/>}></Route>
+      <Route path="/Modify" element={userType === "moderator" ? <ModifyArticle />:<Unauthorized/>}></Route>
       <Route path="/Signup" element={<Signup />}></Route>
       <Route path="/ajouter/"Y element={userType === "administrator" ? <AddArticle /> : <Unauthorized/>}></Route>
       <Route path="/article/:id" element={userType !== "administrator" ? <Article /> :<Unauthorized/> }></Route>

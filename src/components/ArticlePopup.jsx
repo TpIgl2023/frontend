@@ -17,9 +17,9 @@ export default function ArticlePopup({
   // const [searched, setSearched] = useState(false);
   const JoinedAuthors = Article.authors.join(", ");
   const JoinedKeyWords = Article.keywords.join(", ");
-  const finalStringAuthors = `Auteurs : ${JoinedAuthors}`;
+  const finalStringAuthors = `Authors : ${JoinedAuthors}`;
 
-  const finalStringKeyWords = `Mots-clés : ${JoinedKeyWords}`;
+  const finalStringKeyWords = `Keywords : ${JoinedKeyWords}`;
 
   const [liked, setLiked] = useState(favoris);
 
@@ -125,7 +125,7 @@ export default function ArticlePopup({
               onClick={viewArticle}
               className="cursor-pointer"
             >
-              <p>Lire la suite {">"}</p>
+              <p>Read more {">"}</p>
             </div>
             <div
               onClick={() => {
@@ -137,7 +137,7 @@ export default function ArticlePopup({
               }}
               className="cursor-pointer px-10 py-1 bg-black text-white rounded-full"
             >
-              <p>Modifier</p>
+              <p>Edit</p>
             </div>
           </div>
         ) : (
@@ -147,7 +147,7 @@ export default function ArticlePopup({
               onClick={viewArticle}
               className="cursor-pointer"
             >
-              <p>Lire la suite {">"}</p>
+              <p>Read more {">"}</p>
             </div>
           </div>
         )}

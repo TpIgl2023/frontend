@@ -36,10 +36,10 @@ export default function Signup() {
         console.log(res.data.token);
         if (res.data.user.status === "administrator") {
           navigate("/ajouter");
-        } else if (res.data.user.type === "user") {
+        } else if (res.data.user.status === "user") {
           navigate("/home");
         } else {
-          navigate("/articles"); // fares i changed this nta dertha articles there was an error
+          navigate("/articles"); 
         }
       }
     } catch (error) {

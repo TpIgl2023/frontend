@@ -15,7 +15,8 @@ export default function SearchSection() {
       return;
     }
 
-    navigate(`/articles/${search}`);
+    // navigate(`/articles/${search}`);
+    window.location.href = `/articles/${search}`;
   }
 
   return (

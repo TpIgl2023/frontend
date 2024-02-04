@@ -36,7 +36,7 @@ export default function Hero() {
         <div className="w-[150px] xs:w-[200px] sm:w-[320px] md:w-[400px] lg:w-[500px] xl:w-[600px] 2xl:w-[700px] py-16">
           <div className="flex-col">
             <h1 className="font-inter font-semibold lg:leading-[60px] xl:leading-[90px] text-2xl xs:text-3xl sm:text-4xl md:text-5xl xl:text-7xl">Get details of millions of articles with us</h1>
-            <p className="font-inter pt-20 text-2xl xl:text-3xl text-[#4D4D4D]/[69%]  hidden lg:block">Un texte est une série orale ou écrite de mots perçus comme constituant un ensemble cohérent, porteur de sens et utilisant les structures propres</p>
+            <p className="font-inter pt-20 text-2xl xl:text-3xl text-[#4D4D4D]/[69%]  hidden lg:block">PDFinder helps you find articles about a large area of topics rapidly , securely and in just simple clicks !</p>
           </div>
         </div>
         <div className="w-[175px] xs:w-[220px]  sm:w-[300px] md:w-[350px] lg:w-[500px] xl:w-[700px] 2xl:w-[800px]">

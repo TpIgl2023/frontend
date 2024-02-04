@@ -25,7 +25,6 @@ import axios from "axios";
 import { ColorRing } from "react-loader-spinner";
 import objectHash from "object-hash";
 
-const user = JSON.parse(localStorage.getItem("user"));
 
 var searching = false;
 var articles = [];
@@ -111,6 +110,8 @@ function FilterElement({ filterElement, listItem, filterByFunction }) {
 }
 
 function Articles() {
+  
+const user = JSON.parse(localStorage.getItem("user"));
   const { query } = useParams();
   const [filter, toggleFilter] = useState(false);
   const [Articles, setArticles] = useState([]);
@@ -338,7 +339,7 @@ function Articles() {
 
   return (
     <div>
-      <NavArticles />
+      <NavArticles query={ query }/>
       {!filter && (
         <button
           className="p-4 m-4 bg-orange-600"

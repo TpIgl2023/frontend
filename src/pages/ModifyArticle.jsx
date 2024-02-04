@@ -157,7 +157,9 @@ export default function ModifyArticle() {
   //---------------------------------------------
   function handleSubmit(event) {
     event.preventDefault();
-    const article = {
+    console.log("Athors : ");
+    console.log(authors);
+    const newArticle = {
       title: title,
       abstract: summary,
       authors: authors,
@@ -167,7 +169,7 @@ export default function ModifyArticle() {
       bibliography: referances,
       publishingDate: date,
     };
-    modifyArticle(articleId, article, setArticleValues);
+    modifyArticle(articleId, newArticle, setArticleValues);
   }
 
   async function handleDelete(event) {
@@ -192,12 +194,12 @@ export default function ModifyArticle() {
       <form onSubmit={handleSubmit}>
         <div className="w-[90%] sm:w-[80%] mx-auto">
           <h1 className="font-inter font-bold text-4xl md:text-5xl py-[50px] text-center">
-            Modifier Article
+            Edit article
           </h1>
 
           {/*Titre */}
           <label className="font-inter font-semibold text-xl sm:text-2xl md:text-3xl sm:pl-[50px] ">
-            Titre de l'article :{" "}
+            Title :{" "}
           </label>
           <div className="my-[20px] p-6 border-main border-2">
             <textarea
@@ -215,7 +217,7 @@ export default function ModifyArticle() {
 
           <div className="pt-10">
             <label className="font-inter font-semibold text-xl sm:text-2xl md:text-3xl sm:pl-[50px] py-10">
-              Résumé de l'article :{" "}
+              Abstract :{" "}
             </label>
           </div>
           <div className="my-[20px] p-6 border-main border-2">
@@ -232,7 +234,7 @@ export default function ModifyArticle() {
           {/*Authors */}
           <div className="pt-10">
             <label className="font-inter font-semibold text-xl sm:text-2xl md:text-3xl sm:pl-[50px] py-10">
-              Auteurs de l'article :{" "}
+              Authors :{" "}
             </label>
           </div>
           <div className="my-[20px] p-6 sm:px-10 border-main bg-main rounded-3xl border-2">
@@ -266,7 +268,7 @@ export default function ModifyArticle() {
           {/*Institutions */}
           <div className="pt-10">
             <label className="font-inter font-semibold text-xl sm:text-2xl md:text-3xl sm:pl-[50px] py-10">
-              Institutions de l'article :{" "}
+              Institutions :{" "}
             </label>
           </div>
           <div className="my-[20px] p-6 sm:px-10 border-main bg-main rounded-3xl border-2">
@@ -300,7 +302,7 @@ export default function ModifyArticle() {
           {/*Content */}
           <div className="pt-10">
             <label className="font-inter font-semibold text-xl sm:text-2xl md:text-3xl sm:pl-[50px] py-10">
-              Contenu de l'article :{" "}
+              Content :{" "}
             </label>
           </div>
           <div className="my-[20px] p-6 border-main border-2">
@@ -317,7 +319,7 @@ export default function ModifyArticle() {
           {/*Ref */}
           <div className="pt-10">
             <label className="font-inter font-semibold text-xl sm:text-2xl md:text-3xl sm:pl-[50px] py-10">
-              Réference de l'article :{" "}
+              Bibliography :{" "}
             </label>
           </div>
           <div className="my-[20px] p-6 sm:px-10 border-main bg-main rounded-3xl border-2">
@@ -351,7 +353,7 @@ export default function ModifyArticle() {
           {/*Date de publication*/}
           <div className="py-6 sm:py-10 flex  flex-col items-center md:flex-row sm:justify-evenly">
             <label className="font-inter font-semibold text-xl sm:text-2xl md:text-3xl  lg:text-3xl px-[50px] py-10  ">
-              Date de publication de l'article :{" "}
+              Publishing date :{" "}
             </label>
             <input
               type="date"

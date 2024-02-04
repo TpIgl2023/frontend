@@ -84,7 +84,7 @@ export default function ArticlePopupFavorite({ Article, removeArticle }) {
               onClick={viewArticle}
               className="cursor-pointer"
             >
-              <p>Lire la suite {">"}</p>
+              <p>Read more {">"}</p>
             </div>
           </div>
         }

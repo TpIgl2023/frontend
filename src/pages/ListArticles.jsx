@@ -42,7 +42,7 @@ export default function ListArticles() {
       <NavArticles/>
       <div className="w-[80%] mx-auto flex justify-center sm:justify-end pt-[50px]">
             <div className="py-2 px-5 sm:px-10 text-white bg-main rounded-3xl text-xl xs:text-2xl sm:text-3xl font-inter cursor-pointer" onClick={activateFilter}>
-                Filtrer les resultats
+                Filter results
             </div>
       </div>
       <div>
