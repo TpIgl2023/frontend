@@ -73,6 +73,11 @@ export default function Article() {
             {article.title}
           </h1>
         </div>
+        <div className="flex justify-center text-md xs:text-lg sm:text-lg md:text-xl lg:text-2xl font-semibold w-full py-[30px] pt-14 sm:py-[50px] md:py-[80px]">
+          <h1 className="text-center w-[80%] xs:w-[75%] sm:w-[60%] lg:w-[50%]">
+            <span className="text-main">Publié le :</span> {article.publishDate}
+          </h1>
+        </div>
         <div className="hidden md:block">
           <div className="flex text-xl lg:text-2xl font-semibold">
             <div
