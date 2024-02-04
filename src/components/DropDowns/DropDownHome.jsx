@@ -79,7 +79,7 @@ export default function DropDOwnHome() {
                     "block px-4 py-2 text-sm font-inter font-semibold"
                   )}
                 >
-                  Acceuil
+                  Home
                 </Link>
               )}
             </Menu.Item>
