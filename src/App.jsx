@@ -38,6 +38,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<Rootlayout />}>
       <Route path="/Hero" element={ <Hero /> }></Route>
       <Route path="/Login" element={<Login />}></Route>
+
       <Route path="/Review/:url" element={userType === "administrator" ? <ReviewArticles /> : <Unauthorized/>}></Route>
       <Route path="/Modify/:article" element={userType === "moderator" ? <ModifyArticle />:<Unauthorized/>}></Route>
       <Route path="/Signup" element={<Signup />}></Route>
@@ -56,6 +57,7 @@ const router = createBrowserRouter(
         <Route path="AjouterMod" element={userType === "administrator" ? <NewMod />: <Unauthorized/>}></Route>
         <Route path="Help" element={userType === "administrator" ? <Help />: <Unauthorized/>}></Route>
         <Route path="ModifyMod/:mod" element={userType === "administrator" ? <ModifyAdmin />: <Unauthorized/>}></Route>
+
       </Route>
     </Route>
   )
