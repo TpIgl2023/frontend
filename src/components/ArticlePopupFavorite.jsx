@@ -68,7 +68,7 @@ export default function ArticlePopupFavorite({ Article, removeArticle }) {
           </p>
         </div>
         <div className="pt-5 ">
-          <p className="font-inter text-sm xs:text-md md:text-lg  text-ellipsis overflow-hidden line-clamp-2">
+          <p className="font-inter text-sm xs:text-md md:text-lg  text-ellipsis overflow-hidden line-clamp-3 sm:line-clamp-2">
             {Article.resume}
           </p>
         </div>
