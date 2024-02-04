@@ -341,12 +341,18 @@ const user = JSON.parse(localStorage.getItem("user"));
     <div>
       <NavArticles query={ query }/>
       {!filter && (
-        <button
-          className="p-4 m-4 bg-orange-600"
-          onClick={() => toggleFilter(!filter)}
-        >
-          Open filter
-        </button>
+        <div className="w-[80%] mx-auto">
+          <div className=" flex justify-center sm:justify-end">
+            <button
+              className="px-5 py-2 m-4 bg-main rounded-2xl font-bold text-3xl text-white"
+              onClick={() => toggleFilter(!filter)}
+            >
+              Open filter
+            </button>
+          </div>
+        </div>
+
+
       )}
       <div className="min-h-[370px]">
         <div className="h-full w-full flex justify-center align-middle">
