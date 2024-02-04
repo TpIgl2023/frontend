@@ -30,9 +30,16 @@ import ModifyAdmin from "./pages/AdminPages/ModifyAdmin";
 import ModifyArticle from "./pages/ModifyArticle";
 import Unauthorized from "./pages/Unauthorized";
 import { UnarchiveTwoTone } from "@mui/icons-material";
+import NonExisting from "./pages/NonExisting";
 const userNotParsed=localStorage.getItem("user")
+let userType;
+if(userNotParsed===null){
+  userType=""
+}else{
   const user=JSON.parse(userNotParsed)
-  const userType=user.status
+  userType=user.status
+}
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Rootlayout />}>
@@ -59,6 +66,8 @@ const router = createBrowserRouter(
         <Route path="ModifyMod/:mod" element={userType === "administrator" ? <ModifyAdmin />: <Unauthorized/>}></Route>
 
       </Route>
+      <Route path="/*" element={<NonExisting/>}/>
+
     </Route>
   )
 );
