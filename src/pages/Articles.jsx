@@ -344,7 +344,7 @@ const user = JSON.parse(localStorage.getItem("user"));
         <div className="w-[80%] mx-auto">
           <div className=" flex justify-center sm:justify-end">
             <button
-              className="px-5 py-2 m-4 bg-main font-bold text-3xl text-white"
+              className="px-5 py-2 m-4 bg-main rounded-2xl font-bold text-3xl text-white"
               onClick={() => toggleFilter(!filter)}
             >
               Open filter
