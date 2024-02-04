@@ -355,19 +355,6 @@ const user = JSON.parse(localStorage.getItem("user"));
 
       )}
       <div className="min-h-[370px]">
-        <div className="h-full w-full flex justify-center align-middle">
-          {!searched && (
-            <ColorRing
-              visible={true}
-              height="120"
-              width="120"
-              ariaLabel="color-ring-loading"
-              wrapperStyle={{}}
-              wrapperClass="color-ring-wrapper"
-              colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
-            />
-          )}
-        </div>
         <div>
           {filter && (
             <div
@@ -430,6 +417,19 @@ const user = JSON.parse(localStorage.getItem("user"));
                 </Button>
               </div>
             </div>
+          )}
+        </div>
+        <div className="w-full flex justify-center align-middle">
+        {!searched && (
+            <ColorRing
+              visible={true}
+              height="120"
+              width="120"
+              ariaLabel="color-ring-loading"
+              wrapperStyle={{}}
+              wrapperClass="color-ring-wrapper"
+              colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
+            />
           )}
         </div>
         <div>
