@@ -46,7 +46,7 @@ export default function ArticlePopupFavorite({ Article, removeArticle }) {
     window.location.href = `/article/${Article.id}`;
   };
   return (
-    <div className="my-[80px] mx-auto w-[80%] flex justify-begin rounded-3xl h-[350px] shadow-[0px_2px_5px_5px_rgb(140,140,140)] lg:shadow-[0px_5px_10px_5px_rgb(140,140,140)]">
+    <div className="my-[80px] mx-auto w-[80%] flex justify-begin rounded-3xl min-h-[350px] shadow-[0px_2px_5px_5px_rgb(140,140,140)] lg:shadow-[0px_5px_10px_5px_rgb(140,140,140)]">
       <div className="py-10   px-5 sm:px-10 w-full">
         <div className="flex flex-col gap-[10px] items-center sm:flex-row sm:justify-between ">
           <h1 className="font-inter text-lg xs:text-xl sm:text-2xl lg:text-3xl font-semibold order-2 sm:order-1 text-center">
@@ -68,7 +68,7 @@ export default function ArticlePopupFavorite({ Article, removeArticle }) {
           </p>
         </div>
         <div className="pt-5 ">
-          <p className="font-inter text-sm xs:text-md md:text-lg  text-ellipsis overflow-hidden line-clamp-2">
+          <p className="font-inter text-sm xs:text-md md:text-lg  text-ellipsis overflow-hidden line-clamp-3 sm:line-clamp-2">
             {Article.resume}
           </p>
         </div>
