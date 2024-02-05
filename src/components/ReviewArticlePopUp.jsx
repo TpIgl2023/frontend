@@ -54,17 +54,17 @@ export default function ReviewArticlePopUp({
   console.log("the Article of the pop up is: ", JSON.stringify(article));
   const Article = { ...article };
   const id = Article.id;
-  var [Title, setTitle] = useState(Article.Title);
-  var [pdfUrl, setPdfUrl] = useState(Article.pdfUrl);
-  var [Summary, setSummary] = useState(Article.Summary);
-  var [Authors, setAuthors] = useState(Article.Authors.join(", "));
+  var [Title, setTitle] = useState(Article.Title? Article.Title: "");
+  var [pdfUrl, setPdfUrl] = useState(Article.pdfUrl? Article.pdfUrl: "");
+  var [Summary, setSummary] = useState(Article.Summary? Article.Summary: "");
+  var [Authors, setAuthors] = useState(Article.Authors? Article.Authors.join(", "): "");
   var [institutions, setInstitutions] = useState(
-    Article.institutions.join(", ")
+    Article.institutions? Article.institutions.join(", ") : ""
   );
-  var [KeyWords, setKeyWords] = useState(Article.KeyWords.join(", "));
-  var [text, setText] = useState(Article.text);
-  var [references, setReferences] = useState(Article.references.join(", "));
-  var [publishDate, setPublishDate] = useState(Article.publishDate);
+  var [KeyWords, setKeyWords] = useState(Article.KeyWords? Article.KeyWords.join(", ") : "");
+  var [text, setText] = useState(Article.text? Article.text: "");
+  var [references, setReferences] = useState(Article.references? Article.references.join(", "): "");
+  var [publishDate, setPublishDate] = useState(Article.publishDate ? Article.publishDate: "");
 
   function handleClick() {
     let Article = {
